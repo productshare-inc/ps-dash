@@ -1,7 +1,6 @@
 "use client"
-import { useRouter } from 'next/navigation'
-import React from 'react'
-import ErrorPageProps from '@repo/ts-types/auth/v1'
+
+import {ErrorPageProps} from '@repo/ts-types/auth/v1'
 import ErrorCard from '../../../organisms/custom/auth/v1/ErrorCard'
 import Quote from '../../../organisms/custom/auth/v1/Quote'
 

@@ -2,7 +2,7 @@
 
 import db from "@repo/prisma-db/client"
 
-import {  getVerificationTokenByToken } from "@repo/prisma-db/repo/verification"
+import {  getVerificationTokenByToken } from "@repo/prisma-db/repo/user"
 import { getUserByEmail } from "@repo/prisma-db/repo/user"
 
 export const newVerification = async (token: string) =>{

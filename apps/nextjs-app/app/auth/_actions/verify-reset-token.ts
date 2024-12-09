@@ -1,5 +1,5 @@
 'use server'
-import { getResetTokenByToken } from "@repo/prisma-db/repo/forgot-password";
+import { getResetTokenByToken } from "@repo/prisma-db/repo/user";
 
 export const verifyResetToken = async(token: string)=>{
     const existingToken = await getResetTokenByToken(token);

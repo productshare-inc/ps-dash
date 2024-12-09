@@ -1,7 +1,7 @@
 "use server"
 
 import db from "@repo/prisma-db/client"
-import { getResetTokenByToken } from "@repo/prisma-db/repo/forgot-password"
+import { getResetTokenByToken } from "@repo/prisma-db/repo/user"
 import bcrypt from "bcryptjs"
 
 

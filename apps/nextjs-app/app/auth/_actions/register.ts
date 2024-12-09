@@ -1,11 +1,11 @@
 "use server";
 
-import { RegisterSchema } from '@repo/zod/index';
+import { RegisterSchema } from '@repo/zod/auth';
 import * as z from 'zod';
 import bcrypt from 'bcryptjs';
 import db from '@repo/prisma-db/client';
 import { getUserByEmail } from '@repo/prisma-db/repo/user';
-import { createVerificationToken } from '@repo/prisma-db/repo/verification';
+import { createVerificationToken } from '@repo/prisma-db/repo/user';
 import { sendVerificationEmail } from '@repo/resend-email/mail';
 
 export const register = async (values:z.infer<typeof RegisterSchema>) =>{

@@ -1,4 +1,4 @@
-import { Card,  CardFooter, CardHeader } from '../../../../molecules/shadcn/card.js';
+import { Card,  CardFooter, CardHeader } from '../../../../molecules/shadcn/card';
 import { BsExclamationTriangle } from 'react-icons/bs';
 import { ErrorCardProps } from '@repo/ts-types/auth/v1';
 

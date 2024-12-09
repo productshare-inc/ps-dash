@@ -1,10 +1,10 @@
 "use server";
 
-import { LoginSchema } from '@repo/zod/index';
+import { LoginSchema } from '@repo/zod/auth';
 import * as z from 'zod';
 import { signIn } from '@repo/next-auth/auth';
 import { AuthError } from 'next-auth';
-import { createVerificationToken } from '@repo/prisma-db/repo/verification';
+import { createVerificationToken } from '@repo/prisma-db/repo/user';
 import { getUserByEmail } from '@repo/prisma-db/repo/user';
 import { sendVerificationEmail } from '@repo/resend-email/mail';
 import { DEFAULT_LOGIN_REDIRECT } from '../../../routes';
