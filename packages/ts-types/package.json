@@ -9,6 +9,9 @@
   "exports":{
     "./*": "./src/*.tsx"
   },
+  "devDependencies": {
+    "@repo/typescript-config": "*"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
