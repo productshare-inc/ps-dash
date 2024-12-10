@@ -1,9 +1,7 @@
 'use client'
-import LoginPage from '@repo/ui/templates/auth/v1/LoginPage'
-import { useRouter, useSearchParams } from 'next/navigation'
-import React, { Suspense, useEffect, useState } from 'react'
-import { DEFAULT_LOGIN_REDIRECT } from '../../../routes'
-import { signIn } from 'next-auth/react'
+
+import { useRouter} from 'next/navigation'
+import React, { Suspense } from 'react'
 import ForgotPasswordPage from '@repo/ui/templates/auth/v1/ForgotPasswordPage'
 import { ForgotPassword } from '../_actions/forgot-password'
 
@@ -13,10 +11,10 @@ const ForgotPasswordClient = () => {
     const quote = 'The only way to do great work is to love what you do.'
     const author = 'Late Steve Jobs'
     const credential = 'Ex CEO of Apple Inc.'
-    const [error, setError] = useState<string | undefined>('')
-    const [success, setSuccess] = useState<string | undefined>('')
-    const [title, setTitle] = useState<string>('')
-    const [description, setDescription] = useState<string>('')
+    const title = 'Forgot Password'
+    const description = 'Enter your email to reset your password.'
+    const error = 'Invalid Email! Please check your email and try again.' 
+    const success = 'Password reset! Please check your email for further instructions.'
 
     const goToLoginPage = ()=>{
         router.push('/auth/login')

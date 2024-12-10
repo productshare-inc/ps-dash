@@ -6,25 +6,25 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint --max-warnings 20"
   },
   "dependencies": {
-    "@repo/ts-types": "*",
-    "@repo/typescript-config": "*",
-    "@repo/ui": "*",
-    "@repo/zod": "*",
     "@repo/next-auth": "*",
     "@repo/prisma-db": "*",
+    "@repo/ts-types": "*",
+    "@repo/typescript-config": "*",
+    "@repo/zod": "*",
+    "@repo/ui": "*",
     "next": "15.0.3",
     "next-auth": "5.0.0-beta.25",
     "path": "^0.12.7",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106"
+    "react": "18",
+    "react-dom": "18"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "18",
+    "@types/react-dom": "18",
     "css-loader": "^7.1.2",
     "eslint": "^8",
     "eslint-config-next": "15.0.3",

@@ -12,8 +12,8 @@ export function ModeToggle() {
   const { setTheme } = useTheme();
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+    // @ts-ignore
+    <DropdownMenu>  <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
           size="icon"

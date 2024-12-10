@@ -15,7 +15,7 @@ export const ForgotPassword = async (email: string) => {
         return {success: "Email with Reset Token sent!"}
     }
     catch (error){
-        return {error: "Something went wrong!"}
+        return {error:error}
     }
 
 }

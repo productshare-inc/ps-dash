@@ -52,6 +52,7 @@ export interface ForgotPasswordCardProps {
     successMessage?:string;
     resetFunction?:any; 
     backFunction?:any;
+    forgotPasswordFunction?:any;
   }
 
  export interface ErrorCardProps {
@@ -109,6 +110,7 @@ export interface ForgotPasswordPageProps {
     successMessage?:string;
     resetFunction?:any;
     backFunction?:()=>void;
+    forgotPasswordFunction?:()=>void;
     title: string;
     description: string;
     quote: string;
