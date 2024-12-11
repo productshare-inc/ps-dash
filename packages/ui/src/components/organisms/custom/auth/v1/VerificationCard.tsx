@@ -4,7 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader } from '../../../../molecules
 import { BeatLoader } from 'react-spinners';
 import { VerificationCardProps } from '@repo/ts-types/auth/v1';
 
-const VerificationCard = ({error,success,backFunction}:VerificationCardProps) => {
+const VerificationCard = ({errorMessage,successMessage,backFunction}:VerificationCardProps) => {
 
   return (
     <Card className='w-[400px] bg-white text-black shadow-xl shadow-white/20'>
@@ -16,9 +16,9 @@ const VerificationCard = ({error,success,backFunction}:VerificationCardProps) =>
       </CardHeader>
       <CardContent>
         <div className='flex items-center justify-center'>
-          {(!success && !error) && <BeatLoader size={20} color='black'/>}
-          {!success && <FormResult type="error" message={error }/>}
-          <FormResult type="success" message={success}/>
+          {(!successMessage && !errorMessage) && <BeatLoader size={20} color='black'/>}
+          {!successMessage && <FormResult type="error" message={errorMessage }/>}
+          <FormResult type="success" message={successMessage}/>
         </div>
       </CardContent>
       <CardFooter className='flex justify-center'>

@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "../../../packages/ui/src/styles/shadcn/shadcn-green.css"
 import { ThemeProvider } from "@repo/ui/providers/theme-provider";
 import "../../../packages/ui/src/styles/custom/heroBackgroundAnimation.css"
+import { SessionProviders } from "../providers/session-provider";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,9 +32,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider >
-          {children}
-        </ThemeProvider>
+        <SessionProviders>
+          <ThemeProvider >
+            {children}
+          </ThemeProvider>
+        </SessionProviders>
 
       </body>
     </html>

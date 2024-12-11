@@ -8,7 +8,7 @@
   },
   "keywords": [],
   "author": "",
-  "prisma" :{
+  "prisma": {
     "seed": " ts-node --transpile-only prisma/seeds/seed.ts"
   },
   "exports": {
@@ -18,11 +18,13 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^6.0.1",
+    "bcryptjs": "^2.4.3",
     "prisma": "^6.0.1",
     "uuid": "^11.0.3"
   },
   "devDependencies": {
     "@types/node": "^22.10.1",
-    "@types/uuid": "^10.0.0"
+    "@types/uuid": "^10.0.0",
+    "ts-node": "^10.9.2"
   }
 }

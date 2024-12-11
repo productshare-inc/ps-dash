@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {z} from "zod"
 import { Card, CardContent, CardFooter, CardHeader } from '../../../../molecules/shadcn/card';
 import { useTransition } from 'react';
@@ -32,17 +32,27 @@ const ForgotPasswordCard = ({errorMessage,successMessage,resetFunction,backFunct
 
   const [isPending, startTransition] = useTransition()
 
-  function handleSubmit(data: z.infer<typeof ForgotPasswordSchema>) {
+  async function handleSubmit(data: z.infer<typeof ForgotPasswordSchema>) {
     setError("")
     setSuccess("")
-    startTransition(()=>{
+    startTransition(() => {
       resetFunction(data.email)
-      .then((data:any)=>{
-            setError(data?.error);
-            setSuccess(data?.success);
-      })
-    })
+        .then((data: any) => {
+          console.log("Reset Function Response:", data); // Debugging
+          setError(data?.error);
+          setSuccess(data?.success);
+        })
+        .catch((err: any) => {
+          console.error("Reset Function Error:", err);
+          setError("An unexpected error occurred.");
+        });
+    });
   }
+
+  useEffect(() => {
+    console.log("Error state updated:", error);
+    console.log("Success state updated:", success);
+  }, [error, success]);
   return (
     <Card className='w-[400px] bg-white text-black shadow-xl shadow-white/20'>
       <CardHeader>

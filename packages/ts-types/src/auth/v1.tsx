@@ -4,6 +4,11 @@ export interface QuoteProps {
     credential: string
 }
 
+export interface DataResultProps {
+    success?: string | undefined;
+    error?: string | undefined;
+}
+
 export interface LoginCardProps {
     showEmail?: boolean;
     showGoogleProvider?: boolean;
@@ -37,9 +42,19 @@ export interface RegisterCardProps {
   }
 
 export interface VerificationCardProps {
-    error?:string;  
-    success?:string;
+    errorMessage?:string;  
+    successMessage?:string;
+    token?: string;
     backFunction?:() => void;
+    resetFunction?:any;
+}
+
+export interface ResetPasswordCardProps {
+    errorMessage?:string;  
+    successMessage?:string;
+    token?: string;
+    backFunction?:() => void;
+    resetFunction?:any;
 }
 
 export interface FormResultProps{
@@ -52,7 +67,6 @@ export interface ForgotPasswordCardProps {
     successMessage?:string;
     resetFunction?:any; 
     backFunction?:any;
-    forgotPasswordFunction?:any;
   }
 
  export interface ErrorCardProps {
@@ -110,7 +124,30 @@ export interface ForgotPasswordPageProps {
     successMessage?:string;
     resetFunction?:any;
     backFunction?:()=>void;
-    forgotPasswordFunction?:()=>void;
+    title: string;
+    description: string;
+    quote: string;
+    author: string;
+    credential: string;
+}
+
+export interface VerificationPageProps {
+    errorMessage?:string;  
+    successMessage?:string;
+    backFunction?:()=>void;
+    title: string;
+    description: string;
+    quote: string;
+    author: string;
+    credential: string;
+}
+
+export interface ResetPasswordPageProps {
+    errorMessage?:string;  
+    successMessage?:string;
+    token?: string;
+    backFunction?:()=>void;
+    resetFunction?:any;
     title: string;
     description: string;
     quote: string;

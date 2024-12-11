@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import React, { Suspense, useEffect, useState } from 'react'
 import { DEFAULT_LOGIN_REDIRECT } from '../../../routes'
 import { signIn } from 'next-auth/react'
+import { register } from '../_actions/register'
 
 const RegisterContent = () => {
   const router = useRouter()
@@ -48,7 +49,7 @@ const RegisterContent = () => {
       showGoogleProvider={showGoogleProvider}
       showGithubProvider={showGithubProvider}
       showLinkedinProvider={showLinkedinProvider}
-      onEmailSubmit={login}
+      onEmailSubmit={register}
       onGoogleProviderSubmit={login}
       onGithubProviderSubmit={login}
       onLinkedinProviderSubmit={login}

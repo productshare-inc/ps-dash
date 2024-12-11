@@ -58,6 +58,7 @@
     "@tanstack/react-table": "^8.20.5",
     "@testing-library/jest-dom": "^6.6.3",
     "@types/jest": "^29.5.14",
+    "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.4",

@@ -51,7 +51,7 @@ const LoginCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinkedin
   async function loginAsGuest(){
     setError("")
     setSuccess("")
-    let data = {email: "anooplegend1992@gmail.com", password: "password"}
+    let data = {email: process.env.NEXT_PUBLIC_GUEST_MAIL, password: process.env.NEXT_PUBLIC_GUEST_PASSWORD}
     startTransition(()=>{
       onEmailSubmit(data)
       .then((data:any)=>{
@@ -60,6 +60,20 @@ const LoginCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinkedin
       })
     })
   }
+
+  async function loginAsAdmin(){
+    setError("")
+    setSuccess("")
+    let data = {email: process.env.NEXT_PUBLIC_ADMIN_MAIL, password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD}
+    startTransition(()=>{
+      onEmailSubmit(data)
+      .then((data:any)=>{
+          setError(data?.error);
+          setSuccess(data?.success);
+      })
+    })
+  }
+  
   return (
     <Card className='w-[400px] bg-white text-black shadow-xl shadow-white/20'>
       <CardHeader>
@@ -104,6 +118,7 @@ const LoginCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinkedin
       </CardFooter>
       <CardFooter className='flex flex-col gap-4 justify-center'>
         <Button className='w-full' disabled={isPending} variant="default" onClick={loginAsGuest}>Login as Guest</Button>
+        <Button className='w-full' disabled={isPending} variant="default" onClick={loginAsAdmin}>Login as Admin</Button>
       </CardFooter>
       <CardFooter className='flex justify-center'>
         <div onClick={backFunction} className='text-sm text-center text-black/60 hover:text-black cursor-pointer hover:underline'>Don't have an Account?</div>

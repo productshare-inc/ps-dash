@@ -29,7 +29,7 @@ export const sendResetEmail = async (email: string, token:string) => {
         return {error: "Email template not found!"}
     }
     let html = emailTemplate.html;
-    html = html.replace('{{reset_password_link}}', confirmLink);
+    html = html.replaceAll('{{reset_password_link}}', confirmLink);
     let from = emailTemplate.from;
     let subject = emailTemplate.subject;
     await resend.emails.send({

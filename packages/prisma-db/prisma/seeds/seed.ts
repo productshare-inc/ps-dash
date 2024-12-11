@@ -1,20 +1,21 @@
-import { PrismaClient } from '@prisma/client'
-import { createAdminUser, createEmailTemplate, createGuestUser } from './guestUser'
+import db from '../../src/index'
+import { createAdminUser, createGuestUser } from './fakeUsers'
+import { createResetPasswordEmailTemplate, createVerificationEmailTemplate } from './emailTemplates'
 
-const prisma = new PrismaClient()
 
 async function main () {
     await createGuestUser()
     await createAdminUser()
-    await createEmailTemplate()
+    await createVerificationEmailTemplate()
+    await createResetPasswordEmailTemplate()
 }
 
 main()
   .then(async () => {
-    await prisma.$disconnect()
+    await db.$disconnect()
   })
   .catch(async (e) => {
     console.error(e)
-    await prisma.$disconnect()
+    await db.$disconnect()
     process.exit(1)
   })

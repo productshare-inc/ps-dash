@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import React, { Suspense, useEffect, useState } from 'react'
 import { DEFAULT_LOGIN_REDIRECT } from '../../../routes'
 import { signIn } from 'next-auth/react'
+import { login } from '../_actions/login'
 
 const LoginContent = () => {
   const router = useRouter()
@@ -19,7 +20,7 @@ const LoginContent = () => {
     }
   }, [searchParams])
 
-  const login = async (type: string) => {
+  const loginWithSocials = async (type: string) => {
     await signIn(type, { callbackUrl: DEFAULT_LOGIN_REDIRECT })
   }
 
@@ -53,9 +54,9 @@ const LoginContent = () => {
       showGithubProvider={showGithubProvider}
       showLinkedinProvider={showLinkedinProvider}
       onEmailSubmit={login}
-      onGoogleProviderSubmit={login}
-      onGithubProviderSubmit={login}
-      onLinkedinProviderSubmit={login}
+      onGoogleProviderSubmit={loginWithSocials}
+      onGithubProviderSubmit={loginWithSocials}
+      onLinkedinProviderSubmit={loginWithSocials}
       forgotPasswordFunction={goToForgotPasswordPage}
       backFunction={goToRegisterPage}
       errorMessage={urlError}
