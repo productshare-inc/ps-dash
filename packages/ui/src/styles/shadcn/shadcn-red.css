@@ -36,6 +36,7 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --sidebar-background: 0 0% 98%;
   }
 
   .dark {
@@ -58,6 +59,7 @@
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
     --ring: 0 72.2% 50.6%;
+    --sidebar-background: 240 5.9% 10%;
   }
 }
 

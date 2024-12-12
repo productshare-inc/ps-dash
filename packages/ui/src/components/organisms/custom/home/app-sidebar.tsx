@@ -1,11 +1,6 @@
-import { Command } from "lucide-react";
 import {
     Sidebar,
-    SidebarContent,
     SidebarFooter,
-    SidebarGroup,
-    SidebarGroupLabel,
-    SidebarGroupContent,
     SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
@@ -13,10 +8,13 @@ import {
 } from "../../shadcn/sidebar";
 import { sidebarProps } from "@repo/ts-types/home/v1";
 import { CompanyLogoName } from "../../../molecules/custom/v1/CompanyLogoName";
+import SidebarItems from "../../../molecules/custom/v1/SidebarItems";
+import SidebarFooterItems from "../../../molecules/custom/v1/SidebarFooterItems";
+import SidebarUser  from "../../../molecules/custom/v1/SidebarUser";
 
-export function AppSidebar({name,quote,logo,darkLogo,homePath,user,items,footerItems}:sidebarProps) {
+export function AppSidebar({name,quote,logo,darkLogo,homePath,userName,userAvatar,userEmail,items,footerItems,
+    logoutFunction,documentationLink,supportEmailAddress,githubUsername,githubRepositoryName,redirect}:sidebarProps) {
 
-  
     return (
         <Sidebar>
             <SidebarHeader>
@@ -28,44 +26,13 @@ export function AppSidebar({name,quote,logo,darkLogo,homePath,user,items,footerI
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarHeader>
-            <SidebarContent>
-                {Object.keys(items).map((key) => (
-                     <SidebarGroup key={key}>
-                        <SidebarGroupLabel>{key}</SidebarGroupLabel>
-                        <SidebarMenu>
-                        {items[key]?.map((item:any) => (
-                            <SidebarMenuItem key={item.title}>
-                                <SidebarMenuButton asChild>
-                                    <a href={item.url}>
-                                        <item.icon/>
-                                        <span>{item.title}</span>
-                                    </a>
-                                </SidebarMenuButton>
-                            </SidebarMenuItem>
-                        ))}
-                        </SidebarMenu>
-                     </SidebarGroup>
-                ))} 
-            </SidebarContent>
-            <SidebarContent className="mt-auto">
-                <SidebarGroup>
-                    <SidebarGroupContent>
-                        <SidebarMenu>
-                            {footerItems.map((item) => (
-                                <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton asChild>
-                                        <a href={item.url}>
-                                            <item.icon/>
-                                            <span>{item.title}</span>
-                                        </a>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-                            ))}
-                        </SidebarMenu>
-                    </SidebarGroupContent>
-                </SidebarGroup>
-            </SidebarContent>
-            <SidebarFooter />
+            <SidebarItems items={items} redirect={redirect}/>
+            <SidebarFooterItems footerItems={footerItems}/>
+            <SidebarFooter>
+                <SidebarUser name={userName} email={userEmail} avatar={userAvatar} logoutFunction={logoutFunction} 
+                      documentationLink={documentationLink} supportEmailAddress={supportEmailAddress} githubUsername={githubUsername} 
+                      githubRepositoryName={githubRepositoryName}/>
+            </SidebarFooter>
         </Sidebar>
     );
 }

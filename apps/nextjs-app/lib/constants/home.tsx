@@ -1,24 +1,24 @@
 import { sidebarFooterItemsProps, sidebarHeaderProps } from "@repo/ts-types/home/v1"
-import {  Home, Inbox, LifeBuoy, Send, BookOpen, Settings2 } from "lucide-react"
+import {  Home, Inbox } from "lucide-react"
 
 export const sidebarItems:sidebarHeaderProps = 
 {
     "Application":[
-        {title: "Home", url: "#", icon: Home},
-        {title: "Systems", url: "#", icon: Inbox, isActive:true, items: [
-            {title: "System 1", url: "#"},
-            {title: "System 2", url: "#"},
-            {title: "System 3", url: "#"},
+        {title: "Home", url: "/home", icon: Home},
+        {title: "Systems", url: "/home/systems", icon: Inbox, isActive:true, items: [
+            {title: "System 1", url: "/home/systems/system1"},
+            {title: "System 2", url: "/home/systems/system2"},
+            {title: "System 3", url: "/home/systems/system3"},
         ]},
     ],
 }
 
 export const sidebarFooterItems:sidebarFooterItemsProps[] = 
 [
-        {title: "Documentation", url: "#", icon: BookOpen},
-        {title: "Settings", url: "#", icon: Settings2},
-        {title: "Support", url: "#", icon: LifeBuoy},
-        {title: "Feedback", url: "#", icon: Send}
+        // {title: "Documentation", url: "#", icon: BookOpen},
+        // {title: "Settings", url: "#", icon: Settings2},
+        // {title: "Support", url: "https://mail.google.com/mail/u/0/?fs=1&to=support@bsamaritan.com&su=Help&tf=cm", icon: LifeBuoy},
+        // {title: "Feedback", url: "#", icon: Send}
 ]
 
 
