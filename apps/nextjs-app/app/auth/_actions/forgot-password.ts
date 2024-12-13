@@ -18,5 +18,4 @@ export const ForgotPassword = async (email: string): Promise<DataResultProps> =>
     catch {
         return {error: "Something went wrong!"}
     }
-
 }

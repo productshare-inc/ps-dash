@@ -54,6 +54,8 @@ export default {
           border: 'hsl(var(--border))',
           ring: 'hsl(var(--ring))',
         },
+        'description': 'rgb(var(--description))',
+        'accent2': 'rgb(var(--accent2))',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -82,7 +84,7 @@ export default {
         "emphasized": ["18px", {fontWeight: "600"}],
         "button": ["16px", {fontWeight: "400"}],
         "paragraph": ["14px", {fontWeight: "300"}],
-        "description": ["12px", {fontWeight: "200"}],
+        "description": ["12px", {fontWeight: "500"}],
         "code-snippet": ["12px", {fontWeight: "200"}],
       }
     },

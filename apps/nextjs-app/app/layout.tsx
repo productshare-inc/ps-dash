@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "../../../packages/ui/src/styles/shadcn/shadcn-green.css"
+
 import { ThemeProvider } from "@repo/ui/providers/theme-provider";
 import "../../../packages/ui/src/styles/custom/heroBackgroundAnimation.css"
 import { SessionProviders } from "../providers/session-provider";
@@ -33,7 +34,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SessionProviders>
-          <ThemeProvider >
+          <ThemeProvider defaultTheme="dark" >
             {children}
           </ThemeProvider>
         </SessionProviders>

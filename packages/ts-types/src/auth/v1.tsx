@@ -154,3 +154,19 @@ export interface ResetPasswordPageProps {
     author: string;
     credential: string;
 }
+
+export interface UserProps {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+  }
+
+  export interface SettingsDialogProps {
+    children?: React.ReactNode;
+    open?: boolean;
+    onOpenChange?: (open: boolean) => void;
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+  }
+  

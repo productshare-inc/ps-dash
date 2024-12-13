@@ -36,7 +36,7 @@ import {
   useSidebar,
 } from "../../../organisms/shadcn/sidebar"
 import { UserProps } from "@repo/ts-types/home/v1"
-import { SettingsDialog } from "../../../organisms/custom/home/Settings"
+import { SettingsDialog } from "../../../templates/home/Settings"
 import { useTheme } from "../../../../providers/theme-provider"
 import { Theme } from "./Theme"
 
@@ -107,13 +107,16 @@ const SidebarUser = ({ name,email,avatar,logoutFunction,documentationLink,suppor
                     setIsDropdownOpen(true)
                   }
                 }}
+                name={name}
+                email={email}
+                image={avatar}
               >
                 <DropdownMenuItem 
                   className="flex gap-2 cursor-pointer" 
                   onClick={handleSettingsClick}
                 >
                   <Settings size={20}/>
-                  Settings
+                  Account Settings
                 </DropdownMenuItem>
               </SettingsDialog>
               <a href={`https://mail.google.com/mail/u/0/?fs=1&to=${supportEmailAddress}&su=Support&tf=cm`} target="_blank" 

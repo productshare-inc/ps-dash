@@ -32,6 +32,8 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --sidebar-background: 0 0% 98%;
+    --description: 150, 150, 150;
+    --accent2: 220, 220, 220;
   }
 
   .dark {
@@ -60,6 +62,8 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
     --sidebar-background: 240 5.9% 10%;
+    --description: 150, 150, 150;
+    --accent2: 50, 50, 50;
   }
 }
 
