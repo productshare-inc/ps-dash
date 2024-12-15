@@ -1,17 +1,12 @@
 "use client"
 
 import {
-  BadgeCheck,
-  Bell,
   BookOpen,
   ChevronsUpDown,
-  CreditCard,
-  LifeBuoy,
   LogOut,
   MessageCircle,
   Send,
   Settings,
-  Sparkles,
 } from "lucide-react"
 import React, { useState } from "react"
 
@@ -40,8 +35,8 @@ import { SettingsDialog } from "../../../templates/home/Settings"
 import { useTheme } from "../../../../providers/theme-provider"
 import { Theme } from "./Theme"
 
-const SidebarUser = ({ name,email,avatar,logoutFunction,documentationLink,supportEmailAddress, githubUsername,
-  githubRepositoryName}:UserProps) => {
+const SidebarUser = ({ userid,username,email,avatar,logoutFunction,documentationLink,supportEmailAddress, githubUsername,
+  githubRepositoryName,modifyAvatar,modifyName}:UserProps) => {
 
   const { isMobile } = useSidebar()
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
@@ -68,11 +63,11 @@ const SidebarUser = ({ name,email,avatar,logoutFunction,documentationLink,suppor
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={avatar ?? ''} alt={name ?? ''} />
-                <AvatarFallback className="rounded-lg">{name?name[0]?.toUpperCase() :'U'}</AvatarFallback>
+                <AvatarImage src={avatar ?? ''} alt={username ?? ''} />
+                <AvatarFallback className="rounded-lg">{username?username[0]?.toUpperCase() :'U'}</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{name}</span>
+                <span className="truncate font-semibold">{username}</span>
                 <span className="truncate text-xs">{email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
@@ -87,11 +82,11 @@ const SidebarUser = ({ name,email,avatar,logoutFunction,documentationLink,suppor
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={avatar ?? ''} alt={name ?? ''} />
-                  <AvatarFallback className="rounded-lg">{name?name[0]?.toUpperCase() :'U'}</AvatarFallback>
+                  <AvatarImage src={avatar ?? ''} alt={username ?? ''} />
+                  <AvatarFallback className="rounded-lg">{username?username[0]?.toUpperCase() :'U'}</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{name}</span>
+                  <span className="truncate font-semibold">{username}</span>
                   <span className="truncate text-xs">{email}</span>
                 </div>
               </div>
@@ -107,9 +102,12 @@ const SidebarUser = ({ name,email,avatar,logoutFunction,documentationLink,suppor
                     setIsDropdownOpen(true)
                   }
                 }}
-                name={name}
+                userid={userid}
+                username={username}
                 email={email}
-                image={avatar}
+                avatar={avatar}
+                modifyAvatar={modifyAvatar}
+                modifyName={modifyName}
               >
                 <DropdownMenuItem 
                   className="flex gap-2 cursor-pointer" 

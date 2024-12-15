@@ -26,25 +26,6 @@ export interface sidebarListProps {
     redirect: (url: string) => void;
 }
 
-export interface sidebarProps {
-    name: string;
-    quote: string;
-    logo: string;
-    darkLogo: string;
-    homePath: string;
-    userName: string | null | undefined;
-    userAvatar: string | null |undefined;
-    userEmail: string | null | undefined;
-    documentationLink?: string;
-    supportEmailAddress?: string;
-    githubUsername?: string;
-    githubRepositoryName?: string;
-    items: sidebarHeaderProps;
-    footerItems: sidebarFooterItemsProps[];
-    logoutFunction: () => void;
-    redirect: (url: string) => void;
-}
-
 export interface CompanyLogoNameProps {
     name: string;
     quote: string;
@@ -53,13 +34,35 @@ export interface CompanyLogoNameProps {
     homePath: string;
 }
 
+
+export interface sidebarProps extends CompanyLogoNameProps,UserProps {
+    items: sidebarHeaderProps;
+    footerItems: sidebarFooterItemsProps[];
+    redirect: (url: string) => void;
+}
+
+
 export interface UserProps {
-    name: string | null | undefined;
-    avatar: string | null |undefined;
-    email: string | null | undefined;
+    userid: string ;
+    username: string | undefined;
+    avatar: string | undefined;
+    email: string | undefined;
     documentationLink?: string;
     supportEmailAddress?: string;
     githubUsername?: string;
     githubRepositoryName?: string;
-    logoutFunction: () => void;
+    logoutFunction?: () => void;
+    modifyAvatar?: (id:string,event: React.ChangeEvent<HTMLInputElement>) => void;
+    modifyName: (id:string,name: string) => void;
+    modifyEmail?: (id:string,email: string) => void;
+    modifyPassword?: (id:string,password: string) => void;
+    deleteAccount?: () => void;
 }
+
+
+export interface SettingsDialogProps extends UserProps {
+    children?: React.ReactNode;
+    open?: boolean;
+    onOpenChange?: (open: boolean) => void;
+  }
+  

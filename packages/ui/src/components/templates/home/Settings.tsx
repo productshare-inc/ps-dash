@@ -23,7 +23,7 @@ import {
 } from "../../organisms/shadcn/sidebar"
 import MyAccountSettings from "../../organisms/custom/home/MyAccountSettings"
 import { cn } from "../../../lib/utils"
-import { SettingsDialogProps } from "@repo/ts-types/auth/v1"
+import { SettingsDialogProps } from "@repo/ts-types/home/v1"
 import { Avatar, AvatarFallback, AvatarImage } from "../../atoms/shadcn/avatar"
 
 const data = {
@@ -38,7 +38,8 @@ const data = {
 }
 
 
-export function SettingsDialog({children, open: controlledOpen, onOpenChange: setControlledOpen,name,email,image}: SettingsDialogProps) {
+export function SettingsDialog({children, open: controlledOpen, onOpenChange: setControlledOpen,userid,username,email,avatar,
+  modifyAvatar,modifyName}: SettingsDialogProps) {
   const [internalOpen, setInternalOpen] = React.useState(false)
 
   // Determine which open state to use
@@ -72,11 +73,11 @@ export function SettingsDialog({children, open: controlledOpen, onOpenChange: se
                     <div className="text-description mt-[1px] ml-[1px]">Account</div>
                     <div className="flex items-center space-x-2 ">
                       <Avatar className="h-8 w-8 rounded-lg">
-                        <AvatarImage src={image ?? ''} alt={name ?? ''} />
-                        <AvatarFallback className="rounded-lg bg-sidebar">{name?name[0]?.toUpperCase() :'U'}</AvatarFallback>
+                        <AvatarImage src={avatar ?? ''} alt={username ?? ''} />
+                        <AvatarFallback className="rounded-lg bg-sidebar">{username?username[0]?.toUpperCase() :'U'}</AvatarFallback>
                       </Avatar>
                       <div className="grid flex-1 text-left text-sm leading-tight">
-                        <span className="truncate font-semibold">{name}</span>
+                        <span className="truncate font-semibold">{username}</span>
                         <span className="truncate text-description">{email}</span>
                       </div>
                     </div>
@@ -98,9 +99,10 @@ export function SettingsDialog({children, open: controlledOpen, onOpenChange: se
               </SidebarGroup>
             </SidebarContent>
           </Sidebar>
-          <main className="flex flex-1 flex-col overflow-auto w-full h-full bg-sidebar">
+          <main className="flex flex-1 flex-col overflow-auto h-[90vh] bg-sidebar">
             {currentOpenedTab === "My account" && 
-            <MyAccountSettings name={name} email={email} image={image}/>}
+            <MyAccountSettings userid={userid} username={username} email={email} avatar={avatar} modifyAvatar={modifyAvatar} 
+            modifyName={modifyName}/>}
           </main>
         </SidebarProvider>
       </DialogContent>

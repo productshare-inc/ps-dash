@@ -13,13 +13,14 @@
     "@repo/prisma-db": "*",
     "@repo/ts-types": "*",
     "@repo/typescript-config": "*",
-    "@repo/zod": "*",
     "@repo/ui": "*",
+    "@repo/zod": "*",
     "next": "15.0.3",
     "next-auth": "5.0.0-beta.25",
     "path": "^0.12.7",
     "react": "18",
-    "react-dom": "18"
+    "react-dom": "18",
+    "tailwind-scrollbar": "^3.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",

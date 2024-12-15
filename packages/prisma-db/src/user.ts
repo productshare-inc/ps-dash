@@ -117,3 +117,43 @@ export const createVerificationToken = async (email: string) => {
     })
     return verificationToken;
 }
+
+export const modifyAvatar = async (id: string, avatar:string)=>{
+    const user = await db.user.update({
+        where: {id},
+        data: {
+            image: avatar
+        }
+    });
+    return user;
+}
+
+export const modifyEmail = async (id: string, email:string)=>{
+    const user = await db.user.update({
+        where: {id},
+        data: {
+            email
+        }
+    });
+    return user;
+}
+
+export const modifyName = async (id: string, name:string)=>{
+    const user = await db.user.update({
+        where: {id},
+        data: {
+            name:name
+        }
+    });
+    return user;
+}
+
+export const modifyPassword = async (id: string, password:string)=>{
+    const user = await db.user.update({
+        where: {id},
+        data: {
+            password
+        }
+    });
+    return user;
+}

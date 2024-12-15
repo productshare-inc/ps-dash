@@ -1,3 +1,5 @@
+//Base Interfaces for Auth Components
+
 export interface QuoteProps {
     quote: string,
     author: string,
@@ -9,6 +11,19 @@ export interface DataResultProps {
     error?: string | undefined;
 }
 
+
+export interface LoadingCardProps {
+    title: string;
+    description: string;
+}
+
+
+export interface FormResultProps{
+    type: 'error' | 'success',
+    message?: string;
+}
+
+//IC Interfaces for Auth Components
 export interface LoginCardProps {
     showEmail?: boolean;
     showGoogleProvider?: boolean;
@@ -23,10 +38,6 @@ export interface LoginCardProps {
     errorMessage?:string;
   }
   
-export interface LoadingCardProps {
-    title: string;
-    description: string;
-}
 
 export interface RegisterCardProps {
     showEmail?: boolean;
@@ -57,16 +68,13 @@ export interface ResetPasswordCardProps {
     resetFunction?:any;
 }
 
-export interface FormResultProps{
-    type: 'error' | 'success',
-    message?: string;
-}
+
 
 export interface ForgotPasswordCardProps {
     errorMessage?:string;  
     successMessage?:string;
     resetFunction?:any; 
-    backFunction?:any;
+    backFunction?:() => void;
   }
 
  export interface ErrorCardProps {
@@ -74,99 +82,24 @@ export interface ForgotPasswordCardProps {
     backFunction?:any
   }
 
-export interface LoginPageProps {
-    showEmail?: boolean;
-    showGoogleProvider?: boolean;
-    showGithubProvider?: boolean;
-    showLinkedinProvider?: boolean;
-    onEmailSubmit?: any;
-    onGoogleProviderSubmit?: any;
-    onGithubProviderSubmit?: any;
-    onLinkedinProviderSubmit?: any;
-    forgotPasswordFunction?: any;
-    backFunction?:()=>void;
-    errorMessage?:string;
-    title: string;
-    description: string;
-    quote: string,
-    author: string,
-    credential: string
+//Complex Interfaces for Auth Pages
+
+export interface LoginPageProps extends LoginCardProps,QuoteProps,LoadingCardProps{
+
 }
 
-export interface RegisterPageProps {
-    showEmail?: boolean;
-    showGoogleProvider?: boolean;
-    showGithubProvider?: boolean;
-    showLinkedinProvider?: boolean;
-    onEmailSubmit?: any;
-    onGoogleProviderSubmit?: any;
-    onGithubProviderSubmit?: any;
-    onLinkedinProviderSubmit?: any;
-    backFunction?:() => void;
-    errorMessage?:string;
-    title: string;
-    description: string;
-    quote: string,
-    author: string,
-    credential: string
+export interface RegisterPageProps extends RegisterCardProps,QuoteProps,LoadingCardProps{
+
 }
 
-export interface ErrorPageProps {
-    errorMessage: string;
-    backFunction?:()=>void;
-    quote: string;
-    author: string;
-    credential: string;
+export interface ErrorPageProps extends ErrorCardProps,QuoteProps{
 }
 
-export interface ForgotPasswordPageProps {
-    errorMessage?:string;  
-    successMessage?:string;
-    resetFunction?:any;
-    backFunction?:()=>void;
-    title: string;
-    description: string;
-    quote: string;
-    author: string;
-    credential: string;
+export interface ForgotPasswordPageProps extends ForgotPasswordCardProps,QuoteProps,LoadingCardProps{
 }
 
-export interface VerificationPageProps {
-    errorMessage?:string;  
-    successMessage?:string;
-    backFunction?:()=>void;
-    title: string;
-    description: string;
-    quote: string;
-    author: string;
-    credential: string;
+export interface VerificationPageProps extends VerificationCardProps,QuoteProps,LoadingCardProps{
 }
 
-export interface ResetPasswordPageProps {
-    errorMessage?:string;  
-    successMessage?:string;
-    token?: string;
-    backFunction?:()=>void;
-    resetFunction?:any;
-    title: string;
-    description: string;
-    quote: string;
-    author: string;
-    credential: string;
+export interface ResetPasswordPageProps extends ResetPasswordCardProps,QuoteProps,LoadingCardProps{
 }
-
-export interface UserProps {
-    name?: string | null;
-    email?: string | null;
-    image?: string | null;
-  }
-
-  export interface SettingsDialogProps {
-    children?: React.ReactNode;
-    open?: boolean;
-    onOpenChange?: (open: boolean) => void;
-    name?: string | null;
-    email?: string | null;
-    image?: string | null;
-  }
-  

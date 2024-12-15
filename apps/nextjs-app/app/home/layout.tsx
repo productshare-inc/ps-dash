@@ -7,6 +7,8 @@ import { useSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 import LoadingCard from "@repo/ui/organisms/custom/auth/v1/LoadingCard";
 import { useRouter } from "next/navigation";
+import { modifyAvatarAction, modifyNameAction } from "./_actions/settings";
+import { putBlob } from "@repo/storage/vercel-blob";
 
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -19,7 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     const supportEmailAddress = "support@bsamaritan.com"
     const githubUsername = "anoopkarnik"
     const githubRepositoryName = "turborepo-saas-boilerplate-code"
-    const { data:session,status } = useSession();
+    const { data:session,status,update } = useSession();
     
     const [user, setUser] = useState<any>(null)
     
@@ -40,6 +42,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     setUser(newSession?.user || null);
   };
 
+  const modifyAvatar = async (id:string,event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const filename = file.name;
+      const response = await putBlob({filename,body:file,token:process.env.NEXT_PUBLIC_BLOB_READ_WRITE_TOKEN});
+      const url = response.url;
+      await modifyAvatarAction(id,url);
+      await update({user:{...session?.user,image:url}});
+    }
+  }
+
+  const modifyName = async (id:string,name: string) => {
+    await modifyNameAction(id,name);
+    await update({user:{...session?.user,name}});
+  }
+
     useEffect(() => {
       if (status === "authenticated") {
         setUser(session?.user || null);
@@ -57,9 +75,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <AppSidebar
           items={sidebarItems}
           footerItems={sidebarFooterItems}
-          userName={user?.name}
-          userAvatar={user?.image}
-          userEmail={user?.email}
+          userid={user?.id}
+          username={user?.name}
+          avatar={user?.image}
+          email={user?.email}
           name={name}
           logo={logo}
           darkLogo={darkLogo}
@@ -71,6 +90,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           githubUsername={githubUsername}
           githubRepositoryName={githubRepositoryName}
           redirect={redirect}
+          modifyAvatar={modifyAvatar}
+          modifyName={modifyName}
         />
       <main>
         <SidebarTrigger />

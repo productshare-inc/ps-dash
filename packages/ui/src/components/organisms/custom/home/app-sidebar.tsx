@@ -12,8 +12,8 @@ import SidebarItems from "../../../molecules/custom/v1/SidebarItems";
 import SidebarFooterItems from "../../../molecules/custom/v1/SidebarFooterItems";
 import SidebarUser  from "../../../molecules/custom/v1/SidebarUser";
 
-export function AppSidebar({name,quote,logo,darkLogo,homePath,userName,userAvatar,userEmail,items,footerItems,
-    logoutFunction,documentationLink,supportEmailAddress,githubUsername,githubRepositoryName,redirect}:sidebarProps) {
+export function AppSidebar({name,quote,logo,darkLogo,homePath,userid,username,avatar,email,items,footerItems,
+    logoutFunction,documentationLink,supportEmailAddress,githubUsername,githubRepositoryName,redirect,modifyAvatar,modifyName}:sidebarProps) {
 
     return (
         <Sidebar>
@@ -29,9 +29,9 @@ export function AppSidebar({name,quote,logo,darkLogo,homePath,userName,userAvata
             <SidebarItems items={items} redirect={redirect}/>
             <SidebarFooterItems footerItems={footerItems}/>
             <SidebarFooter>
-                <SidebarUser name={userName} email={userEmail} avatar={userAvatar} logoutFunction={logoutFunction} 
+                <SidebarUser userid={userid} username={username} email={email} avatar={avatar} logoutFunction={logoutFunction} 
                       documentationLink={documentationLink} supportEmailAddress={supportEmailAddress} githubUsername={githubUsername} 
-                      githubRepositoryName={githubRepositoryName}/>
+                      githubRepositoryName={githubRepositoryName} modifyAvatar={modifyAvatar} modifyName={modifyName}/>
             </SidebarFooter>
         </Sidebar>
     );

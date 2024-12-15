@@ -20,6 +20,8 @@ const LoginContent = () => {
     }
   }, [searchParams])
 
+  
+
   const loginWithSocials = async (type: string) => {
     await signIn(type, { callbackUrl: DEFAULT_LOGIN_REDIRECT })
   }
