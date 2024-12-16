@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { BadgeCheck,Bell,  CircleUserIcon,  Globe,Link, Lock,  Settings, 
+import { BadgeCheck,Bell,  CircleUserIcon,  Globe,Link, Lock,  RadioIcon,  ReceiptIcon,  Settings, 
 } from "lucide-react"
 
 import {
@@ -28,11 +28,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "../../atoms/shadcn/avatar"
 
 const data = {
   nav: [
-    { name: "My account", icon: CircleUserIcon},
+    { name: "My Account", icon: CircleUserIcon},
+    { name: "Sessions", icon: RadioIcon },
+    { name: "Plans & Billing", icon: ReceiptIcon },
     { name: "Notifications", icon: Bell },
-    { name: "Language & region", icon: Globe },
-    { name: "Connected accounts", icon: Link },
-    { name: "Privacy & visibility", icon: Lock },
+    { name: "Language & $egion", icon: Globe },
+    { name: "My Connections", icon: Link },
+    { name: "Privacy & Visibility", icon: Lock },
     { name: "Advanced", icon: Settings },
   ],
 }
@@ -100,7 +102,7 @@ export function SettingsDialog({children, open: controlledOpen, onOpenChange: se
             </SidebarContent>
           </Sidebar>
           <main className="flex flex-1 flex-col overflow-auto h-[90vh] bg-sidebar">
-            {currentOpenedTab === "My account" && 
+            {currentOpenedTab === "My Account" && 
             <MyAccountSettings userid={userid} username={username} email={email} avatar={avatar} modifyAvatar={modifyAvatar} 
             modifyName={modifyName}/>}
           </main>

@@ -2,11 +2,10 @@ import { UserProps } from "@repo/ts-types/home/v1";
 import { Avatar, AvatarFallback, AvatarImage } from "../../../atoms/shadcn/avatar";
 import { useRef, useState } from "react";
 import { CameraIcon } from "lucide-react";
-import { Input } from "../../../atoms/shadcn/input";
 import { FloatingLabelInput } from "../../../molecules/shadcn/floating-label-input";
 import { Button } from "../../../atoms/shadcn/button";
   
-  const MyAccountSettings = ({userid,username,email,avatar,modifyAvatar,modifyEmail,modifyName,modifyPassword,deleteAccount}:UserProps) => {
+  const MyAccountSettings = ({userid,username,email,avatar,modifyAvatar,modifyName,modifyEmail,modifyPassword,deleteAccount}:UserProps) => {
     const inputFileRef = useRef<HTMLInputElement>(null);
     const [name, setName] = useState(username);
     const [currentEmail, setCurrentEmail] = useState(email);
