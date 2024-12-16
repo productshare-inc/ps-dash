@@ -7,7 +7,7 @@ import { useSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 import LoadingCard from "@repo/ui/organisms/custom/auth/v1/LoadingCard";
 import { useRouter } from "next/navigation";
-import { modifyAvatarAction, modifyNameAction } from "./_actions/settings";
+import { deleteAccountAction, modifyAvatarAction, modifyNameAction, modifyPasswordAction } from "./_actions/settings";
 import { putBlob } from "@repo/storage/vercel-blob";
 
 
@@ -58,6 +58,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     await update({user:{...session?.user,name}});
   }
 
+  const modifyPassword = async (id:string,password: string) => {
+    await modifyPasswordAction(id,password);
+  }
+
+  const deleteAccount = async (id:string) => {
+    console.log("Deleting account");
+    await deleteAccountAction(id);
+    await logout();
+
+  }
+
     useEffect(() => {
       if (status === "authenticated") {
         setUser(session?.user || null);
@@ -92,6 +103,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           redirect={redirect}
           modifyAvatar={modifyAvatar}
           modifyName={modifyName}
+          modifyPassword={modifyPassword}
+          deleteAccount={deleteAccount}
         />
       <main>
         <SidebarTrigger />

@@ -58,7 +58,7 @@ const RegisterCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinke
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input disabled={isPending} type="name" placeholder='first name' {...field}/>
+                      <Input disabled={isPending} type="name" placeholder='first name' className='bg-white text-black' {...field}/>
                     </FormControl>
                     <FormMessage/>
                   </FormItem>
@@ -67,7 +67,7 @@ const RegisterCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinke
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input disabled={isPending} type="email" placeholder='example@gmail.com' {...field}/>
+                      <Input disabled={isPending} type="email" placeholder='example@gmail.com'  className='bg-white text-black' {...field}/>
                     </FormControl>
                     <FormMessage/>
                   </FormItem>
@@ -76,7 +76,7 @@ const RegisterCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinke
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input disabled={isPending} placeholder='******' type="password" {...field}/>
+                      <Input disabled={isPending} placeholder='******' type="password"  className='bg-white text-black' {...field}/>
                     </FormControl>
                     <FormMessage/>
                   </FormItem>

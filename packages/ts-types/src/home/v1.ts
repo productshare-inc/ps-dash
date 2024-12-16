@@ -55,8 +55,8 @@ export interface UserProps {
     modifyAvatar?: (id:string,event: React.ChangeEvent<HTMLInputElement>) => void;
     modifyName: (id:string,name: string) => void;
     modifyEmail?: (id:string,email: string) => void;
-    modifyPassword?: (id:string,password: string) => void;
-    deleteAccount?: () => void;
+    modifyPassword: (id:string,password: string) => void;
+    deleteAccount: (id:string) => void;
 }
 
 

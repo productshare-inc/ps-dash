@@ -19,7 +19,6 @@ export const sendVerificationEmail = async (email: string, token:string) => {
         subject: subject,
         html: html
     })
-    console.log(res)
 }
 
 export const sendResetEmail = async (email: string, token:string) => {

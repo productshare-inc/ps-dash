@@ -53,7 +53,7 @@ const ResetPasswordCard = ({errorMessage,successMessage,token,resetFunction,back
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input disabled={isPending}type="password" placeholder='******' {...field}/>
+                    <Input disabled={isPending}type="password" placeholder='******'  className='bg-white text-black'  {...field}/>
                   </FormControl>
                   <FormMessage/>
                 </FormItem>

@@ -8,7 +8,7 @@ import {
   Send,
   Settings,
 } from "lucide-react"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import {
   Avatar,
@@ -36,13 +36,12 @@ import { useTheme } from "../../../../providers/theme-provider"
 import { Theme } from "./Theme"
 
 const SidebarUser = ({ userid,username,email,avatar,logoutFunction,documentationLink,supportEmailAddress, githubUsername,
-  githubRepositoryName,modifyAvatar,modifyName}:UserProps) => {
+  githubRepositoryName,modifyAvatar,modifyName,modifyPassword,deleteAccount}:UserProps) => {
 
   const { isMobile } = useSidebar()
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const { theme, setTheme } = useTheme()
-
 
   const handleSettingsClick = (e: React.MouseEvent) => {
     // Prevent the dropdown from closing
@@ -108,6 +107,8 @@ const SidebarUser = ({ userid,username,email,avatar,logoutFunction,documentation
                 avatar={avatar}
                 modifyAvatar={modifyAvatar}
                 modifyName={modifyName}
+                modifyPassword={modifyPassword}
+                deleteAccount={deleteAccount}
               >
                 <DropdownMenuItem 
                   className="flex gap-2 cursor-pointer" 

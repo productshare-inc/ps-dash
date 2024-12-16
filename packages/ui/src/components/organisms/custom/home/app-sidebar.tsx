@@ -13,7 +13,8 @@ import SidebarFooterItems from "../../../molecules/custom/v1/SidebarFooterItems"
 import SidebarUser  from "../../../molecules/custom/v1/SidebarUser";
 
 export function AppSidebar({name,quote,logo,darkLogo,homePath,userid,username,avatar,email,items,footerItems,
-    logoutFunction,documentationLink,supportEmailAddress,githubUsername,githubRepositoryName,redirect,modifyAvatar,modifyName}:sidebarProps) {
+    logoutFunction,documentationLink,supportEmailAddress,githubUsername,githubRepositoryName,redirect,modifyAvatar,
+    modifyName,modifyPassword,deleteAccount}:sidebarProps) {
 
     return (
         <Sidebar>
@@ -31,7 +32,8 @@ export function AppSidebar({name,quote,logo,darkLogo,homePath,userid,username,av
             <SidebarFooter>
                 <SidebarUser userid={userid} username={username} email={email} avatar={avatar} logoutFunction={logoutFunction} 
                       documentationLink={documentationLink} supportEmailAddress={supportEmailAddress} githubUsername={githubUsername} 
-                      githubRepositoryName={githubRepositoryName} modifyAvatar={modifyAvatar} modifyName={modifyName}/>
+                      githubRepositoryName={githubRepositoryName} modifyAvatar={modifyAvatar} modifyName={modifyName} 
+                      modifyPassword={modifyPassword} deleteAccount={deleteAccount}/>
             </SidebarFooter>
         </Sidebar>
     );

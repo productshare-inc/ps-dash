@@ -4,18 +4,74 @@ import { useRef, useState } from "react";
 import { CameraIcon } from "lucide-react";
 import { FloatingLabelInput } from "../../../molecules/shadcn/floating-label-input";
 import { Button } from "../../../atoms/shadcn/button";
+import {   Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage, } from '../../../molecules/shadcn/form';
+import { useForm } from 'react-hook-form';
+import { ResetPasswordSchema } from '@repo/zod/auth';
+import {z} from "zod"
+import { zodResolver } from '@hookform/resolvers/zod';
+import { FormResult } from "../auth/v1/FormResult";
+import { set } from "date-fns";
+
   
   const MyAccountSettings = ({userid,username,email,avatar,modifyAvatar,modifyName,modifyEmail,modifyPassword,deleteAccount}:UserProps) => {
     const inputFileRef = useRef<HTMLInputElement>(null);
     const [name, setName] = useState(username);
-    const [currentEmail, setCurrentEmail] = useState(email);
-    const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [deleteAccountConfirmation, setDeleteAccountConfirmation] = useState('');
+
+    const form = useForm<z.infer<typeof ResetPasswordSchema>>({
+      resolver: zodResolver(ResetPasswordSchema),
+      defaultValues:{
+        password: '',
+      },
+    })
+
+    const [passwordError, setPasswordError] = useState<string>("")
+    const [passwordSuccess, setPasswordSuccess] = useState<string>("")
+    const [deleteAccountError, setDeleteAccountError] = useState<string>("")
 
     const handleAvatarClick = () => {
-      console.log("Avatar clicked");
       inputFileRef.current?.click(); // Programmatically open file input
     };
+
+    function handleSubmit(data: z.infer<typeof ResetPasswordSchema>) {
+      setPasswordError("");
+      setPasswordSuccess("");
+      if(email === process.env.NEXT_PUBLIC_GUEST_MAIL || email === process.env.NEXT_PUBLIC_ADMIN_MAIL){
+        setPasswordError("Guest account cannot modify password");
+        return;
+      }
+      if(!confirmPassword){
+        setPasswordError("Please confirm your password");
+        return;
+      }
+      if (data.password !== confirmPassword) {
+        setPasswordError("Passwords do not match");
+        return;
+      }
+      if(data.password){
+        modifyPassword(userid, data.password);
+        setPasswordSuccess("Password updated successfully");
+      }
+    }
+
+    const handleDeleteAccount = () => {
+      if(email === process.env.NEXT_PUBLIC_GUEST_MAIL || email === process.env.NEXT_PUBLIC_ADMIN_MAIL){
+        setDeleteAccountError("Guest account cannot be deleted");
+        return;
+      }
+      if(deleteAccountConfirmation !== 'permanently delete'){
+        setDeleteAccountError("Please type 'permanently delete' to confirm");
+        return;
+      }
+      deleteAccount(userid)
+    }
+
     return (
         <div className="my-10 px-10 overflow-auto scrollbar scrollbar-track-secondary scrollbar-thumb-sidebar">
             <div className="text-emphasis ">My Profile</div>
@@ -46,28 +102,42 @@ import { Button } from "../../../atoms/shadcn/button";
             <div className="flex items-center justify-between gap-4 mt-4">
               <FloatingLabelInput id="name" label="Username" className="w-full my-2" defaultValue={username} 
               onChange={(e)=>{setName(e.target.value)}}/>
-              <Button onClick={()=>modifyName(userid,name as string)} className="w-1/4">Update Username</Button>
+              <Button onClick={()=>modifyName(userid,name as string)} className="w-1/4 text-wrap">Update Username</Button>
             </div>
-            <div className="flex items-center justify-between gap-4 mt-4">
+            {/* <div className="flex items-center justify-between gap-4 mt-4">
               <FloatingLabelInput id="email" label="Email" className="flex-grow-1 my-2" defaultValue={email} type="email"
               onChange={(e)=>{setCurrentEmail(e.target.value)}}/>
-              <Button onClick={()=>{}} className="w-1/4" >Verify New Email Address</Button>
-            </div>
+              <Button onClick={()=>{}} className="w-1/4 text-wrap" >Verify New Email Address</Button>
+            </div> */}
             <div className="text-emphasis mt-10"> Change Password</div>
             <div className= "text-description pb-2 border-b-2">Make sure it's atleast 6 characters</div>
             <div className="flex flex-col gap-4 mt-4 w-1/2">
-              <FloatingLabelInput id="new password" label="New Password" type="password" className="w-full my-2"
-              onChange={(e)=>{setPassword(e.target.value)}}/>
-              <FloatingLabelInput id="confirm password" label="Confirm Password" type="password" className="w-full my-2"
-              onChange={(e)=>{setConfirmPassword(e.target.value)}}/>
-              <Button onClick={()=>{}} className="w-1/2">Modify Password</Button>
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(handleSubmit)}>
+                  <FormField control={form.control} name="password" render={({field})=>(
+                    <FormItem>
+                      <FormControl>
+                        <FloatingLabelInput id="password" label="Password" type="password" className="w-full my-2"
+                        {...field}/>
+                      </FormControl>
+                      <FormMessage>{form.formState.errors.password?.message}</FormMessage>
+                    </FormItem>
+                  )}/>
+                  <FloatingLabelInput id="confirm password" label="Confirm Password" type="password" 
+                  className="w-full my-4" onChange={(e)=>{setConfirmPassword(e.target.value)}}/> 
+                   <FormResult type="error" message={passwordError }/>
+                   <FormResult type="success" message={passwordSuccess}/> 
+                  <Button type="submit" className="w-1/2 text-wrap my-4">Modify Password</Button>
+                </form>
+              </Form>
             </div>
             <div className="text-emphasis mt-10"> Delete Account</div>
             <div className= "text-description pb-2 border-b-2">Once you delete your account and account data, there is no going back.</div>
             <div className="flex flex-col gap-4 mt-4 w-1/2">
               <FloatingLabelInput id="permanently delete" label="Type 'permanently delete'" type="name" className="w-full my-2"
-              onChange={()=>{}}/>
-              <Button variant="destructive" onClick={()=>{}} className="w-1/2">Delete Account</Button>
+              onChange={(e)=>{setDeleteAccountConfirmation(e.target.value)}}/>
+              <FormResult type="error" message={deleteAccountError }/>
+              <Button variant="destructive" onClick={handleDeleteAccount} className="w-1/2 text-wrap">Delete Account</Button>
             </div>
             <div className="text-emphasis border-b-2 pb-4 mt-10"> Account Security</div>
         </div>

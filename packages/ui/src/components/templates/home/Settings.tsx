@@ -41,7 +41,7 @@ const data = {
 
 
 export function SettingsDialog({children, open: controlledOpen, onOpenChange: setControlledOpen,userid,username,email,avatar,
-  modifyAvatar,modifyName}: SettingsDialogProps) {
+  modifyAvatar,modifyName, modifyPassword,deleteAccount}: SettingsDialogProps) {
   const [internalOpen, setInternalOpen] = React.useState(false)
 
   // Determine which open state to use
@@ -104,7 +104,7 @@ export function SettingsDialog({children, open: controlledOpen, onOpenChange: se
           <main className="flex flex-1 flex-col overflow-auto h-[90vh] bg-sidebar">
             {currentOpenedTab === "My Account" && 
             <MyAccountSettings userid={userid} username={username} email={email} avatar={avatar} modifyAvatar={modifyAvatar} 
-            modifyName={modifyName}/>}
+            modifyName={modifyName} modifyPassword={modifyPassword} deleteAccount={deleteAccount}/>}
           </main>
         </SidebarProvider>
       </DialogContent>

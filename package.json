@@ -9,7 +9,6 @@
     "db:migrate": "cd packages/prisma-db && npx prisma migrate dev --name init",
     "db:generate": "cd packages/prisma-db && npx prisma generate",
     "db:seed": "cd packages/prisma-db && npx prisma db seed",
-    "install-nextjs-app-packages": "cd apps/nextjs-app && npm install",
     "build-nextjs-app": "cd apps/nextjs-app && npm run build"
   },
   "devDependencies": {

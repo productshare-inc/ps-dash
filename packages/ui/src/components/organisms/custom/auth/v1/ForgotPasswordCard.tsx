@@ -38,7 +38,6 @@ const ForgotPasswordCard = ({errorMessage,successMessage,resetFunction,backFunct
     startTransition(() => {
       resetFunction(data.email)
         .then((data: any) => {
-          console.log("Reset Function Response:", data); // Debugging
           setError(data?.error);
           setSuccess(data?.success);
         })
@@ -67,7 +66,7 @@ const ForgotPasswordCard = ({errorMessage,successMessage,resetFunction,backFunct
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input disabled={isPending}  type="email" placeholder='example@gmail.com' {...field}/>
+                    <Input disabled={isPending}  type="email" placeholder='example@gmail.com'  className='bg-white text-black'  {...field}/>
                   </FormControl>
                   <FormMessage/>
                 </FormItem>

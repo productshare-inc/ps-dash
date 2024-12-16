@@ -1,5 +1,5 @@
 
-import NextAuth from "next-auth"
+import NextAuth from 'next-auth'
 
 import db from '@repo/prisma-db/client'
 import authConfig from "./auth.config"
@@ -27,39 +27,39 @@ export const { auth, handlers, signIn, signOut }:any = NextAuth({
             return true;
         },
         async session({session,token}){
-            if (token.sub && session.user){
-                session.user.id = token.sub
+            if (token.sub) {
+                // Fetch the latest user data from the database
+                const user = await getUserById(token.sub);
+                if (user) {
+                    session.user = {
+                        ...session.user, // Preserve existing fields
+                        id: user.id,
+                        role: user.role,
+                        emailVerified: user.emailVerified || null,
+                        createdAt: user.createdAt,
+                        updatedAt: user.updatedAt,
+                        name: user.name as string,       // Update with the latest name
+                        image: user.image as string,     // Update with the latest avatar
+                    };
+                }
             }
-            if (token.role && session.user){
-                // @ts-ignore
-                session.user.role = token.role;
-            }
-            if (token.emailVerified && session.user){
-                // @ts-ignore
-                session.user.emailVerified = token.emailVerified;
-            }
-            if (token.provider && session.user){
-                // @ts-ignore
-                session.user.provider = token.provider;
-            }
-            // @ts-ignore
-            session.user.createdAt = token.createdAt;
-            // @ts-ignore
-            session.user.updatedAt = token.updatedAt;
             return session;
         },
         async jwt({token}){
             if(!token.sub) return token;
-            const existingUser = await getUserById(token.sub);
-            if (!existingUser) return token;
-            const account = await getAccountByUserId(existingUser.id);
+            const user = await getUserById(token.sub);
+            if (!user) return token;
+            const account = await getAccountByUserId(user.id);
             if(account){
                 token.provider = account.provider;
             }
-            token.role = existingUser.role;
-            token.createdAt = existingUser.createdAt;
-            token.updatedAt = existingUser.updatedAt;
-            token.emailVerified = existingUser.emailVerified
+            token.role = user.role;
+            token.emailVerified = user.emailVerified;
+            token.createdAt = user.createdAt;
+            token.updatedAt = user.updatedAt;
+            token.name = user.name;       // Add name to token
+            token.image = user.image;     // Add avatar to token
+
             return token;
         }
     }
