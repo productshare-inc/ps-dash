@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../../../molecules/shadcn/card";
-import { Facebook, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Github, Globe, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import { TeamProps, SociaNetworkslProps } from "@repo/ts-types/landing-page/v1";
 
 
@@ -16,12 +16,18 @@ export const Team = ({teamList}:{teamList:TeamProps[]}) => {
     switch (iconName) {
       case "Linkedin":
         return <Linkedin size="20" />;
-
       case "Facebook":
         return <Facebook size="20" />;
-
       case "Instagram":
         return <Instagram size="20" />;
+      case "Twitter":
+        return <Twitter size="20" />;
+      case "Github":
+        return <Github size="20" />;
+      case "Youtube":
+        return <Youtube size="20" />;
+      case "Website":
+        return <Globe size="20" />;
     }
   };
 
@@ -38,8 +44,7 @@ export const Team = ({teamList}:{teamList:TeamProps[]}) => {
       </h2>
 
       <p className="mt-4 mb-10 text-xl text-muted-foreground">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis
-        dolor pariatur sit!
+        Some of the best people in the industry are working with us, as we are the only ones in the industry of spontaneous product development.
       </p>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 gap-y-10">
@@ -65,7 +70,7 @@ export const Team = ({teamList}:{teamList:TeamProps[]}) => {
                 <p>{description}</p>
               </CardContent>
 
-              <CardFooter>
+              <CardFooter className="flex flex-wrap items-center justify-center mx-4">
                 {socialNetworks.map(({ name, url }: SociaNetworkslProps) => (
                   <div key={name}>
                     <a

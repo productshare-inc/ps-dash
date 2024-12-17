@@ -32,12 +32,8 @@ export const { auth, handlers, signIn, signOut }:any = NextAuth({
                 const user = await getUserById(token.sub);
                 if (user) {
                     session.user = {
-                        ...session.user, // Preserve existing fields
-                        id: user.id,
-                        role: user.role,
-                        emailVerified: user.emailVerified || null,
-                        createdAt: user.createdAt,
-                        updatedAt: user.updatedAt,
+                        ...session.user,
+                        id: user.id , // Preserve existing fields
                         name: user.name as string,       // Update with the latest name
                         image: user.image as string,     // Update with the latest avatar
                     };

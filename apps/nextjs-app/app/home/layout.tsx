@@ -54,6 +54,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }
 
   const modifyName = async (id:string,name: string) => {
+    console.log(id)
     await modifyNameAction(id,name);
     await update({user:{...session?.user,name}});
   }

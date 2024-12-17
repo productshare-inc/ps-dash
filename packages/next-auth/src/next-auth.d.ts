@@ -8,10 +8,6 @@ declare module "next-auth" {
       name: string;
       email: string;
       image: string;
-      role?: string | null; // Add your custom field here
-      emailVerified?: Date | null;
-      createdAt?: Date;
-      updatedAt?: Date;
     };
   }
 
@@ -20,19 +16,11 @@ declare module "next-auth" {
     name: string;
     email: string;
     image: string;
-    role?: string | null; // Add your custom field here
-    emailVerified?: Date | null;
-    createdAt?: Date;
-    updatedAt?: Date;
   }
 
   interface JWT {
     id: string;
     name: string;
     email: string;
-    role?: string | null; // Add your custom field here
-    emailVerified?: Date | null;
-    createdAt?: Date;
-    updatedAt?: Date;
   }
 }

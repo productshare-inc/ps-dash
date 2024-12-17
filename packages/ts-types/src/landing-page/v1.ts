@@ -6,6 +6,8 @@ export interface RouteProps {
 export interface NavbarProps {
     routeList: RouteProps[];
     githubLink: string;
+    githubUsername: string;
+    githubRepositoryName: string;
     title: string;
     logo: string;
     darkLogo: string;
@@ -23,6 +25,7 @@ export interface HeroProps {
 
 export interface FeatureWithDescriptionProps {
     title: string;
+    href?: string;
     description: string;
   }
   
@@ -34,6 +37,8 @@ export interface FeaturesProps {
 export interface LandingPageProps {
     routeList: RouteProps[];
     githubLink: string;
+    githubUsername: string;
+    githubRepositoryName: string;
     documentationLink: string;
     title: string;
     logo: string;
@@ -50,6 +55,7 @@ export interface LandingPageProps {
     creator: string;
     creatorLink: string;
     teamList: TeamProps[];
+    supportEmailAddress: string;
   }
 
 export interface TestimonialProps {
@@ -67,7 +73,9 @@ export enum PopularPlanType {
 export interface PricingProps {
   title: string;
   popular: PopularPlanType;
-  price: number;
+  price: string;
+  priceType: string;
+  href: string;
   description: string;
   buttonText: string;
   benefitList: string[];

@@ -9,9 +9,8 @@ import {
   CardTitle,
   CardFooter,
 } from "../../../molecules/shadcn/card";
-import { Check, Linkedin } from "lucide-react";
+import { Check} from "lucide-react";
 import { LightbulbIcon } from "lucide-react";
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { HeroCardsProps } from "@repo/ts-types/landing-page/v1";
 
 const HeroCards = ({testimonials,pricingList,teamList,featuresWithDescription}:HeroCardsProps) => {
@@ -59,36 +58,35 @@ const HeroCards = ({testimonials,pricingList,teamList,featuresWithDescription}:H
       </Card>
 
       {/* Pricing */}
-      <Card className="absolute top-[150px] left-[50px] w-72  drop-shadow-xl shadow-black/10 dark:shadow-white/10">
-        <CardHeader>
-          <CardTitle className="flex item-center justify-between">
-            Free
-            <Badge
-              variant="secondary"
-              className="text-sm text-primary"
-            >
-              Most popular
-            </Badge>
-          </CardTitle>
-          <div>
-            <span className="text-3xl font-bold">$0</span>
-            <span className="text-muted-foreground"> /month</span>
-          </div>
 
-          <CardDescription>
-            Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.
-          </CardDescription>
-        </CardHeader>
+      <Card className="absolute top-[180px] left-[50px] w-72  drop-shadow-xl shadow-black/10 dark:shadow-white/10">
+        <CardHeader>
+              <CardTitle className="flex item-center justify-between">
+                {pricingList[0]?.title}
+                  <Badge
+                    variant="secondary"
+                    className="text-sm text-primary"
+                  >
+                    Most popular
+                  </Badge>
+              </CardTitle>
+              <div>
+                <span className="text-3xl font-bold">{pricingList[0]?.price}</span>
+                <span className="text-muted-foreground"> {pricingList[0]?.priceType}</span>
+              </div>
+
+              <CardDescription>{pricingList[0]?.description}</CardDescription>
+            </CardHeader>
 
         <CardContent>
-          <Button className="w-full">Start Free Trial</Button>
+          <Button className="w-full">{pricingList[0]?.buttonText}</Button>
         </CardContent>
 
         <hr className="w-4/5 m-auto mb-4" />
 
         <CardFooter className="flex">
           <div className="space-y-4">
-            {["4 Team member", "4 GB Storage", "Upto 6 pages"].map(
+            {pricingList[0]?.benefitList.filter((_, index) => index >= 0 && index <= 2).map(
               (benefit: string) => (
                 <span
                   key={benefit}
@@ -104,16 +102,15 @@ const HeroCards = ({testimonials,pricingList,teamList,featuresWithDescription}:H
       </Card>
 
       {/* Feature*/}
-      <Card className="absolute w-[350px] -right-[10px] bottom-[93px]  drop-shadow-xl shadow-black/10 dark:shadow-white/10">
+      <Card className="absolute w-[350px] -right-[10px] top-[250px]  drop-shadow-xl shadow-black/10 dark:shadow-white/10">
         <CardHeader className="space-y-1 flex md:flex-row justify-start items-start gap-4">
           <div className="mt-1 bg-primary/20 p-1 rounded-2xl">
             <LightbulbIcon />
           </div>
           <div>
-            <CardTitle>Light & dark mode</CardTitle>
-            <CardDescription className="text-md mt-2">
-              Lorem ipsum dolor sit amet consect adipisicing elit. Consectetur
-              natusm.
+            <CardTitle>{featuresWithDescription[1]?.title}</CardTitle>
+            <CardDescription className="text-md mt-2 ">
+              {featuresWithDescription[1]?.description}
             </CardDescription>
           </div>
         </CardHeader>

@@ -35,7 +35,7 @@ const Features = ({featuresWithDescription,featureList}: FeaturesProps) => {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {featuresWithDescription.map(({ title, description}: FeatureWithDescriptionProps) => (
+        {featuresWithDescription.map(({ title, description,href}: FeatureWithDescriptionProps) => (
           <Card key={title}>
             <CardHeader>
               <CardTitle>{title}</CardTitle>
@@ -44,11 +44,11 @@ const Features = ({featuresWithDescription,featureList}: FeaturesProps) => {
             <CardContent>{description}</CardContent>
 
             <CardFooter>
-              {/* <img
-                src={""}
+              <img
+                src={href}
                 alt="About feature"
                 className="w-[200px] lg:w-[300px] mx-auto"
-              /> */}
+              />
             </CardFooter>
           </Card>
         ))}

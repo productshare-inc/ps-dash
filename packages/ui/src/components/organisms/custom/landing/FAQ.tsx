@@ -8,7 +8,10 @@ import {
 
 
   
-  const FAQ = ({FAQList}: {FAQList: FAQProps[]}) => {
+  const FAQ = ({FAQList,supportEmailAddress}: {FAQList: FAQProps[],supportEmailAddress:string}) => {
+
+    let href = "https://mail.google.com/mail?view=cm&fs=1&to="+supportEmailAddress+"&su=Support";
+
     return (
       <section
         id="faq"
@@ -44,7 +47,8 @@ import {
           Still have questions?{" "}
           <a
             rel="noreferrer noopener"
-            href="#"
+            href={href}
+            target="_blank"
             className="text-primary transition-all border-primary hover:border-b-2"
           >
             Contact us

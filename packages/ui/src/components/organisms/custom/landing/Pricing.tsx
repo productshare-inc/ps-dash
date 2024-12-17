@@ -1,22 +1,9 @@
-import { Badge } from "../../../atoms/shadcn/badge";
-import { Button } from "../../../atoms/shadcn/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../../../molecules/shadcn/card";
-import { Check } from "lucide-react";
 import { PricingProps } from "@repo/ts-types/landing-page/v1";
+import PricingItem from "../../../molecules/custom/v1/PricingItem";
 
-enum PopularPlanType {
-    NO = 0,
-    YES = 1,
-  }
-  
-const Pricing = ({pricingList}: {pricingList: PricingProps[]}) => {
+
+const Pricing = ({pricingList,supportEmailAddress}: {pricingList: PricingProps[],supportEmailAddress:string}) => {
+  let href = "https://mail.google.com/mail?view=cm&fs=1&to="+supportEmailAddress+"&su=Support";
   return (
     <section
       id="pricing"
@@ -31,59 +18,12 @@ const Pricing = ({pricingList}: {pricingList: PricingProps[]}) => {
         Access
       </h2>
       <h3 className="text-xl text-center text-muted-foreground pt-4 pb-8">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
-        reiciendis.
+        It's all available for free. You can contact us for any customized solution based on this boilerplate code, you want to implement.
+        You can also show your support by giving us a star on Github or donating to our project.
       </h3>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {pricingList.map((pricing: PricingProps) => (
-          <Card
-            key={pricing.title}
-            className={
-              pricing.popular === PopularPlanType.YES
-                ? "drop-shadow-xl shadow-black/10 dark:shadow-white/10"
-                : ""
-            }
-          >
-            <CardHeader>
-              <CardTitle className="flex item-center justify-between">
-                {pricing.title}
-                {pricing.popular === PopularPlanType.YES ? (
-                  <Badge
-                    variant="secondary"
-                    className="text-sm text-primary"
-                  >
-                    Most popular
-                  </Badge>
-                ) : null}
-              </CardTitle>
-              <div>
-                <span className="text-3xl font-bold">${pricing.price}</span>
-                <span className="text-muted-foreground"> /month</span>
-              </div>
-
-              <CardDescription>{pricing.description}</CardDescription>
-            </CardHeader>
-
-            <CardContent>
-              <Button className="w-full">{pricing.buttonText}</Button>
-            </CardContent>
-
-            <hr className="w-4/5 m-auto mb-4" />
-
-            <CardFooter className="flex">
-              <div className="space-y-4">
-                {pricing.benefitList.map((benefit: string) => (
-                  <span
-                    key={benefit}
-                    className="flex"
-                  >
-                    <Check className="text-green-500" />{" "}
-                    <h3 className="ml-2">{benefit}</h3>
-                  </span>
-                ))}
-              </div>
-            </CardFooter>
-          </Card>
+          <PricingItem key={pricing.title} pricing={pricing} />
         ))}
       </div>
     </section>

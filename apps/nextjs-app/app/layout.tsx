@@ -19,8 +19,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Complete Microsaas Boilerplate",
-  description: "Build your Complete Microsaas Application in turborepo effortlessly by keeping and modifying the required components, packages and apps to your project.",
+  title: "Turborepo Micro SaaS Boilerplate",
+  description: "Build your Turborepo Micro SaaS Application in turborepo effortlessly by keeping and modifying the required components, packages and apps to your project.",
 };
 
 export default function RootLayout({

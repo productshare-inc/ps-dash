@@ -21,13 +21,30 @@ import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { NavbarProps, RouteProps } from "@repo/ts-types/landing-page/v1";
 
-const Navbar = ({routeList,githubLink,title,logo,darkLogo}: NavbarProps) => {
+const Navbar = ({routeList,githubLink,githubUsername,githubRepositoryName,title,logo,darkLogo}: NavbarProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const {theme} = useTheme();
+  const [starCount, setStarCount] = useState<number>(0);
 
-  useEffect(()=>{
+  useEffect(() => {
+    const fetchStarCount = async () => {
+      try {
+        const response = await fetch("https://api.github.com/repos/"+githubUsername+"/"+ githubRepositoryName);
+        if (response.ok) {
+          const data = await response.json();
+          setStarCount(data.stargazers_count);
+        } else {
+          console.error("Failed to fetch star count");
+        }
+      } catch (error) {
+        console.log("Error fetching star count:", error);
+      }
+    };
+    if(githubLink){
+      fetchStarCount();
+    }
 
-  },[theme])
+  }, [theme,githubLink]);
 
   return (
     <header className="sticky border-b-[1px] top-0 z-40 w-full bg-background">
@@ -84,8 +101,17 @@ const Navbar = ({routeList,githubLink,title,logo,darkLogo}: NavbarProps) => {
                       variant: "secondary",
                     })}`}
                   >
-                    <GitHubLogoIcon className="mr-2 w-5 h-5" />
-                    Github
+                      <GitHubLogoIcon className="mr-2 w-5 h-5" />
+
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="yellow"
+                      className="w-4 h-4 mx-1"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 .587l3.668 7.429 8.332 1.151-6.064 5.868 1.516 8.252-7.452-3.915-7.452 3.915 1.516-8.252-6.064-5.868 8.332-1.151z" />
+                    </svg>
+                    {starCount}
                   </a>
                 </nav>
               </SheetContent>
@@ -113,10 +139,19 @@ const Navbar = ({routeList,githubLink,title,logo,darkLogo}: NavbarProps) => {
               rel="noreferrer noopener"
               href={githubLink}
               target="_blank"
-              className={`border ${buttonVariants({ variant: "secondary" })}`}
+              className={`border flex items-center ${buttonVariants({ variant: "secondary" })}`}
             >
               <GitHubLogoIcon className="mr-2 w-5 h-5" />
-              Github
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="yellow"
+                className="w-4 h-4 mx-1"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 .587l3.668 7.429 8.332 1.151-6.064 5.868 1.516 8.252-7.452-3.915-7.452 3.915 1.516-8.252-6.064-5.868 8.332-1.151z" />
+              </svg>
+              {starCount}
             </a>
 
             <ModeToggle />
