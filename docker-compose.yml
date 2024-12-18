@@ -4,7 +4,7 @@ services:
   nextjs-app:
     environment:
       - AUTH_TRUST_HOST=true
-      - AUTH_URL="http://n8gw0kk80so8wwc4ckgkcg8o.13.200.125.228.sslip.io"
+      - AUTH_URL=${AUTH_URL}
       - AUTH_SECRET=${AUTH_SECRET}
       - DATABASE_URL=${DATABASE_URL}
       - NEXT_PUBLIC_ADMIN_MAIL=${NEXT_PUBLIC_ADMIN_MAIL}
