@@ -2,7 +2,7 @@ FROM node:20.12.0-alpine3.19
 
 WORKDIR /app
 
-COPY package.json package-lock.json turbo.json tsconfig.json ./
+COPY package.json package-lock.json turbo.json ./
 
 COPY apps/nextjs-app ./apps/nextjs-app
 COPY packages ./packages
@@ -10,7 +10,7 @@ COPY packages ./packages
 RUN npm install
 RUN npm run db:generate
 
-RUN npm run build-nextjs-app
+RUN npm run build
 
 EXPOSE 3000
 

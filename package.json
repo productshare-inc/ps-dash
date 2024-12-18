@@ -9,9 +9,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "db:migrate": "cd packages/prisma-db && npx prisma migrate dev --name init",
     "db:generate": "cd packages/prisma-db && npx prisma generate",
-    "db:seed": "cd packages/prisma-db && npx prisma db seed",
-    "build-nextjs-app": "cd apps/nextjs-app && npm run build",
-    "build-docs": "cd apps/docs && npm run build"
+    "db:seed": "cd packages/prisma-db && npx prisma db seed"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
