@@ -12,6 +12,7 @@ export const { auth, handlers, signIn, signOut }:any = NextAuth({
     session: { strategy: 'jwt'},
     trustHost: true,
     debug: true,
+    secret: 'n0etRnM4Gfe2c7Z7Pdl4CpZxQ4TKkLYzXzAerCFazBf',
     ...authConfig,
     pages:{
         signIn: '/auth/login',
