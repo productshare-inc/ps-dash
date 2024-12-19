@@ -3,7 +3,7 @@ version: '3.8'
 services:
   nextjs-app:
     environment:
-      - AUTH_TRUST_HOST=true
+      - AUTH_TRUST_HOST=${AUTH_TRUST_HOST}
       - AUTH_URL=${AUTH_URL}
       - AUTH_SECRET=${AUTH_SECRET}
       - DATABASE_URL=${DATABASE_URL}
