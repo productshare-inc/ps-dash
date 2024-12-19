@@ -10,6 +10,7 @@ import { getAccountByUserId, getUserById } from "@repo/prisma-db/repo/user"
 export const { auth, handlers, signIn, signOut }:any = NextAuth({
     adapter: PrismaAdapter(db),
     session: { strategy: 'jwt'},
+    trustHost: true,
     ...authConfig,
     pages:{
         signIn: '/auth/login',
