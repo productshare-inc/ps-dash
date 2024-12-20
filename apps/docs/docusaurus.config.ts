@@ -5,20 +5,20 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Turborepo SaaS Boilerplate Code Documentation',
+  tagline: 'Ideas to product in less than a second',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://dev.boilerplate.bsamaritan.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'Bayesian labs', // Usually your GitHub org/user name.
+  projectName: 'turborepo-saas-boilerplate-code', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -40,7 +40,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/anoopkarnik/turborepo-saas-boilerplate-code/tree/main/apps/docs',
         },
         blog: {
           showReadingTime: true,
@@ -51,7 +51,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/anoopkarnik/turborepo-saas-boilerplate-code/tree/main/apps/docs',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -68,22 +68,28 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Site',
+      title: 'Turborepo SaaS Boilerplate Code Documentation',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'Bayesian Boilerplate Logo',
+        src: 'img/logo.png',
       },
       items: [
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Docs',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
+          href: 'https://dev.boilerplate.bsamaritan.com/',
+          position: 'right',
+          label: 'Platform',
+        },
+        {
+          href: 'https://github.com/anoopkarnik/turborepo-saas-boilerplate-code',
+          'aria-label': 'Github repository',
+          className: 'header-github-link',
           position: 'right',
         },
       ],
@@ -95,8 +101,20 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Documentation',
+              to: '/docs/overview',
+            },
+            {
+              label: 'Blog',
+              to: '/blog',
+            },
+            {
+              label: 'Privacy Policy',
+              href: 'https://www.termsfeed.com/live/f7faf120-c351-422d-bd3a-cb7a2c931284'
+            },
+            {
+              label: 'Terms of Service',
+              href: 'https://www.termsofusegenerator.net/live.php?token=saSU4fpQYzVVm0jLgtV88ty1x4tEHMA7'
             },
           ],
         },
@@ -104,17 +122,9 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
-            },
+              label: 'Linkedin',
+              href: 'https://www.linkedin.com/company/bayesian-labs1',
+            }, 
           ],
         },
         {
@@ -131,7 +141,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Bayesian Labs Private Limited`,
     },
     prism: {
       theme: prismThemes.github,
