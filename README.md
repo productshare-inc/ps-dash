@@ -1,24 +1,12 @@
 # COMPLETE SAAS BOILERPLATE CODE
 
+## Overview
+
+MicroSaaS products are one of the most exciting ways to create impactful software with minimal resources. They allow solopreneurs and small teams to quickly launch, validate, and iterate on ideas. To help developers hit the ground running, I built a boilerplate for MicroSaaS products using a **TurboRepo monorepo setup** and am excited to share it with the open-source community. For more details, got to these [docs](https://dev.docs.boilerplate.bsamaritan.com/docs/overview) in the documentation.
+
 ## Starting Locally
 
-```bash
-git clone https://github.com/anoopkarnik/turborepo-saas-boilerplate-code.git
-cd turborepo-saas-boilerplate-code
-npm install
-
-sudo docker network create turborepo-network
-sudo docker-compose -f docker/docker-compose-tools.yml up -d
-sudo sh scripts/copy-env-files.sh
-```
-Fill the .env in apps/nextjs-app 
-
-```bash
-npm run db:migrate
-npm run db:generate
-npm run dev
-```
-
+Use the documentation link, to start this boilerplate quickly locally - [link](https://dev.docs.boilerplate.bsamaritan.com/docs/category/getting-started)
 
 ## License
 
