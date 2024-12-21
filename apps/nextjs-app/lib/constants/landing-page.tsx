@@ -282,11 +282,11 @@ export const pricingList: PricingProps[] = [
     "Legal": [
         {
             label: "Terms of Service",
-            href: "https://www.termsofusegenerator.net/live.php?token=saSU4fpQYzVVm0jLgtV88ty1x4tEHMA7"
+            href: "/landing/terms-of-service"
         },
         {
             label: "Privacy Policy",
-            href: "https://www.termsfeed.com/live/f7faf120-c351-422d-bd3a-cb7a2c931284"
+            href: "/landing/privacy-policy"
         }
     ],
   }

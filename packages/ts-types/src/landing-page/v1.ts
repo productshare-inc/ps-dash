@@ -33,7 +33,8 @@ export interface FeaturesProps {
     featuresWithDescription: FeatureWithDescriptionProps[];
     featureList: string[];
   }
-  
+
+
 export interface LandingPageProps {
     routeList: RouteProps[];
     githubLink: string;
@@ -79,6 +80,33 @@ export interface PricingProps {
   description: string;
   buttonText: string;
   benefitList: string[];
+}
+export interface PrivacyPolicyProps {
+  email: string;
+  siteName: string;
+  companyName: string;
+  country: string;
+  websiteUrl: string;
+  lastUpdated: string;
+}
+
+export interface PrivacyPolicyPageProps extends PrivacyPolicyProps, NavbarProps{
+
+}
+
+export interface TermsOfServiceProps {
+  email: string;
+  siteName: string;
+  companyName: string;
+  country: string;
+  websiteUrl: string;
+  lastUpdated: string;
+  version: string;
+  address: string;
+}
+
+export interface TermsOfServicePageProps extends TermsOfServiceProps, NavbarProps{
+
 }
 
 export interface FAQProps {
