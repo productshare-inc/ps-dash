@@ -56,9 +56,9 @@ const LoginContent = () => {
       showGithubProvider={showGithubProvider}
       showLinkedinProvider={showLinkedinProvider}
       onEmailSubmit={login}
-      onGoogleProviderSubmit={loginWithSocials}
-      onGithubProviderSubmit={loginWithSocials}
-      onLinkedinProviderSubmit={loginWithSocials}
+      onGoogleProviderSubmit={()=>loginWithSocials('google')}
+      onGithubProviderSubmit={()=>loginWithSocials('github')}
+      onLinkedinProviderSubmit={()=>loginWithSocials('linkedin')}
       forgotPasswordFunction={goToForgotPasswordPage}
       backFunction={goToRegisterPage}
       errorMessage={urlError}
