@@ -36,7 +36,7 @@ import { useTheme } from "../../../../providers/theme-provider"
 import { Theme } from "./Theme"
 
 const SidebarUser = ({ userid,username,email,avatar,logoutFunction,documentationLink,supportEmailAddress, githubUsername,
-  githubRepositoryName,modifyAvatar,modifyName,modifyPassword,deleteAccount}:UserProps) => {
+  githubRepositoryName, connections}:UserProps) => {
 
   const { isMobile } = useSidebar()
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
@@ -105,10 +105,7 @@ const SidebarUser = ({ userid,username,email,avatar,logoutFunction,documentation
                 username={username}
                 email={email}
                 avatar={avatar}
-                modifyAvatar={modifyAvatar}
-                modifyName={modifyName}
-                modifyPassword={modifyPassword}
-                deleteAccount={deleteAccount}
+                connections={connections}
               >
                 <DropdownMenuItem 
                   className="flex gap-2 cursor-pointer" 

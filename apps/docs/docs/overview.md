@@ -68,6 +68,7 @@ Here’s how the boilerplate is organized:
 │   ├── typescript-config # Typescript configs library
 │   ├── eslint-config # Eslint configs library
 │   ├── zod-validation # Zod Validation Client library
+│   ├── server-utils # Server Functions which are run in UI components
 ├── docker  # Docker configuration with example env files
 ├── scripts # Bash Scripts to run to get started
 ├── docker-compose.yaml # Docker Configuration to start the app

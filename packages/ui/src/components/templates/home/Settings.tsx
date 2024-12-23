@@ -25,6 +25,8 @@ import MyAccountSettings from "../../organisms/custom/home/MyAccountSettings"
 import { cn } from "../../../lib/utils"
 import { SettingsDialogProps } from "@repo/ts-types/home/v1"
 import { Avatar, AvatarFallback, AvatarImage } from "../../atoms/shadcn/avatar"
+import MyConnectionsSettings from "../../organisms/custom/home/MyConnectionsSettings"
+import { connect } from "http2"
 
 const data = {
   nav: [
@@ -40,8 +42,8 @@ const data = {
 }
 
 
-export function SettingsDialog({children, open: controlledOpen, onOpenChange: setControlledOpen,userid,username,email,avatar,
-  modifyAvatar,modifyName, modifyPassword,deleteAccount}: SettingsDialogProps) {
+export function SettingsDialog({children, open: controlledOpen, onOpenChange: setControlledOpen,userid,
+  username,email,avatar, connections}: SettingsDialogProps) {
   const [internalOpen, setInternalOpen] = React.useState(false)
 
   // Determine which open state to use
@@ -103,8 +105,9 @@ export function SettingsDialog({children, open: controlledOpen, onOpenChange: se
           </Sidebar>
           <main className="flex flex-1 flex-col overflow-auto h-[90vh] bg-sidebar">
             {currentOpenedTab === "My Account" && 
-            <MyAccountSettings userid={userid} username={username} email={email} avatar={avatar} modifyAvatar={modifyAvatar} 
-            modifyName={modifyName} modifyPassword={modifyPassword} deleteAccount={deleteAccount}/>}
+            <MyAccountSettings userid={userid} username={username} email={email} avatar={avatar} />}
+            {currentOpenedTab === "My Connections" && 
+            <MyConnectionsSettings connections={connections} />}
           </main>
         </SidebarProvider>
       </DialogContent>

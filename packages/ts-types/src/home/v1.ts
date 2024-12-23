@@ -52,11 +52,7 @@ export interface UserProps {
     githubUsername?: string;
     githubRepositoryName?: string;
     logoutFunction?: () => void;
-    modifyAvatar?: (id:string,event: React.ChangeEvent<HTMLInputElement>) => void;
-    modifyName: (id:string,name: string) => void;
-    modifyEmail?: (id:string,email: string) => void;
-    modifyPassword: (id:string,password: string) => void;
-    deleteAccount: (id:string) => void;
+    connections?: ConnectionCardProps[];
 }
 
 
@@ -66,3 +62,26 @@ export interface SettingsDialogProps extends UserProps {
     onOpenChange?: (open: boolean) => void;
   }
   
+export interface SettingsHeaderProps {
+    title: string;
+    description: string;
+    children: React.ReactNode;
+}
+
+export interface ConnectionCardProps {
+    title: string;
+    description: string;
+    logo: string;
+    darkLogo: string;
+    type: string;
+    published: boolean;
+    showModal: boolean;
+    formElements?: ConnectionCardFormProps[];
+}
+
+export interface ConnectionCardFormProps {
+    label: string;
+    placeholder: string;
+    type: string;
+    name: string;
+}

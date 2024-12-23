@@ -33,6 +33,10 @@ sudo sh scripts/copy-env-files.sh
 npm run db:migrate
 ```
 
+## Modify Details for Landing Page, Home Page and Settings
+
+Modify details in tsx files in this path apps/nextjs-app/lib/constants.
+
 ## For Registering a New User using email authentiation
 
 Fill the NEXT_PUBLIC_RESEND_API_KEY in the apps/nexjs-app/.env using the below doc

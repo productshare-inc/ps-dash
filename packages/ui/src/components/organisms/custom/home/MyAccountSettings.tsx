@@ -15,14 +15,19 @@ import { ResetPasswordSchema } from '@repo/zod/auth';
 import {z} from "zod"
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormResult } from "../auth/v1/FormResult";
-import { set } from "date-fns";
+import SettingsHeading from "../../../molecules/custom/v1/SettingsHeading";
+import {deleteAccountAction, modifyAvatarAction, modifyNameAction, modifyPasswordAction} from "@repo/server-utils/settings"
+import { useSession} from "next-auth/react";
 
   
-  const MyAccountSettings = ({userid,username,email,avatar,modifyAvatar,modifyName,modifyEmail,modifyPassword,deleteAccount}:UserProps) => {
+  const MyAccountSettings = ({userid,username,email,avatar}:UserProps) => {
     const inputFileRef = useRef<HTMLInputElement>(null);
     const [name, setName] = useState(username);
     const [confirmPassword, setConfirmPassword] = useState('');
     const [deleteAccountConfirmation, setDeleteAccountConfirmation] = useState('');
+
+    const title = "My Account"
+    const description = "For modifying Email, you need to verify your new email address"
 
     const form = useForm<z.infer<typeof ResetPasswordSchema>>({
       resolver: zodResolver(ResetPasswordSchema),
@@ -55,7 +60,7 @@ import { set } from "date-fns";
         return;
       }
       if(data.password){
-        modifyPassword(userid, data.password);
+        modifyPasswordAction(userid, data.password);
         setPasswordSuccess("Password updated successfully");
       }
     }
@@ -69,16 +74,27 @@ import { set } from "date-fns";
         setDeleteAccountError("Please type 'permanently delete' to confirm");
         return;
       }
-      deleteAccount(userid)
+      deleteAccountAction(userid)
+    }
+    const { data:session,status,update } = useSession();
+
+    const handleName=(userid:string, name:string)=>{
+      modifyNameAction(userid,name as string)
+      update({user:{...session?.user,name}})
     }
 
+    const handleAvatar = async (userid:string,event: React.ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
+      const user = await modifyAvatarAction(userid,file)
+      update({user:{...session?.user,image:user?.image}})
+    }
+
+
     return (
-        <div className="my-10 px-10 overflow-auto scrollbar scrollbar-track-secondary scrollbar-thumb-sidebar">
-            <div className="text-emphasis ">My Profile</div>
-            <div className= "text-description pb-2 border-b-2">For modifying Email, you need to verify your new email address</div>
+        <SettingsHeading title={title} description={description} >
             <div className="flex items-center gap-4">
               <div className="flex flex-col items-center ">
-                <div className="text-description mt-4">Profile Pic</div>
+                <div className="text-description ">Profile Pic</div>
                 <div className="relative group cursor-pointer">
                   <Avatar className="h-20 w-20 rounded-full border-2 bg-secondary hover:bg-accent2">
                     <AvatarImage src={avatar?? ''} alt={username ?? ''} />
@@ -95,14 +111,14 @@ import { set } from "date-fns";
                   type="file"
                   className="hidden"
                   accept="image/*" // Accept only images
-                  onChange={(e)=>modifyAvatar && modifyAvatar(userid,e)} // Handle file selection
+                  onChange={(e)=>handleAvatar(userid,e)} // Handle file selection
                 />
               </div>
             </div>
             <div className="flex items-center justify-between gap-4 mt-4">
               <FloatingLabelInput id="name" label="Username" className="w-full my-2" defaultValue={username} 
               onChange={(e)=>{setName(e.target.value)}}/>
-              <Button onClick={()=>modifyName(userid,name as string)} className="w-1/4 text-wrap">Update Username</Button>
+              <Button onClick={()=>handleName(userid,name as string)} className="w-1/4 text-wrap">Update Username</Button>
             </div>
             {/* <div className="flex items-center justify-between gap-4 mt-4">
               <FloatingLabelInput id="email" label="Email" className="flex-grow-1 my-2" defaultValue={email} type="email"
@@ -140,7 +156,7 @@ import { set } from "date-fns";
               <Button variant="destructive" onClick={handleDeleteAccount} className="w-1/2 text-wrap">Delete Account</Button>
             </div>
             <div className="text-emphasis border-b-2 pb-4 mt-10"> Account Security</div>
-        </div>
+        </SettingsHeading>
     );
   };
 
