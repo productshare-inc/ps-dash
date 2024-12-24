@@ -18,6 +18,7 @@ import { FormResult } from "../auth/v1/FormResult";
 import SettingsHeading from "../../../molecules/custom/v1/SettingsHeading";
 import {deleteAccountAction, modifyAvatarAction, modifyNameAction, modifyPasswordAction} from "@repo/server-utils/settings"
 import { useSession} from "next-auth/react";
+import { useToast } from "../../../../hooks/use-toast";
 
   
   const MyAccountSettings = ({userid,username,email,avatar}:UserProps) => {
@@ -39,12 +40,13 @@ import { useSession} from "next-auth/react";
     const [passwordError, setPasswordError] = useState<string>("")
     const [passwordSuccess, setPasswordSuccess] = useState<string>("")
     const [deleteAccountError, setDeleteAccountError] = useState<string>("")
+    const {toast} = useToast();
 
     const handleAvatarClick = () => {
       inputFileRef.current?.click(); // Programmatically open file input
     };
 
-    function handleSubmit(data: z.infer<typeof ResetPasswordSchema>) {
+    async function handleSubmit(data: z.infer<typeof ResetPasswordSchema>) {
       setPasswordError("");
       setPasswordSuccess("");
       if(email === process.env.NEXT_PUBLIC_GUEST_MAIL || email === process.env.NEXT_PUBLIC_ADMIN_MAIL){
@@ -60,12 +62,18 @@ import { useSession} from "next-auth/react";
         return;
       }
       if(data.password){
-        modifyPasswordAction(userid, data.password);
+        const res = await modifyPasswordAction(userid, data.password);
         setPasswordSuccess("Password updated successfully");
+        if (res.success){
+          toast({title: "Success", description: res?.success, variant: 'default'})
+        }
+        else if (res.error){
+            toast({title: "Error", description: res?.error, variant: 'destructive'})
+        }
       }
     }
 
-    const handleDeleteAccount = () => {
+    const handleDeleteAccount = async () => {
       if(email === process.env.NEXT_PUBLIC_GUEST_MAIL || email === process.env.NEXT_PUBLIC_ADMIN_MAIL){
         setDeleteAccountError("Guest account cannot be deleted");
         return;
@@ -74,19 +82,37 @@ import { useSession} from "next-auth/react";
         setDeleteAccountError("Please type 'permanently delete' to confirm");
         return;
       }
-      deleteAccountAction(userid)
+      const res = await deleteAccountAction(userid)
+      if (res.success){
+        toast({title: "Success", description: res?.success, variant: 'default'})
+      }
+      else if (res.error){
+          toast({title: "Error", description: res?.error, variant: 'destructive'})
+      }
     }
     const { data:session,status,update } = useSession();
 
-    const handleName=(userid:string, name:string)=>{
-      modifyNameAction(userid,name as string)
+    const handleName = async (userid:string, name:string)=>{
+      const res = await modifyNameAction(userid,name as string)
+      if (res.success){
+        toast({title: "Success", description: res?.success, variant: 'default'})
+      }
+      else if (res.error){
+          toast({title: "Error", description: res?.error, variant: 'destructive'})
+      }
       update({user:{...session?.user,name}})
     }
 
     const handleAvatar = async (userid:string,event: React.ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0];
-      const user = await modifyAvatarAction(userid,file)
-      update({user:{...session?.user,image:user?.image}})
+      const res  = await modifyAvatarAction(userid,file)
+      if (res.success){
+        toast({title: "Success", description: res?.success, variant: 'default'})
+      }
+      else if (res.error){
+          toast({title: "Error", description: res?.error, variant: 'destructive'})
+      }
+      update({user:{...session?.user,image:res.data?.image}})
     }
 
 

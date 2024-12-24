@@ -8,11 +8,13 @@ import { ConnectionCardProps } from '@repo/ts-types/home/v1'
 import { useTheme } from '../../../../providers/theme-provider'
 import { Button } from '../../../atoms/shadcn/button'
 import { DialogContent } from '@radix-ui/react-dialog'
-import { Link } from 'react-router-dom'
+import AddConnectionsModal from '../../../organisms/custom/home/AddConnectionsModal'
 
 
 const ConnectionCard = ({connection}:{connection:ConnectionCardProps }) => {
     const {theme} = useTheme();
+      // State for controlling if the dialog is open
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     useEffect(() => {
 
@@ -33,23 +35,23 @@ const ConnectionCard = ({connection}:{connection:ConnectionCardProps }) => {
     </CardHeader>
     { connection.published && <div className="flex flex-col items-center gap-2 p-4 mx-4 ">
      { connection.showModal? (
-        <Dialog>
+        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
             <Button size="lg"  >
               Connect using Keys
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className='z-[999999] fixed top-[10%] bg-muted p-4 rounded-md'>
             <DialogHeader>
               <DialogTitle className='flex text-4xl gap-4'>
                 {theme === "dark" ?
-                <Image src={connection.darkLogo} alt='/next.svg' width={30} height={30} /> : 
-                <Image src={connection.logo} alt='/next.svg' width={30} height={30} />}
+                <Image src={connection.darkLogo} alt='/next.svg' width={40} height={20} /> : 
+                <Image src={connection.logo} alt='/next.svg' width={20} height={20} />}
                 <div>{connection.title}</div>
               </DialogTitle>
               <DialogDescription className='py-4 '>{connection.description}</DialogDescription>
             </DialogHeader>
-            {/* <AddConnectionsModal formElements={connection.formElements || []} addConnection={addConnection} userId={user?.id}/> */}
+            <AddConnectionsModal type={connection.title} formElements={connection.formElements || []} setIsDialogOpen={setIsDialogOpen}/>
           </DialogContent>
         </Dialog>
       ):(
@@ -61,6 +63,10 @@ const ConnectionCard = ({connection}:{connection:ConnectionCardProps }) => {
         </a>  
       </div>)}
     </div>}
+    {/* Blur effect when dialog is open */}
+    {isDialogOpen && (
+        <div className="fixed inset-0 bg-black opacity-50 backdrop-blur-sm z-[9998]" />
+      )}
     {!connection.published && 
     <div className="flex flex-col items-center gap-2 mb-4">
         <Button size="lg" >
