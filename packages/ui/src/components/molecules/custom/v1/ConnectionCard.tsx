@@ -8,14 +8,16 @@ import { ConnectionCardProps } from '@repo/ts-types/home/v1'
 import { useTheme } from '../../../../providers/theme-provider'
 import { Button } from '../../../atoms/shadcn/button'
 import { DialogContent } from '@radix-ui/react-dialog'
+import { Link } from 'react-router-dom'
 
 
 const ConnectionCard = ({connection}:{connection:ConnectionCardProps }) => {
     const {theme} = useTheme();
 
-    useEffect(()=>{
-  
-    },[theme])
+    useEffect(() => {
+
+    }, [theme]);
+
   return (
     <Card className="flex flex-col items-center justify-between bg-sidebar min-h-[250px] max-h-[250px] max-w-[300px]">
     <CardHeader className="flex flex-col items-center justify-center gap-2">
@@ -32,7 +34,7 @@ const ConnectionCard = ({connection}:{connection:ConnectionCardProps }) => {
     { connection.published && <div className="flex flex-col items-center gap-2 p-4 mx-4 ">
      { connection.showModal? (
         <Dialog>
-          <DialogTrigger>
+          <DialogTrigger asChild>
             <Button size="lg"  >
               Connect using Keys
             </Button>
@@ -51,10 +53,12 @@ const ConnectionCard = ({connection}:{connection:ConnectionCardProps }) => {
           </DialogContent>
         </Dialog>
       ):(
-      <div className=''>    
-        <Button size="lg" >
-          Connect using OAuth
-        </Button>
+      <div className=''>
+        <a href={connection.oauthUrl as string}>
+            <Button size="lg" >
+              Connect using OAuth
+            </Button>
+        </a>  
       </div>)}
     </div>}
     {!connection.published && 

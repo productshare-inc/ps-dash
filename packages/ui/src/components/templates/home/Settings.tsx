@@ -34,10 +34,9 @@ const data = {
     { name: "Sessions", icon: RadioIcon },
     { name: "Plans & Billing", icon: ReceiptIcon },
     { name: "Notifications", icon: Bell },
-    { name: "Language & $egion", icon: Globe },
+    { name: "Language & Region", icon: Globe },
     { name: "My Connections", icon: Link },
     { name: "Privacy & Visibility", icon: Lock },
-    { name: "Advanced", icon: Settings },
   ],
 }
 

@@ -28,6 +28,9 @@ export const CONNECTIONS: ConnectionCardProps[] = [
       logo: '/connections/notion.png',
       darkLogo: '/connections/notion.png',
       type: 'OAuth2',
+      clientId: process.env.NEXT_PUBLIC_NOTION_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_NOTION_CLIENT_SECRET,
+      oauthUrl: `https://api.notion.com/v1/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_NOTION_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_URL}/api/callback/notion&response_type=code&owner=user`,
       published: true,
       showModal: false
     },

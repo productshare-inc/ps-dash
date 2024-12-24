@@ -9,12 +9,14 @@
     "lint": "next lint --max-warnings 20"
   },
   "dependencies": {
+    "@notionhq/client": "^2.2.15",
     "@repo/next-auth": "*",
     "@repo/prisma-db": "*",
     "@repo/ts-types": "*",
     "@repo/typescript-config": "*",
     "@repo/ui": "*",
     "@repo/zod": "*",
+    "axios": "^1.7.9",
     "next": "15.0.3",
     "next-auth": "5.0.0-beta.25",
     "path": "^0.12.7",

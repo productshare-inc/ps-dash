@@ -9,6 +9,8 @@ tags: []
 
 MicroSaaS products are one of the most exciting ways to create impactful software with minimal resources. They allow solopreneurs and small teams to quickly launch, validate, and iterate on ideas. To help developers hit the ground running, I built a boilerplate for MicroSaaS products using a **TurboRepo monorepo setup** and am excited to share it with the open-source community.
 
+{/* truncate */}
+
 In this blog, I'll walk you through the architecture, design decisions, and why I chose each part of the stack.
 
 ---

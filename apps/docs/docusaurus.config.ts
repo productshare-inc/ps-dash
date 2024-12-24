@@ -110,11 +110,11 @@ const config: Config = {
             },
             {
               label: 'Privacy Policy',
-              href: 'https://www.termsfeed.com/live/f7faf120-c351-422d-bd3a-cb7a2c931284'
+              href: 'https://dev.boilerplate.bsamaritan.com/landing/privacy-policy',
             },
             {
               label: 'Terms of Service',
-              href: 'https://www.termsofusegenerator.net/live.php?token=saSU4fpQYzVVm0jLgtV88ty1x4tEHMA7'
+              href: 'https://dev.boilerplate.bsamaritan.com/landing/terms-of-service',
             },
           ],
         },

@@ -74,6 +74,9 @@ export interface ConnectionCardProps {
     logo: string;
     darkLogo: string;
     type: string;
+    clientId?: string;
+    clientSecret?: string;
+    oauthUrl?: string;
     published: boolean;
     showModal: boolean;
     formElements?: ConnectionCardFormProps[];
