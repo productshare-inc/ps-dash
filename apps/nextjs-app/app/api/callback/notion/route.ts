@@ -41,10 +41,8 @@ export async function GET(req: NextRequest) {
       const databaseId = databasesPages?.results?.length
         ? databasesPages?.results[0]?.id
         : '';
-
-      const type = 'Notion';
       
-      const connection = await createConnection({
+      await createConnection({
         name: 'New Notion Connection',
         type: 'Notion',
         userId: session.user.id,
