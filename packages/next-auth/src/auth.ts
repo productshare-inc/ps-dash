@@ -9,7 +9,10 @@ import { getAccountByUserId, getUserById } from "@repo/prisma-db/repo/user"
  
 export const { auth, handlers, signIn, signOut }:any = NextAuth({
     adapter: PrismaAdapter(db),
-    session: { strategy: 'jwt'},
+    session: {
+        strategy: 'jwt',
+        maxAge: 30 * 24 * 60 * 60, // 30 days
+        },
     trustHost: true,
     debug: true,
     ...authConfig,
@@ -25,6 +28,13 @@ export const { auth, handlers, signIn, signOut }:any = NextAuth({
 
             //prevent login if email is not verified
             if (!existingUser?.emailVerified) return false;
+            await db.session.create({
+                data:{
+                    userId: user?.id || '',
+                    expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+                    sessionToken: account?.id_token || '',
+                }
+            })
             
             return true;
         },

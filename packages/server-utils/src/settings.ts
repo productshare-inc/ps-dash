@@ -57,3 +57,12 @@ export const deleteAccountAction = async (id:string) => {
     return {success: "Successfully deleted Account"};
 }
 
+export const getSessionsAction = async (userId:string) => {
+  const sessionsResponse = await fetch("/api/settings/getSessions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId }),
+    });
+  const { sessions } = await sessionsResponse.json();
+  return sessions;
+}

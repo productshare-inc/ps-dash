@@ -30,7 +30,6 @@ const MyConnectionsSettings = ({connections}:{connections:ConnectionCardProps[] 
                 ...connectionDetails
             }
         })
-        console.log(modifiedMyConnections)
 
         setMyConnections(modifiedMyConnections)
     }
