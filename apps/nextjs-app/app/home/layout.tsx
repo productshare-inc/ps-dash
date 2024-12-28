@@ -7,7 +7,9 @@ import { useSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 import LoadingCard from "@repo/ui/organisms/custom/auth/v1/LoadingCard";
 import { useRouter } from "next/navigation";
-import { darkLogo, githubRepositoryName, githubUsername, logo, supportEmailAddress, tagline, title } from "../../lib/constants/appDetails";
+import { darkLogo, githubRepositoryName, githubUsername, logo, maxCredits, showCredits, supportEmailAddress, tagline, title } from "../../lib/constants/appDetails";
+import { pricingList } from "../../lib/constants/landing-page";
+import { getUserDetails } from "./_actions/prisma";
 
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -15,9 +17,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     const homePath = '/home'
     const documentationLink = process.env.NEXT_PUBLIC_DOCUMENTATION_URL as string;
 
+
     const { data:session,status } = useSession();
     
-    const [user, setUser] = useState<any>(null)
+    const [userDetails, setUserDetails] = useState<any>(null)
     
     const logout = async () => {
         await signOut()
@@ -33,15 +36,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const refreshSession = async () => {
     const response = await fetch("/api/auth/session");
     const newSession = await response.json();
-    setUser(newSession?.user || null);
+    const userDetails = await getUserDetails(newSession?.user?.id || "");
+    setUserDetails(userDetails);
   };
 
     useEffect(() => {
-      if (status === "authenticated") {
-        setUser(session?.user || null);
-      } else if (status === "unauthenticated") {
-        refreshSession();
+      const fetchUserData = async () => {
+        if (status === "authenticated") {
+          if (!session?.user) return;
+          const userDetails = await getUserDetails(session?.user?.id || "");
+          setUserDetails(userDetails);
+          
+        } else if (status === "unauthenticated") {
+          refreshSession();
+        }
       }
+      fetchUserData();
     }, [session, status]);
 
     if (status === "loading") {
@@ -53,22 +63,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <AppSidebar
           items={sidebarItems}
           footerItems={sidebarFooterItems}
-          userid={user?.id}
-          username={user?.name}
-          avatar={user?.image}
-          email={user?.email}
           name={title}
           logo={logo}
           darkLogo={darkLogo}
           quote={tagline}
           homePath={homePath}
           logoutFunction={logout}
+          pricingList={pricingList}
           documentationLink={documentationLink}
           supportEmailAddress={supportEmailAddress}
           githubUsername={githubUsername}
           githubRepositoryName={githubRepositoryName}
           redirect={redirect}
           connections={CONNECTIONS}
+          creditsUsed={ userDetails?.creditsUsed || 0}
+          maxCredits={maxCredits}
+          showCredits={showCredits}
         />
       <main>
         <SidebarTrigger />

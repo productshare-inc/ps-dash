@@ -1,3 +1,5 @@
+import { PricingProps } from "../landing-page/v1";
+
 export interface sidebarHeaderSubItemsProps {
     title: string;
     url: string;
@@ -39,20 +41,20 @@ export interface sidebarProps extends CompanyLogoNameProps,UserProps {
     items: sidebarHeaderProps;
     footerItems: sidebarFooterItemsProps[];
     redirect: (url: string) => void;
+    maxCredits: number;
+    creditsUsed: number;
+    showCredits: boolean;
 }
 
 
 export interface UserProps {
-    userid: string ;
-    username: string | undefined;
-    avatar: string | undefined;
-    email: string | undefined;
     documentationLink?: string;
     supportEmailAddress?: string;
     githubUsername?: string;
     githubRepositoryName?: string;
     logoutFunction?: () => void;
     connections?: ConnectionCardProps[];
+    pricingList: PricingProps[];
 }
 
 
@@ -60,6 +62,7 @@ export interface SettingsDialogProps extends UserProps {
     children?: React.ReactNode;
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
+    openedTab?: string;
   }
   
 export interface SettingsHeaderProps {
@@ -87,4 +90,9 @@ export interface ConnectionCardFormProps {
     placeholder: string;
     type: string;
     name: string;
+}
+
+export interface CreditsProps {
+    creditsUsed: number;
+    totalCredits: number;
 }

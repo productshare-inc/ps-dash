@@ -23,13 +23,16 @@ export const getAccountByUserId = async (userId: string) => {
 
 export const getUserById= async (id: string) => {
     try {
-        const user = await db.user.findUnique({ where: {id}});
+        const user = await db.user.findUnique({
+             where: {id},
+        });
         return user;
     }
     catch (error) {
         return null;
     }
 }
+
 
 
 export const getResetTokenByEmail = async (email: string) => {
@@ -165,4 +168,16 @@ export const getRecentSessions = async (userId: string) => {
         take: 10,
     });
     return recentLogins;
+}
+
+export const increaseCredits = async (userId: string, credits: number) => {
+    const user = await db.user.update({
+        where: { id: userId },
+        data: {
+            creditsUsed: {
+                increment: credits
+            }
+        }
+    });
+    return user;
 }

@@ -2,7 +2,7 @@ import authConfig from "@repo/next-auth/config"
 
 import NextAuth from "next-auth";
 import {NextRequest,NextResponse} from "next/server";
-import { apiAuthPrefix, authRoutes, DEFAULT_LOGIN_REDIRECT, publicRoutes } from "./routes";
+import { apiAuthPrefix, authRoutes, DEFAULT_LOGIN_REDIRECT, publicRoutes, settingsRoutes } from "./routes";
 
 const allowedOrigins = ['http://localhost', 'https://bsamaritan.com']
 
@@ -46,6 +46,7 @@ export default auth((req:any)=>{
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
     const isPublicRoute =  publicRoutes.some((route) => nextUrl.pathname.startsWith(route));
     const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+    const isSettingsRoute = settingsRoutes.some((route) => nextUrl.pathname.startsWith(route));
 
     if (isApiAuthRoute){
         return response;
@@ -65,6 +66,7 @@ export default auth((req:any)=>{
     if (!isLoggedIn && !isPublicRoute){
         return Response.redirect(new URL('/landing',nextUrl));
     }
+
 
     return response
 })

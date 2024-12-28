@@ -156,9 +156,9 @@ export const featuresWithDescription: FeatureWithDescriptionProps[] = [
 
 export const pricingList: PricingProps[] = [
     {
-      title: "Free",
+      title: "Trial",
       popular: 1,
-      price: "$0",
+      price: "Rs 0",
       priceType: "",
       href: "/auth/login",
       description:
@@ -168,24 +168,24 @@ export const pricingList: PricingProps[] = [
         "Open Source Code",
         "Testing how it works live",
         "Latest Tools and Technologies",
-        "All Future Updates",
+        "100 credits per month",
         "Mail Support",
       ],
     },
     {
       title: "Premium",
       popular: 0,
-      price: "",
-      priceType: "One Time",
-      href: "https://razorpay.me/@bayesianlabs",
+      price: "Rs 500",
+      priceType: "/month",
+      href: "https://rzp.io/rzp/5is9Cyvi",
       description:
-        "All in Free + Donations to add more features",
-      buttonText: "Donate",
+        "Everything from trial plan + 1000 credits to use in this project per month.",
+      buttonText: "Upgrade",
       benefitList: [
         "Open Source Code",
         "Testing how it works live",
         "Latest Tools and Technologies",
-        "All Future Updates",
+        "1000 credits per month",
         "Mail Support",
       ],
     },
@@ -197,7 +197,7 @@ export const pricingList: PricingProps[] = [
       href: "https://mail.google.com/mail?view=cm&fs=1&to=support@bsamaritan.com&su=Support",
       description:
         "Customize this boilerplate code to your own startup needs.",
-      buttonText: "Contact US",
+      buttonText: "Contact Us",
       benefitList: [
         "Open Source Code",
         "Testing how it works live",
@@ -281,19 +281,27 @@ export const pricingList: PricingProps[] = [
     ],
     "Legal": [
         {
-            label: "Terms of Service",
+            label: "Terms & Conditions",
             href: "/landing/terms-of-service"
         },
         {
             label: "Privacy Policy",
             href: "/landing/privacy-policy"
+        },
+        {
+            label: "Cancellation/Refund Policies",
+            href: "/landing/cancellation-refund-policies"
+        },
+        {
+          label: "Contact Us",
+          href: "https://mail.google.com/mail?view=cm&fs=1&to=support@bsamaritan.com&su=Support"
         }
     ],
   }
 
   export const teamList: TeamProps[] = [
     {
-      imageUrl: "https://0mckiahhlguhefmi.public.blob.vercel-storage.com/avatar-removebg-sJpU6uYJdypALwvWUm7Q8uoGBoYhl4.png",
+      imageUrl: "/anoop.jpg",
       name: "Anoop Karnik Dasika",
       position: "Founder",
       description: "Just into creating Sci-Fi stuff. Currently working on automation and gamifying the boring stuff, we do in life.",

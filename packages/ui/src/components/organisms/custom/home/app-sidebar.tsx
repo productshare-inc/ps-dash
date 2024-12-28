@@ -11,9 +11,17 @@ import { CompanyLogoName } from "../../../molecules/custom/v1/CompanyLogoName";
 import SidebarItems from "../../../molecules/custom/v1/SidebarItems";
 import SidebarFooterItems from "../../../molecules/custom/v1/SidebarFooterItems";
 import SidebarUser  from "../../../molecules/custom/v1/SidebarUser";
+import ProgressWithCredits from "../../../molecules/custom/v1/ProgressWithCredits";
+import { SettingsDialog } from "../../../templates/home/Settings";
+import { useState } from "react";
+import { Button } from "../../../atoms/shadcn/button";
+import { set } from "date-fns";
 
-export function AppSidebar({name,quote,logo,darkLogo,homePath,userid,username,avatar,email,items,footerItems,
-    logoutFunction,documentationLink,supportEmailAddress,githubUsername,githubRepositoryName,redirect,connections}:sidebarProps) {
+export function AppSidebar({name,quote,logo,darkLogo,homePath,items,footerItems,pricingList,
+    logoutFunction,documentationLink,supportEmailAddress,githubUsername,githubRepositoryName,redirect,connections,
+    maxCredits,creditsUsed,showCredits}:sidebarProps) {
+    const [isSettingsOpen, setIsSettingsOpen] = useState(false)
+        
 
     return (
         <Sidebar>
@@ -28,8 +36,28 @@ export function AppSidebar({name,quote,logo,darkLogo,homePath,userid,username,av
             </SidebarHeader>
             <SidebarItems items={items} redirect={redirect}/>
             <SidebarFooterItems footerItems={footerItems}/>
+
             <SidebarFooter>
-                <SidebarUser userid={userid} username={username} email={email} avatar={avatar} logoutFunction={logoutFunction} 
+            <SettingsDialog 
+                open={isSettingsOpen} 
+                onOpenChange={(open) => {
+                  setIsSettingsOpen(open)
+                  // Ensure dropdown remains open when dialog is closed
+                }}
+                connections={connections}
+                pricingList={pricingList}
+                supportEmailAddress={supportEmailAddress}
+                openedTab="Plans & Billing"
+              >
+                <Button
+                  className="flex gap-2 cursor-pointer" 
+                  onClick={()=>setIsSettingsOpen(true)}
+                >
+                  Upgrade to Premium
+                </Button>
+              </SettingsDialog>
+                {showCredits && <ProgressWithCredits creditsUsed={creditsUsed} totalCredits={maxCredits}/>}
+                <SidebarUser logoutFunction={logoutFunction} pricingList={pricingList}
                       documentationLink={documentationLink} supportEmailAddress={supportEmailAddress} githubUsername={githubUsername} 
                       githubRepositoryName={githubRepositoryName} connections={connections}/>
             </SidebarFooter>

@@ -5,7 +5,9 @@ import db from '@repo/prisma-db/client'
 import authConfig from "./auth.config"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import { getAccountByUserId, getUserById } from "@repo/prisma-db/repo/user"
+import Redis from 'ioredis'
 
+const redis = new Redis(process.env.NEXT_PUBLIC_REDIS_URL || 'redis://localhost:6379');
  
 export const { auth, handlers, signIn, signOut }:any = NextAuth({
     adapter: PrismaAdapter(db),
@@ -35,21 +37,14 @@ export const { auth, handlers, signIn, signOut }:any = NextAuth({
                     sessionToken: account?.id_token || '',
                 }
             })
-            
+
             return true;
         },
         async session({session,token}){
             if (token.sub) {
                 // Fetch the latest user data from the database
-                const user = await getUserById(token.sub);
-                if (user) {
-                    session.user = {
-                        ...session.user,
-                        id: user.id , // Preserve existing fields
-                        name: user.name as string,       // Update with the latest name
-                        image: user.image as string,     // Update with the latest avatar
-                    };
-                }
+                session.user.id = token.sub;
+                
             }
             return session;
         },
@@ -61,6 +56,7 @@ export const { auth, handlers, signIn, signOut }:any = NextAuth({
             if(account){
                 token.provider = account.provider;
             }
+            token.id = user.id;
             token.role = user.role;
             token.emailVerified = user.emailVerified;
             token.createdAt = user.createdAt;

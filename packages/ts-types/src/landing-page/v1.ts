@@ -90,6 +90,18 @@ export interface PrivacyPolicyProps {
   lastUpdated: string;
 }
 
+export interface CancellationRefundPoliciesProps {
+  email: string;
+  siteName: string;
+  companyName: string;
+  websiteUrl: string;
+  lastUpdated: string;
+}
+
+export interface CancellationRefundPoliciesPageProps extends CancellationRefundPoliciesProps, NavbarProps{
+
+}
+
 export interface PrivacyPolicyPageProps extends PrivacyPolicyProps, NavbarProps{
 
 }

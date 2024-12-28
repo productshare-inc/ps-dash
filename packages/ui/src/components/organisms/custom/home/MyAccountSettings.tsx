@@ -1,6 +1,5 @@
-import { UserProps } from "@repo/ts-types/home/v1";
 import { Avatar, AvatarFallback, AvatarImage } from "../../../atoms/shadcn/avatar";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CameraIcon } from "lucide-react";
 import { FloatingLabelInput } from "../../../molecules/shadcn/floating-label-input";
 import { Button } from "../../../atoms/shadcn/button";
@@ -8,7 +7,6 @@ import {   Form,
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage, } from '../../../molecules/shadcn/form';
 import { useForm } from 'react-hook-form';
 import { ResetPasswordSchema } from '@repo/zod/auth';
@@ -21,14 +19,40 @@ import { useSession} from "next-auth/react";
 import { useToast } from "../../../../hooks/use-toast";
 
   
-  const MyAccountSettings = ({userid,username,email,avatar}:UserProps) => {
+  const MyAccountSettings = () => {
+
+    const { data:session,status,update } = useSession();
+    
+      const [user, setUser] = useState<any>(null)
+      const [name, setName] = useState<string>(session?.user?.name as string)
+    
+            // Refresh session manually after login
+      const refreshSession = async () => {
+        const response = await fetch("/api/auth/session");
+        const newSession = await response.json();
+        setUser(newSession?.user || null);
+      };
+    
+      useEffect(() => {
+        const fetchUserData = async () => {
+          if (status === "authenticated") {
+            setUser(session?.user || null);
+            if (!session?.user) return;
+            
+          } else if (status === "unauthenticated") {
+            refreshSession();
+          }
+        }
+        fetchUserData();
+      }, [session, status]);
+
     const inputFileRef = useRef<HTMLInputElement>(null);
-    const [name, setName] = useState(username);
     const [confirmPassword, setConfirmPassword] = useState('');
     const [deleteAccountConfirmation, setDeleteAccountConfirmation] = useState('');
 
     const title = "My Account"
     const description = "For modifying Email, you need to verify your new email address"
+
 
     const form = useForm<z.infer<typeof ResetPasswordSchema>>({
       resolver: zodResolver(ResetPasswordSchema),
@@ -49,7 +73,7 @@ import { useToast } from "../../../../hooks/use-toast";
     async function handleSubmit(data: z.infer<typeof ResetPasswordSchema>) {
       setPasswordError("");
       setPasswordSuccess("");
-      if(email === process.env.NEXT_PUBLIC_GUEST_MAIL || email === process.env.NEXT_PUBLIC_ADMIN_MAIL){
+      if(user?.email === process.env.NEXT_PUBLIC_GUEST_MAIL || user?.email === process.env.NEXT_PUBLIC_ADMIN_MAIL){
         setPasswordError("Guest account cannot modify password");
         return;
       }
@@ -62,7 +86,7 @@ import { useToast } from "../../../../hooks/use-toast";
         return;
       }
       if(data.password){
-        const res = await modifyPasswordAction(userid, data.password);
+        const res = await modifyPasswordAction(user?.id, data.password);
         setPasswordSuccess("Password updated successfully");
         if (res.success){
           toast({title: "Success", description: res?.success, variant: 'default'})
@@ -74,7 +98,7 @@ import { useToast } from "../../../../hooks/use-toast";
     }
 
     const handleDeleteAccount = async () => {
-      if(email === process.env.NEXT_PUBLIC_GUEST_MAIL || email === process.env.NEXT_PUBLIC_ADMIN_MAIL){
+      if(user?.email === process.env.NEXT_PUBLIC_GUEST_MAIL || user?.email === process.env.NEXT_PUBLIC_ADMIN_MAIL){
         setDeleteAccountError("Guest account cannot be deleted");
         return;
       }
@@ -82,7 +106,7 @@ import { useToast } from "../../../../hooks/use-toast";
         setDeleteAccountError("Please type 'permanently delete' to confirm");
         return;
       }
-      const res = await deleteAccountAction(userid)
+      const res = await deleteAccountAction(user?.id)
       if (res.success){
         toast({title: "Success", description: res?.success, variant: 'default'})
       }
@@ -90,7 +114,7 @@ import { useToast } from "../../../../hooks/use-toast";
           toast({title: "Error", description: res?.error, variant: 'destructive'})
       }
     }
-    const { data:session,status,update } = useSession();
+
 
     const handleName = async (userid:string, name:string)=>{
       const res = await modifyNameAction(userid,name as string)
@@ -123,8 +147,8 @@ import { useToast } from "../../../../hooks/use-toast";
                 <div className="text-description ">Profile Pic</div>
                 <div className="relative group cursor-pointer">
                   <Avatar className="h-20 w-20 rounded-full border-2 bg-secondary hover:bg-accent2">
-                    <AvatarImage src={avatar?? ''} alt={username ?? ''} />
-                    <AvatarFallback className="text-3xl">{username?username[0]?.toUpperCase() :'U'}</AvatarFallback>
+                    <AvatarImage src={user?.image?? ''} alt={user?.name?? ''} />
+                    <AvatarFallback className="text-3xl">{user?.name?user?.name[0]?.toUpperCase() :'U'}</AvatarFallback>
                   </Avatar>
                   <div onClick={handleAvatarClick} className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
                     <div><CameraIcon/></div>
@@ -137,14 +161,14 @@ import { useToast } from "../../../../hooks/use-toast";
                   type="file"
                   className="hidden"
                   accept="image/*" // Accept only images
-                  onChange={(e)=>handleAvatar(userid,e)} // Handle file selection
+                  onChange={(e)=>handleAvatar(user?.id,e)} // Handle file selection
                 />
               </div>
             </div>
             <div className="flex items-center justify-between gap-4 mt-4">
-              <FloatingLabelInput id="name" label="Username" className="w-full my-2" defaultValue={username} 
+              <FloatingLabelInput id="name" label="Username" className="w-full my-2" defaultValue={name} 
               onChange={(e)=>{setName(e.target.value)}}/>
-              <Button onClick={()=>handleName(userid,name as string)} className="w-1/4 text-wrap">Update Username</Button>
+              <Button onClick={()=>handleName(user?.id,name as string)} className="w-1/4 text-wrap">Update Username</Button>
             </div>
             {/* <div className="flex items-center justify-between gap-4 mt-4">
               <FloatingLabelInput id="email" label="Email" className="flex-grow-1 my-2" defaultValue={email} type="email"

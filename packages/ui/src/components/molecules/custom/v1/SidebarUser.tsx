@@ -34,9 +34,34 @@ import { UserProps } from "@repo/ts-types/home/v1"
 import { SettingsDialog } from "../../../templates/home/Settings"
 import { useTheme } from "../../../../providers/theme-provider"
 import { Theme } from "./Theme"
+import { useSession } from "next-auth/react"
 
-const SidebarUser = ({ userid,username,email,avatar,logoutFunction,documentationLink,supportEmailAddress, githubUsername,
-  githubRepositoryName, connections}:UserProps) => {
+const SidebarUser = ({ logoutFunction,documentationLink,supportEmailAddress, githubUsername,githubRepositoryName,
+   connections,pricingList}:UserProps) => {
+
+  const { data:session,status } = useSession();
+
+  const [user, setUser] = useState<any>(null)
+
+        // Refresh session manually after login
+  const refreshSession = async () => {
+    const response = await fetch("/api/auth/session");
+    const newSession = await response.json();
+    setUser(newSession?.user || null);
+  };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (status === "authenticated") {
+        setUser(session?.user || null);
+        if (!session?.user) return;
+        
+      } else if (status === "unauthenticated") {
+        refreshSession();
+      }
+    }
+    fetchUserData();
+  }, [session, status]);
 
   const { isMobile } = useSidebar()
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
@@ -62,12 +87,12 @@ const SidebarUser = ({ userid,username,email,avatar,logoutFunction,documentation
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={avatar ?? ''} alt={username ?? ''} />
-                <AvatarFallback className="rounded-lg">{username?username[0]?.toUpperCase() :'U'}</AvatarFallback>
+                <AvatarImage src={user?.image ?? ''} alt={user?.name ?? ''} />
+                <AvatarFallback className="rounded-lg">{user?.name?user?.name[0]?.toUpperCase() :'U'}</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{username}</span>
-                <span className="truncate text-xs">{email}</span>
+                <span className="truncate font-semibold">{user?.name}</span>
+                <span className="truncate text-xs">{user?.email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -81,12 +106,12 @@ const SidebarUser = ({ userid,username,email,avatar,logoutFunction,documentation
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={avatar ?? ''} alt={username ?? ''} />
-                  <AvatarFallback className="rounded-lg">{username?username[0]?.toUpperCase() :'U'}</AvatarFallback>
+                  <AvatarImage src={user?.image ?? ''} alt={user?.name ?? ''} />
+                  <AvatarFallback className="rounded-lg">{user?.name?user?.name[0]?.toUpperCase() :'U'}</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{username}</span>
-                  <span className="truncate text-xs">{email}</span>
+                  <span className="truncate font-semibold">{user?.name}</span>
+                  <span className="truncate text-xs">{user?.email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
@@ -101,18 +126,16 @@ const SidebarUser = ({ userid,username,email,avatar,logoutFunction,documentation
                     setIsDropdownOpen(true)
                   }
                 }}
-                userid={userid}
-                username={username}
-                email={email}
-                avatar={avatar}
                 connections={connections}
+                pricingList={pricingList}
+                supportEmailAddress={supportEmailAddress}
               >
                 <DropdownMenuItem 
                   className="flex gap-2 cursor-pointer" 
                   onClick={handleSettingsClick}
                 >
                   <Settings size={20}/>
-                  Account Settings
+                  Settings
                 </DropdownMenuItem>
               </SettingsDialog>
               <a href={`https://mail.google.com/mail/u/0/?fs=1&to=${supportEmailAddress}&su=Support&tf=cm`} target="_blank" 

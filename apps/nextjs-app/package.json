@@ -17,9 +17,11 @@
     "@repo/ui": "*",
     "@repo/zod": "*",
     "axios": "^1.7.9",
+    "ioredis": "^5.4.2",
     "next": "15.0.3",
     "next-auth": "5.0.0-beta.25",
     "path": "^0.12.7",
+    "razorpay": "^2.9.5",
     "react": "18",
     "react-dom": "18",
     "tailwind-scrollbar": "^3.1.0"
