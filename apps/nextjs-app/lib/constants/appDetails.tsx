@@ -15,11 +15,12 @@ export const supportEmailAddress = "support@bsamaritan.com"
 //legal constants
 
 export const lastUpdatedPrivacyPolicy = '2024-12-22';
-export const companyName = 'Bayesian Labs';
+export const companyName = 'ANOOP KARNIK DASIKA';
 export const websiteUrl = 'https://dev.boilerplate.bsamaritan.com';
 export const country = 'India';
 export const version = '1.0.0';
-export const address = 'Bayesian Labs, 2nd Floor, Maruthi Enclave, Domalguda, Hyderabad, Telangana, India - 500029';
+export const address = 'B-2, Maruthi Enclave, Domalguda, Hyderabad, Telangana, India - 500029';
+export const contactNumber = "+919666678363"
 
 // features constants
 export const maxCredits  = 100;

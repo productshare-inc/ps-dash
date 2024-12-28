@@ -117,6 +117,18 @@ export interface TermsOfServiceProps {
   address: string;
 }
 
+export interface ContactUsProps {
+  email: string;
+  companyName: string;
+  lastUpdated: string;
+  contactNumber: string;
+  address: string;
+}
+
+export interface ContactUsPageProps extends ContactUsProps, NavbarProps{
+  
+}
+
 export interface TermsOfServicePageProps extends TermsOfServiceProps, NavbarProps{
 
 }

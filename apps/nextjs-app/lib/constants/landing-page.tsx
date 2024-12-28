@@ -294,7 +294,7 @@ export const pricingList: PricingProps[] = [
         },
         {
           label: "Contact Us",
-          href: "https://mail.google.com/mail?view=cm&fs=1&to=support@bsamaritan.com&su=Support"
+          href: "/landing/contact-us"
         }
     ],
   }
