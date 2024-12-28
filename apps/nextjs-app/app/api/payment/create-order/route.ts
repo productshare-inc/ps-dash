@@ -8,9 +8,9 @@ export async function POST(req:any) {
       const { order_id, order_amount, customer_id, customer_phone } = requestData;
       
       // Set Cashfree credentials from environment variables
-      Cashfree.XClientId = process.env.CASHFREE_APP_ID;
-      Cashfree.XClientSecret = process.env.CASHFREE_SECRET_KEY;
-      Cashfree.XEnvironment = Cashfree.Environment.SANDBOX;
+      Cashfree.XClientId = process.env.NEXT_PUBLIC_CASHFREE_CLIENT_ID;
+      Cashfree.XClientSecret = process.env.NEXT_PUBLIC_CASHFREE_CLIENT_SECRET;
+      Cashfree.XEnvironment = Cashfree.Environment.PRODUCTION;
   
       // Configure order request
       const request = {
