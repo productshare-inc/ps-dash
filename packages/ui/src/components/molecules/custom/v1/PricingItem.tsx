@@ -10,6 +10,7 @@ import {
 } from "../../../molecules/shadcn/card";
 import { Check } from "lucide-react";
 import { PricingProps } from "@repo/ts-types/landing-page/v1";
+import { useState } from "react";
 
 enum PopularPlanType {
     NO = 0,
@@ -50,20 +51,13 @@ const PricingItem = ({pricing}:{pricing:PricingProps}) => {
             </CardHeader>
 
             <CardContent>
-                <a
-                  href={pricing.href || "#"}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label="External link"
-
-                >
+                <a href={pricing.href || "#"} target="_blank" rel="noreferrer noopener" aria-label="External link"              >
                   <Button className="w-full">{pricing.buttonText}</Button>
                 </a>
-              
             </CardContent>
 
             <hr className="w-4/5 m-auto mb-4" />
-
+                
             <CardFooter className="flex">
               <div className="space-y-4">
                 {pricing.benefitList.map((benefit: string) => (

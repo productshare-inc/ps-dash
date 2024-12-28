@@ -9,6 +9,7 @@ import Footer from '../../../organisms/custom/landing/Footer';
 import { LandingPageProps} from '@repo/ts-types/landing-page/v1';
 import { useEffect } from 'react';
 import { Team } from '../../../organisms/custom/landing/Team';
+import Checkout from '../../../molecules/custom/v1/Checkout';
 
 const LandingPage = ({routeList,githubLink,githubUsername,githubRepositoryName,loginFunction,documentationLink,title,logo,
   darkLogo,tagline,description,featuresWithDescription,featureList,testimonials,pricingList,
@@ -26,10 +27,12 @@ const LandingPage = ({routeList,githubLink,githubUsername,githubRepositoryName,l
       <Features featureList={featureList} featuresWithDescription={featuresWithDescription} />
       <Testimonials testimonials={testimonials} />
       <Team teamList={teamList} />
+      <Checkout/>
       <Pricing pricingList={pricingList} supportEmailAddress={supportEmailAddress}/>
       <FAQ FAQList={FAQList} supportEmailAddress={supportEmailAddress}/>
       <Footer footerList={footerList} creator={creator} creatorLink={creatorLink} title={title} logo={logo}
        darkLogo={darkLogo} />
+
 
     </div>
   );

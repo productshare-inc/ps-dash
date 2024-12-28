@@ -175,11 +175,11 @@ export const pricingList: PricingProps[] = [
     {
       title: "Premium",
       popular: 0,
-      price: "Rs 500",
-      priceType: "/month",
-      href: "https://rzp.io/rzp/5is9Cyvi",
+      price: "Rs 50",
+      priceType: "/one-time",
+      href: "https://payments.cashfree.com/links/Y7s6fkktvf9g",
       description:
-        "Everything from trial plan + 1000 credits to use in this project per month.",
+        "Everything from trial plan + 1000 credits to use in this project.",
       buttonText: "Upgrade",
       benefitList: [
         "Open Source Code",
