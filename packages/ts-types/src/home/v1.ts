@@ -43,7 +43,7 @@ export interface sidebarProps extends CompanyLogoNameProps,UserProps {
     redirect: (url: string) => void;
     showCredits: boolean;
     maxTrialCredits: number;
-    maxPremiumCredits: number;
+    maxProCredits: number;
     userDetails: UserDetailsProps;
 }
 
@@ -105,6 +105,6 @@ export interface ConnectionCardFormProps {
 export interface CreditsProps {
     creditsUsed: number;
     maxTrialCredits: number;
-    maxPremiumCredits: number;
+    maxProCredits: number;
     access: string;
 }

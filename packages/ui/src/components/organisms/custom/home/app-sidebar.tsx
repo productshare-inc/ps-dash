@@ -12,13 +12,12 @@ import SidebarItems from "../../../molecules/custom/v1/SidebarItems";
 import SidebarFooterItems from "../../../molecules/custom/v1/SidebarFooterItems";
 import SidebarUser  from "../../../molecules/custom/v1/SidebarUser";
 import ProgressWithCredits from "../../../molecules/custom/v1/ProgressWithCredits";
-import { SettingsDialog } from "../../../templates/home/Settings";
-import UpgradeToPremium from "../../../molecules/custom/v1/UpgradeToPremium";
+import { UpgradeToProButton } from "../../../molecules/custom/v1/UpgradeToProButton";
 import { useState } from "react";
 
 export function AppSidebar({name,quote,logo,darkLogo,homePath,items,footerItems,pricingList,
     logoutFunction,documentationLink,supportEmailAddress,githubUsername,githubRepositoryName,redirect,connections,
-    maxTrialCredits,maxPremiumCredits,showCredits,userDetails}:sidebarProps) {
+    maxTrialCredits,maxProCredits,showCredits,userDetails}:sidebarProps) {
 
     const [isSettingsOpen, setIsSettingsOpen] = useState(false)
         
@@ -35,23 +34,14 @@ export function AppSidebar({name,quote,logo,darkLogo,homePath,items,footerItems,
             </SidebarHeader>
             <SidebarItems items={items} redirect={redirect}/>
             <SidebarFooterItems footerItems={footerItems}/>
+            <SidebarFooter>
+                
+            </SidebarFooter>
 
             <SidebarFooter>
-            <SettingsDialog 
-                open={isSettingsOpen} 
-                onOpenChange={(open) => {
-                  setIsSettingsOpen(open)
-                  // Ensure dropdown remains open when dialog is closed
-                }}
-                connections={connections}
-                pricingList={pricingList}
-                supportEmailAddress={supportEmailAddress}
-                openedTab="Plans & Billing"
-              >
-                <UpgradeToPremium/>
-              </SettingsDialog>
+                {userDetails?.access === "TRIAL" ? <UpgradeToProButton />:null}
                 {showCredits && <ProgressWithCredits creditsUsed={userDetails?.creditsUsed} maxTrialCredits={maxTrialCredits}
-                 maxPremiumCredits={maxPremiumCredits} access={userDetails?.access}/>}
+                 maxProCredits={maxProCredits} access={userDetails?.access}/>}
                 <SidebarUser logoutFunction={logoutFunction} pricingList={pricingList}
                       documentationLink={documentationLink} supportEmailAddress={supportEmailAddress} githubUsername={githubUsername} 
                       githubRepositoryName={githubRepositoryName} connections={connections}/>

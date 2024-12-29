@@ -6,7 +6,8 @@ export const modifyNameAction = async (id:string,name:string) => {
         body: JSON.stringify({ id, name }),
       });
     if(response.status !== 200){
-        return {error: "Failed in modifying Name"};
+        const {error} = await response.json();
+        return {error: error || "Failed in modifying Name"};
     }
     const {user} = await response.json();
     return {success: "Successfully modified Name", data:user};
@@ -19,7 +20,8 @@ export const modifyPasswordAction = async (id:string,password:string) => {
         body: JSON.stringify({ id, password }),
       });
     if(response.status !== 200){
-        return {error: "Failed in modifying Password"};
+      const {error} = await response.json();
+      return {error: error || "Failed in modifying Name"};
     }
     const {user} = await response.json();
     return {success: "Successfully modified Password", data:user};
@@ -31,14 +33,15 @@ export const modifyAvatarAction = async (id:string,file:any) => {
     formData.append("id", id);
     formData.append("file", file, file.name);
 
-    const userResponse = await fetch("/api/settings/modifyAvatar", {
+    const response = await fetch("/api/settings/modifyAvatar", {
       method: "POST",
       body: formData,
     });
-    if(userResponse.status !== 200){
-        return {error: "Failed in modifying Avatar"};
+    if(response.status !== 200){
+        const {error} = await response.json();
+        return {error: error || "Failed in modifying Name"};
     }
-    const {user} = await userResponse.json();
+    const {user} = await response.json();
     return {success: "Successfully modified Avatar", data:user};
     
 

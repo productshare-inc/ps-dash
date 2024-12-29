@@ -25,5 +25,5 @@ export const contactNumber = "+919666678363"
 
 // features constants
 export const maxTrialCredits  = 20;
-export const maxPremiumCredits = 200;
+export const maxProCredits = 200;
 export const showCredits = true;

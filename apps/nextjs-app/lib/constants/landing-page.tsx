@@ -173,7 +173,7 @@ export const pricingList: PricingProps[] = [
       ],
     },
     {
-      title: "Premium",
+      title: "Pro",
       popular: 0,
       price: "Rs 500",
       priceType: "/one-time",

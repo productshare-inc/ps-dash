@@ -7,7 +7,7 @@ import { useSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 import LoadingCard from "@repo/ui/organisms/custom/auth/v1/LoadingCard";
 import { useRouter } from "next/navigation";
-import { darkLogo, githubRepositoryName, githubUsername, logo, maxTrialCredits, maxPremiumCredits, showCredits, supportEmailAddress, tagline, title } from "../../lib/constants/appDetails";
+import { darkLogo, githubRepositoryName, githubUsername, logo, maxTrialCredits, maxProCredits, showCredits, supportEmailAddress, tagline, title } from "../../lib/constants/appDetails";
 import { pricingList } from "../../lib/constants/landing-page";
 import { getUserDetails } from "./_actions/prisma";
 
@@ -78,7 +78,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           connections={CONNECTIONS}
           userDetails={userDetails}
           maxTrialCredits={maxTrialCredits}
-          maxPremiumCredits={maxPremiumCredits}
+          maxProCredits={maxProCredits}
           showCredits={showCredits}
         />
       <main>

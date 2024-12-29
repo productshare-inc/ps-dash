@@ -6,8 +6,9 @@ import { Button } from "../../../atoms/shadcn/button";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import {createOrder} from "@repo/server-utils/cashfree"
+import { CrownIcon } from "lucide-react";
 
-export const UpgradeToPremium = () => {
+export const UpgradeToProButton = () => {
     const {data:session,status} = useSession();
     // Function to handle the "Buy Now" button click
     const [user, setUser] = useState<any>(null);
@@ -51,12 +52,11 @@ export const UpgradeToPremium = () => {
     };
 
     return (
-      <Button
-        className="flex gap-2 cursor-pointer" 
-        onClick={handleBuyNow}
-      >
-        Upgrade to Premium
-    </Button>
+      <div className="w-full flex justify-center relative">
+        <Button className="flex gap-2 cursor-pointer w-full" onClick={handleBuyNow}>
+          Upgrade to Pro
+        </Button>
+      </div>
     );
 }
-export default UpgradeToPremium;
+export default UpgradeToProButton;

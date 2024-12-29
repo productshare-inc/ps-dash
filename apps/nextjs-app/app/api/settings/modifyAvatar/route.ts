@@ -2,7 +2,7 @@
 import { NextResponse } from "next/server";
 import { modifyAvatar } from "@repo/prisma-db/repo/user";
 import { putBlob } from "@repo/storage/vercel-blob";
-import { shareRoute } from "../shareRoute";
+import { shareRoute } from "../../shareRoute";
 
 export async function POST(request: Request) {
   return shareRoute(request, async (req: Request, formData: any) => {
