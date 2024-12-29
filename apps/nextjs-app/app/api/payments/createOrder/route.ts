@@ -25,7 +25,7 @@ export async function POST(request: Request) {
             customer_name: customer_name,
           },
           order_meta: {
-            return_url: process.env.NEXT_PUBLIC_URL,  // Redirect URL after payment
+            return_url: process.env.NEXT_PUBLIC_URL+"/api/payments/updateAccess",  // Redirect URL after payment
           },
         };
     

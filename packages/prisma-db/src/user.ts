@@ -141,6 +141,23 @@ export const modifyEmail = async (id: string, email:string)=>{
     return user;
 }
 
+enum AccountAccess {
+    TRIAL = "TRIAL",
+    PRO = "PRO",
+    ENTERPRISE = "ENTERPRISE",
+    UNLIMITED = "UNLIMITED"
+  }
+
+export const modifyAccess = async (id: string, access:string)=>{
+    const user = await db.user.update({
+        where: {id},
+        data: {
+            access: access as AccountAccess
+        }
+    });
+    return user;
+}
+
 export const modifyName = async (id: string, name:string)=>{
     const user = await db.user.update({
         where: {id},

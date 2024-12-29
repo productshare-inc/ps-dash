@@ -92,7 +92,7 @@ enum UserRole {
   @@schema("boilerplate_schema")
 }
 
-enum AccountAccess{
+enum AccountAccess {
   TRIAL
   PRO
   ENTERPRISE

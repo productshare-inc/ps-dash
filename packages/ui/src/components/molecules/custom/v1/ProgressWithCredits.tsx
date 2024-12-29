@@ -6,7 +6,7 @@ const ProgressWithCredits = ({creditsUsed, maxTrialCredits,maxPremiumCredits,acc
     const [creditsPercentageUsed, setCreditsPercentageUsed] = useState(0)
 
     useEffect(() => {
-        if(access === 'PREMIUM'){
+        if(access === 'PRO'){
             setCreditsPercentageUsed(creditsUsed*100/ maxPremiumCredits)
         }
         else if(access === 'TRIAL'){
