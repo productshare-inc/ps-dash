@@ -59,7 +59,7 @@ const Navbar = ({routeList,githubLink,githubUsername,githubRepositoryName,title,
               {theme === "dark" ?
                <Image src={darkLogo} alt={title} width={30} height={30} /> : 
                <Image src={logo} alt={title} width={30} height={30} />}
-               {title}
+               <div className="hidden lg:flex">{title}</div>
             </a>
           </NavigationMenuItem>
 
@@ -93,15 +93,10 @@ const Navbar = ({routeList,githubLink,githubUsername,githubRepositoryName,title,
                       {label}
                     </a>
                   ))}
-                  <a
-                    rel="noreferrer noopener"
-                    href={donateNowLink}
-                    className={`w-[110px] border ${buttonVariants({
-                      variant: "secondary",
-                    })}`}
-                  >
-                    <Coffee className="mr-2 w-5 h-5" />
-                    <Button size="sm">Donate Now</Button>
+                  <a rel="noreferrer noopener" href={donateNowLink}>    
+                    <Button size="sm" >
+                      Donate Now
+                    </Button>
                   </a>
                   <a
                     rel="noreferrer noopener"
@@ -145,11 +140,10 @@ const Navbar = ({routeList,githubLink,githubUsername,githubRepositoryName,title,
           </nav>
 
           <div className="hidden md:flex gap-2">
-            <a
-              rel="noreferrer noopener"
-              href={donateNowLink}
-            >
-              <Button><Coffee className="mr-2 w-5 h-5" />Donate Now</Button>
+            <a rel="noreferrer noopener" href={donateNowLink}>    
+              <Button size="sm" >
+                Donate Now
+              </Button>
             </a>
             <a
               rel="noreferrer noopener"

@@ -12,22 +12,22 @@ const Footer = ({footerList,creator,creatorLink,title,logo,darkLogo}:FooterCompo
 
     
   return (
-    <div id="footer" className="w-full container ">
+    <div id="footer" className="w-full container  ">
         <hr className="w-full mx-auto" />
-        <div className="flex container py-20 ">
-            <section className="w-1/2">
+        <div className="flex container py-10 ">
+            <section className="hidden lg:flex w-1/2 ">
                 <a
                 rel="noreferrer noopener"
                 href="/"
-                className="ml-2 font-bold text-xl flex items-center gap-2"
+                className="flex ml-2 font-bold text-xl items-center gap-2"
                 >
                     {theme === "dark" ?
                     <Image src={darkLogo} alt={title} width={30} height={30} /> : 
                     <Image src={logo} alt={title} width={30} height={30} />}
                     {title}
-                </a>
+               </a>
             </section>
-            <section className="w-full flex flex-wrap  justify-around ">
+            <section className="w-full flex flex-wrap items-start justify-between gap-4 mx-2">
                 {footerList && Object.keys(footerList).map((footer:string)=>(
                     <div key={footer} className="flex flex-col gap-2">
                         <h3 className="font-bold text-lg">{footer}</h3>

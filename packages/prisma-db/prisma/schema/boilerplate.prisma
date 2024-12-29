@@ -113,3 +113,15 @@ model Connection {
 
   @@schema("boilerplate_schema")
 }
+
+model Notifications {
+  id               String          @id @default(uuid())
+  userId           String
+  type             String
+  message          String
+  read             Boolean         @default(false)
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
+  @@schema("boilerplate_schema")
+}
