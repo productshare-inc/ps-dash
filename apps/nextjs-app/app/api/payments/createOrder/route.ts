@@ -38,7 +38,7 @@ export async function POST(request: Request) {
         }
   
         
-      } catch (error) {
+      } catch {
         return NextResponse.json({error:"Error running the function"});
       }
 }
