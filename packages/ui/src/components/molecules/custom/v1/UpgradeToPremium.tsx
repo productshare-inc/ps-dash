@@ -1,0 +1,62 @@
+"use client"
+// @ts-ignore
+import { load } from "@cashfreepayments/cashfree-js";
+import { Button } from "../../../atoms/shadcn/button";
+
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import {createOrder} from "@repo/server-utils/cashfree"
+
+export const UpgradeToPremium = () => {
+    const {data:session,status} = useSession();
+    // Function to handle the "Buy Now" button click
+    const [user, setUser] = useState<any>(null);
+
+    useEffect(() =>{
+        if (status === "authenticated") {
+            setUser(session.user);
+          } 
+    },[session,status])
+    
+    const handleBuyNow = async () => {
+    try {
+      const response = await createOrder({
+        order_amount: "20",
+        customer_id: `${session?.user?.id}`,
+        customer_email: `${session?.user?.email}`,
+        customer_name: `${session?.user?.name}`
+
+      });
+      initiatePayment(response.data.payment_session_id);
+    } catch (error) {
+      console.log("Network Error:", error);
+    }
+  };
+    let cashfree:any;
+   const initializeSDK = async function () {          
+        cashfree = await load({
+            mode: process.env.NEXT_PUBLIC_ENV=="development"?"sandbox":"production",
+        });
+        return cashfree;
+    }
+
+    const initiatePayment = async (sessionId:string) => {
+        const cashfree = await initializeSDK();
+        let checkoutOptions = {
+            paymentSessionId: sessionId,
+            redirectTarget: "_self",
+        };
+        console.log("Starting checkout with options:", checkoutOptions);
+        cashfree.checkout(checkoutOptions);
+    };
+
+    return (
+      <Button
+        className="flex gap-2 cursor-pointer" 
+        onClick={handleBuyNow}
+      >
+        Upgrade to Premium
+    </Button>
+    );
+}
+export default UpgradeToPremium;

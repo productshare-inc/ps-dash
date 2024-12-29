@@ -13,7 +13,7 @@ const Pricing = ({pricingList,supportEmailAddress}: {pricingList: PricingProps[]
         Get
         <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
           {" "}
-          Unlimited{" "}
+          Premium{" "}
         </span>
         Access
       </h2>

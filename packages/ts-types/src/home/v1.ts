@@ -41,9 +41,19 @@ export interface sidebarProps extends CompanyLogoNameProps,UserProps {
     items: sidebarHeaderProps;
     footerItems: sidebarFooterItemsProps[];
     redirect: (url: string) => void;
-    maxCredits: number;
-    creditsUsed: number;
     showCredits: boolean;
+    maxTrialCredits: number;
+    maxPremiumCredits: number;
+    userDetails: UserDetailsProps;
+}
+
+export interface UserDetailsProps {
+    creditsUsed: number;
+    access: string;
+    name: string;
+    email: string;
+    role: string;
+    image: string;  
 }
 
 
@@ -94,5 +104,7 @@ export interface ConnectionCardFormProps {
 
 export interface CreditsProps {
     creditsUsed: number;
-    totalCredits: number;
+    maxTrialCredits: number;
+    maxPremiumCredits: number;
+    access: string;
 }

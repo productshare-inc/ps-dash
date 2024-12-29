@@ -11,6 +11,7 @@ export const description = "Build your Turborepo Micro SaaS Application effortle
 export const creator = "Anoop Karnik"
 export const creatorLink = "https://www.linkedin.com/in/anoopkarnik/"
 export const supportEmailAddress = "support@bsamaritan.com"
+export const donateNowLink = "https://razorpay.me/@bayesianlabs"
 
 //legal constants
 
@@ -23,5 +24,6 @@ export const address = 'B-2, Maruthi Enclave, Domalguda, Hyderabad, Telangana, I
 export const contactNumber = "+919666678363"
 
 // features constants
-export const maxCredits  = 100;
+export const maxTrialCredits  = 20;
+export const maxPremiumCredits = 200;
 export const showCredits = true;

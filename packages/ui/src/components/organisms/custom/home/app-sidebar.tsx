@@ -13,16 +13,15 @@ import SidebarFooterItems from "../../../molecules/custom/v1/SidebarFooterItems"
 import SidebarUser  from "../../../molecules/custom/v1/SidebarUser";
 import ProgressWithCredits from "../../../molecules/custom/v1/ProgressWithCredits";
 import { SettingsDialog } from "../../../templates/home/Settings";
+import UpgradeToPremium from "../../../molecules/custom/v1/UpgradeToPremium";
 import { useState } from "react";
-import { Button } from "../../../atoms/shadcn/button";
-import { set } from "date-fns";
 
 export function AppSidebar({name,quote,logo,darkLogo,homePath,items,footerItems,pricingList,
     logoutFunction,documentationLink,supportEmailAddress,githubUsername,githubRepositoryName,redirect,connections,
-    maxCredits,creditsUsed,showCredits}:sidebarProps) {
+    maxTrialCredits,maxPremiumCredits,showCredits,userDetails}:sidebarProps) {
+
     const [isSettingsOpen, setIsSettingsOpen] = useState(false)
         
-
     return (
         <Sidebar>
             <SidebarHeader>
@@ -49,14 +48,10 @@ export function AppSidebar({name,quote,logo,darkLogo,homePath,items,footerItems,
                 supportEmailAddress={supportEmailAddress}
                 openedTab="Plans & Billing"
               >
-                <Button
-                  className="flex gap-2 cursor-pointer" 
-                  onClick={()=>setIsSettingsOpen(true)}
-                >
-                  Upgrade to Premium
-                </Button>
+                <UpgradeToPremium/>
               </SettingsDialog>
-                {showCredits && <ProgressWithCredits creditsUsed={creditsUsed} totalCredits={maxCredits}/>}
+                {showCredits && <ProgressWithCredits creditsUsed={userDetails?.creditsUsed} maxTrialCredits={maxTrialCredits}
+                 maxPremiumCredits={maxPremiumCredits} access={userDetails?.access}/>}
                 <SidebarUser logoutFunction={logoutFunction} pricingList={pricingList}
                       documentationLink={documentationLink} supportEmailAddress={supportEmailAddress} githubUsername={githubUsername} 
                       githubRepositoryName={githubRepositoryName} connections={connections}/>

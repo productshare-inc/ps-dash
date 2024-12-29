@@ -4,6 +4,7 @@ export interface RouteProps {
   }
 
 export interface NavbarProps {
+    donateNowLink?: string;
     routeList: RouteProps[];
     githubLink: string;
     githubUsername: string;
@@ -35,15 +36,8 @@ export interface FeaturesProps {
   }
 
 
-export interface LandingPageProps {
-    routeList: RouteProps[];
-    githubLink: string;
-    githubUsername: string;
-    githubRepositoryName: string;
+export interface LandingPageProps  extends NavbarProps{
     documentationLink: string;
-    title: string;
-    logo: string;
-    darkLogo: string;
     loginFunction: () => void;
     tagline: string;
     description: string;

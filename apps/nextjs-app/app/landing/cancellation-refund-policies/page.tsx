@@ -6,10 +6,12 @@ const page = () => {
     const routeList:any = [];
 
   return (
-    <CancellationRefundPoliciesPage githubLink={githubLink} githubUsername={githubUsername} 
-    githubRepositoryName={githubRepositoryName} title={title} logo={logo} darkLogo={darkLogo} routeList={routeList}
-    lastUpdated={lastUpdatedPrivacyPolicy} companyName={companyName} 
-    siteName={title} websiteUrl={websiteUrl} email={supportEmailAddress}  />
+    <>
+        <CancellationRefundPoliciesPage githubLink={githubLink} githubUsername={githubUsername} 
+        githubRepositoryName={githubRepositoryName} title={title} logo={logo} darkLogo={darkLogo} routeList={routeList}
+        lastUpdated={lastUpdatedPrivacyPolicy} companyName={companyName} 
+        siteName={title} websiteUrl={websiteUrl} email={supportEmailAddress}  />
+    </>
   );
 }
 

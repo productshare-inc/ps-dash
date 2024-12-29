@@ -3,7 +3,7 @@ import LandingPage from "@repo/ui/templates/landing/v1/LandingPage";
 import { routeList,featuresWithDescription,featureList, testimonials, 
   pricingList, FAQList, footerList, teamList} from "../../lib/constants/landing-page";
 import { useRouter } from "next/navigation";
-import { creator, creatorLink, darkLogo, description, githubLink, githubRepositoryName, githubUsername, loginPath, logo, supportEmailAddress, tagline, title } from "../../lib/constants/appDetails";
+import { creator, creatorLink, darkLogo, description, donateNowLink, githubLink, githubRepositoryName, githubUsername, loginPath, logo, supportEmailAddress, tagline, title } from "../../lib/constants/appDetails";
 
 export default function Landing() {
   const documentationLink = process.env.NEXT_PUBLIC_DOCUMENTATION_URL as string;
@@ -16,7 +16,8 @@ export default function Landing() {
 
   return (
     <div>
-      <LandingPage 
+      <LandingPage
+        donateNowLink={donateNowLink}
         routeList={routeList} 
         githubLink={githubLink}
         githubUsername={githubUsername}

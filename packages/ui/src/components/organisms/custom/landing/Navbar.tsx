@@ -14,14 +14,14 @@ import {
 } from "../../../molecules/shadcn/sheet";
 
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { buttonVariants } from "../../../atoms/shadcn/button";
-import { MenuIcon } from "lucide-react";
+import { Button, buttonVariants } from "../../../atoms/shadcn/button";
+import { MenuIcon, Coffee } from "lucide-react";
 import { ModeToggle } from "../../../molecules/custom/v1/theme-toggle-dropdown";
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { NavbarProps, RouteProps } from "@repo/ts-types/landing-page/v1";
 
-const Navbar = ({routeList,githubLink,githubUsername,githubRepositoryName,title,logo,darkLogo}: NavbarProps) => {
+const Navbar = ({routeList,githubLink,githubUsername,githubRepositoryName,title,logo,darkLogo,donateNowLink}: NavbarProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const {theme} = useTheme();
   const [starCount, setStarCount] = useState<number>(0);
@@ -95,6 +95,16 @@ const Navbar = ({routeList,githubLink,githubUsername,githubRepositoryName,title,
                   ))}
                   <a
                     rel="noreferrer noopener"
+                    href={donateNowLink}
+                    className={`w-[110px] border ${buttonVariants({
+                      variant: "secondary",
+                    })}`}
+                  >
+                    <Coffee className="mr-2 w-5 h-5" />
+                    <Button size="sm">Donate Now</Button>
+                  </a>
+                  <a
+                    rel="noreferrer noopener"
                     href={githubLink}
                     target="_blank"
                     className={`w-[110px] border ${buttonVariants({
@@ -135,6 +145,12 @@ const Navbar = ({routeList,githubLink,githubUsername,githubRepositoryName,title,
           </nav>
 
           <div className="hidden md:flex gap-2">
+            <a
+              rel="noreferrer noopener"
+              href={donateNowLink}
+            >
+              <Button><Coffee className="mr-2 w-5 h-5" />Donate Now</Button>
+            </a>
             <a
               rel="noreferrer noopener"
               href={githubLink}
