@@ -39,7 +39,7 @@ export const modifyAvatarAction = async (id:string,file:any) => {
     });
     if(response.status !== 200){
         const {error} = await response.json();
-        return {error: error || "Failed in modifying Name"};
+        return {error: error || "Failed in modifying Avatar"};
     }
     const {user} = await response.json();
     return {success: "Successfully modified Avatar", data:user};

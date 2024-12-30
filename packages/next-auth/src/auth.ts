@@ -5,10 +5,7 @@ import db from '@repo/prisma-db/client'
 import authConfig from "./auth.config"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import { getAccountByUserId, getUserById } from "@repo/prisma-db/repo/user"
-import Redis from 'ioredis'
 
-const redis = new Redis(process.env.NEXT_PUBLIC_REDIS_URL || 'redis://localhost:6379');
- 
 export const { auth, handlers, signIn, signOut }:any = NextAuth({
     adapter: PrismaAdapter(db),
     session: {
@@ -44,6 +41,8 @@ export const { auth, handlers, signIn, signOut }:any = NextAuth({
             if (token.sub) {
                 // Fetch the latest user data from the database
                 session.user.id = token.sub;
+                // @ts-ignore
+                session.user.image = token.image; 
                 
             }
             return session;

@@ -49,8 +49,7 @@ const ForgotPasswordCard = ({errorMessage,successMessage,resetFunction,backFunct
   }
 
   useEffect(() => {
-    console.log("Error state updated:", error);
-    console.log("Success state updated:", success);
+
   }, [error, success]);
   return (
     <Card className='w-[400px] bg-white text-black shadow-xl shadow-white/20'>

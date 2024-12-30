@@ -21,7 +21,6 @@ export function useNotificationPolling(userId: string, interval: number = 30000)
             setIsLoading(true);
             try {
                 const data:any = await getNotificationsAction(userId);
-                console.log(data);
                 setNotifications(data);
                 setError(null);
             } catch (err) {

@@ -47,7 +47,6 @@ export const UpgradeToProButton = () => {
             paymentSessionId: sessionId,
             redirectTarget: "_self",
         };
-        console.log("Starting checkout with options:", checkoutOptions);
         cashfree.checkout(checkoutOptions);
     };
 
