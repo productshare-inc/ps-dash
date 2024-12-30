@@ -13,13 +13,11 @@ import SidebarFooterItems from "../../../molecules/custom/v1/SidebarFooterItems"
 import SidebarUser  from "../../../molecules/custom/v1/SidebarUser";
 import ProgressWithCredits from "../../../molecules/custom/v1/ProgressWithCredits";
 import { UpgradeToProButton } from "../../../molecules/custom/v1/UpgradeToProButton";
-import { useState } from "react";
+import NotificationSheet from "./NotificationSheet";
 
 export function AppSidebar({name,quote,logo,darkLogo,homePath,items,footerItems,pricingList,
     logoutFunction,documentationLink,supportEmailAddress,githubUsername,githubRepositoryName,redirect,connections,
     maxTrialCredits,maxProCredits,showCredits,userDetails}:sidebarProps) {
-
-    const [isSettingsOpen, setIsSettingsOpen] = useState(false)
         
     return (
         <Sidebar>
@@ -34,8 +32,8 @@ export function AppSidebar({name,quote,logo,darkLogo,homePath,items,footerItems,
             </SidebarHeader>
             <SidebarItems items={items} redirect={redirect}/>
             <SidebarFooterItems footerItems={footerItems}/>
-            <SidebarFooter>
-                
+            <SidebarFooter className="p-0">
+                <NotificationSheet />
             </SidebarFooter>
 
             <SidebarFooter>

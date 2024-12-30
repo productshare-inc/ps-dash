@@ -108,3 +108,13 @@ export interface CreditsProps {
     maxProCredits: number;
     access: string;
 }
+
+export interface NotificationProps {
+    id: string;
+    message: string;
+    type: string;
+    href: string;
+    read: boolean;
+    createdAt: string;
+    updatedAt: string;
+}

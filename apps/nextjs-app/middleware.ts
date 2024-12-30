@@ -3,6 +3,7 @@ import authConfig from "@repo/next-auth/config"
 import NextAuth from "next-auth";
 import {NextRequest,NextResponse} from "next/server";
 import { apiAuthPrefix, authRoutes, DEFAULT_LOGIN_REDIRECT, publicRoutes, settingsRoutes } from "./routes";
+import { RateLimiterMemory } from "rate-limiter-flexible";
 
 const allowedOrigins = ['http://localhost', 'https://bsamaritan.com']
 
@@ -11,14 +12,30 @@ const corsOptions = {
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
   }
 
+  const rateLimiter = new RateLimiterMemory({
+    points:500, // Number of requests
+    duration: 60, // Per 1 seconds
+  });
+  
 
 const { auth }:any = NextAuth(authConfig);
 
-export default auth((req:any)=>{
+export default auth(async(req:any)=>{
 
       // Check the origin from the request
     const origin = req.headers.get('origin') ?? ''
     const isAllowedOrigin = allowedOrigins.includes(origin)
+
+    try {
+        // Rate limiting based on IP address
+        const ip = req.ip || req.headers.get('x-forwarded-for') || 'unknown';
+
+        await rateLimiter.consume(ip); 
+    // Proceed to the next middleware or route handler
+      } catch (rateLimiterRes) {
+        // If the request exceeds the limit, block it
+        return new NextResponse('Too Many Requests', { status: 429 });
+      }
 
     // Handle preflighted requests
     const isPreflight = req.method === 'OPTIONS'

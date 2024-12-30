@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "../../../packages/ui/src/styles/shadcn/shadcn-green.css"
@@ -6,6 +7,7 @@ import { ThemeProvider } from "@repo/ui/providers/theme-provider";
 import "../../../packages/ui/src/styles/custom/heroBackgroundAnimation.css"
 import { SessionProviders } from "../providers/session-provider";
 import { Toaster } from "@repo/ui/molecules/custom/v1/Toaster";
+
 
 
 const geistSans = localFont({
@@ -34,12 +36,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProviders>
-          <ThemeProvider defaultTheme="dark" >
-            {children}
-            <Toaster />
-          </ThemeProvider>
-        </SessionProviders>
+          <SessionProviders>
+            <ThemeProvider defaultTheme="dark" >
+              {children}
+              <Toaster />
+            </ThemeProvider>
+          </SessionProviders>
 
       </body>
     </html>

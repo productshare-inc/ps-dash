@@ -1,7 +1,7 @@
 "use client"
 
 import { SidebarProvider, SidebarTrigger } from "@repo/ui/organisms/shadcn/sidebar"
-import { AppSidebar } from "@repo/ui/organisms/custom/home/app-sidebar"
+import { AppSidebar } from "@repo/ui/organisms/custom/home/AppSidebar"
 import { CONNECTIONS, sidebarFooterItems, sidebarItems } from "../../lib/constants/home"
 import { useSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { darkLogo, githubRepositoryName, githubUsername, logo, maxTrialCredits, maxProCredits, showCredits, supportEmailAddress, tagline, title } from "../../lib/constants/appDetails";
 import { pricingList } from "../../lib/constants/landing-page";
 import { getUserDetails } from "./_actions/prisma";
+import { RecoilRoot } from "recoil";
 
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -59,32 +60,34 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     }
 
   return (
-    <SidebarProvider>
-        <AppSidebar
-          items={sidebarItems}
-          footerItems={sidebarFooterItems}
-          name={title}
-          logo={logo}
-          darkLogo={darkLogo}
-          quote={tagline}
-          homePath={homePath}
-          logoutFunction={logout}
-          pricingList={pricingList}
-          documentationLink={documentationLink}
-          supportEmailAddress={supportEmailAddress}
-          githubUsername={githubUsername}
-          githubRepositoryName={githubRepositoryName}
-          redirect={redirect}
-          connections={CONNECTIONS}
-          userDetails={userDetails}
-          maxTrialCredits={maxTrialCredits}
-          maxProCredits={maxProCredits}
-          showCredits={showCredits}
-        />
-      <main>
-        <SidebarTrigger />
-        {children}
-      </main>
-    </SidebarProvider>
+    <RecoilRoot>
+      <SidebarProvider>
+          <AppSidebar
+            items={sidebarItems}
+            footerItems={sidebarFooterItems}
+            name={title}
+            logo={logo}
+            darkLogo={darkLogo}
+            quote={tagline}
+            homePath={homePath}
+            logoutFunction={logout}
+            pricingList={pricingList}
+            documentationLink={documentationLink}
+            supportEmailAddress={supportEmailAddress}
+            githubUsername={githubUsername}
+            githubRepositoryName={githubRepositoryName}
+            redirect={redirect}
+            connections={CONNECTIONS}
+            userDetails={userDetails}
+            maxTrialCredits={maxTrialCredits}
+            maxProCredits={maxProCredits}
+            showCredits={showCredits}
+          />
+        <main>
+          <SidebarTrigger />
+          {children}
+        </main>
+      </SidebarProvider>
+    </RecoilRoot>
   )
 }
