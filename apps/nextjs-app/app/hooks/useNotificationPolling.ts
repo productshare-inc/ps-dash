@@ -2,7 +2,7 @@
 // useNotificationPolling.ts
 import { useEffect, useState } from "react";
 import { getNotificationsAction } from "../_actions/notifications";
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState} from 'recoil';
 import { NotificationProps } from "@repo/ts-types/home/v1";
 import { notificationsState } from "@repo/recoil/notification";
 

@@ -7,7 +7,7 @@ export const getNotificationsAction = async (userId: string) => {
         const notifications = await getNotifications(userId);
         return notifications;
     }
-    catch (error) {
+    catch  {
         return null;
     }
 }
