@@ -1,11 +1,11 @@
-import { Avatar, AvatarFallback, AvatarImage } from "../../../atoms/shadcn/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "../../../../atoms/shadcn/avatar";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../../../molecules/shadcn/card";
+} from "../../../../molecules/shadcn/card";
 import { TestimonialProps } from "@repo/ts-types/landing-page/v1";
 
 

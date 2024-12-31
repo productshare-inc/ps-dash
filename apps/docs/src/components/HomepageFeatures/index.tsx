@@ -68,7 +68,32 @@ export const featuresWithDescription: FeatureWithDescriptionProps[] = [
     description:
       "Sidebar Navigation is used to navigate to the different sections of the home page and also profile settings.",
     href: "./img/features/sidebar.png"
+  },
+  {
+    title: "Notification System",
+    description:
+      "Notification System is used to see notifications of the user.",
+    href: "./img/features/notifications.png"
+  },
+  {
+    title: "Customized Pricing for API Credits using Cashfree Payments",
+    description:
+      "Customized Pricing for API Credits is used to show the pricing of the API Credits.",
+    href: "./img/features/cashfree.avif"
+  },
+  {
+    title: "Notion Client Library",
+    description:
+      "Notion Client Library is used to fetch the data from the Notion API.",
+    href: "./img/features/notion.png"
+  },
+  {
+    title: "OpenAI Client Library",
+    description:
+      "OpenAI Client Library is used to fetch the data from the OpenAI API.",
+    href: "./img/features/openai.png"
   }
+
 ];
 
 

@@ -1,11 +1,11 @@
-import { Badge } from "../../../atoms/shadcn/badge";
+import { Badge } from "../../../../atoms/shadcn/badge";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../../../molecules/shadcn/card";
+} from "../../../../molecules/shadcn/card";
 import { FeaturesProps,FeatureWithDescriptionProps } from "@repo/ts-types/landing-page/v1";
 
 const Features = ({featuresWithDescription,featureList}: FeaturesProps) => {

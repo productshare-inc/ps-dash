@@ -86,6 +86,30 @@ export const featuresWithDescription: FeatureWithDescriptionProps[] = [
       description:
         "Sidebar Navigation is used to navigate to the different sections of the home page and also profile settings.",
       href: "./features/sidebar.png"
+    },
+    {
+      title: "Notification System",
+      description:
+        "Notification System is used to see notifications of the user.",
+      href: "./features/notifications.png"
+    },
+    {
+      title: "Customized Pricing for API Credits using Cashfree Payments",
+      description:
+        "Customized Pricing for API Credits is used to show the pricing of the API Credits.",
+      href: "./features/cashfree.avif"
+    },
+    {
+      title: "Notion Client Library",
+      description:
+        "Notion Client Library is used to fetch the data from the Notion API.",
+      href: "./features/notion.png"
+    },
+    {
+      title: "OpenAI Client Library",
+      description:
+        "OpenAI Client Library is used to fetch the data from the OpenAI API.",
+      href: "./features/openai.png"
     }
 
   ];
@@ -106,6 +130,12 @@ export const featuresWithDescription: FeatureWithDescriptionProps[] = [
     "Vercel Blob Storage",
     "Responsive design",
     "Minimalist",
+    "Session Management",
+    "Third Party Integrations",
+    "Notification System",
+    "Customized Pricing for API Credits",
+    "Notion Client Library",
+    "OpenAI Client Library",
   ];
 
   export const testimonials: TestimonialProps[] = [
@@ -175,7 +205,7 @@ export const pricingList: PricingProps[] = [
     {
       title: "Pro",
       popular: 0,
-      price: "Rs 500",
+      price: "Rs 20",
       priceType: "/one-time",
       href: "/auth/login",
       description:

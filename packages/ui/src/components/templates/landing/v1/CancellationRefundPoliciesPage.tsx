@@ -1,6 +1,6 @@
 import { CancellationRefundPoliciesPageProps, PrivacyPolicyPageProps } from '@repo/ts-types/landing-page/v1'
-import Navbar from '../../../organisms/custom/landing/Navbar'
-import CancellationRefundPolicies from '../../../organisms/custom/landing/CancellationRefundPolicies'
+import Navbar from '../../../organisms/custom/landing/v1/Navbar'
+import CancellationRefundPolicies from '../../../organisms/custom/landing/v1/CancellationRefundPolicies'
 
 const CancellationRefundPoliciesPage = ({routeList,githubLink,githubUsername,githubRepositoryName,title,logo,darkLogo,
     companyName,lastUpdated,websiteUrl,email,donateNowLink}:CancellationRefundPoliciesPageProps) => {

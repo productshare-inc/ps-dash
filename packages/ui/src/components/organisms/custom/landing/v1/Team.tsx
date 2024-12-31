@@ -1,4 +1,4 @@
-import { buttonVariants } from "../../../atoms/shadcn/button";
+import { buttonVariants } from "../../../../atoms/shadcn/button";
 import {
   Card,
   CardContent,
@@ -6,7 +6,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../../../molecules/shadcn/card";
+} from "../../../../molecules/shadcn/card";
 import { Facebook, Github, Globe, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import { TeamProps, SociaNetworkslProps } from "@repo/ts-types/landing-page/v1";
 
@@ -34,7 +34,7 @@ export const Team = ({teamList}:{teamList:TeamProps[]}) => {
   return (
     <section
       id="team"
-      className="container py-24 sm:py-32"
+      className="container py-24 sm:py-32 space-y-8"
     >
       <h2 className="text-3xl md:text-4xl font-bold">
         <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">

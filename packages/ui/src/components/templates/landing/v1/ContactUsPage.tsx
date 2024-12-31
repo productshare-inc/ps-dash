@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../../../organisms/custom/landing/Navbar'
+import Navbar from '../../../organisms/custom/landing/v1/Navbar'
 import { ContactUsPageProps } from '@repo/ts-types/landing-page/v1'
 import ContactUs from '../../../organisms/custom/landing/ContactUs'
 

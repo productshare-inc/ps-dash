@@ -1,6 +1,6 @@
 import { BookOpenIcon } from "lucide-react";
-import { Button } from "../../../atoms/shadcn/button";
-import { buttonVariants } from "../../../atoms/shadcn/button";
+import { Button } from "../../../../atoms/shadcn/button";
+import { buttonVariants } from "../../../../atoms/shadcn/button";
 import HeroCards  from "./HeroCards";
 import { useEffect, useState } from "react";
 import { HeroProps } from "@repo/ts-types/landing-page/v1";

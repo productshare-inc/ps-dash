@@ -32,6 +32,10 @@ This boilerplate solves these problems by providing a pre-configured, modular, a
 - **Zod** for schema validation.
 - **Docker** for containerized deployments.
 - **Coolify** for deploying production workloads on AWS EC2.
+- **Notion** for interacting with Notion 
+- **OpenAI** for interacting with OpenAI
+- **Cashfree** for payment gateway
+- **Recoil** for Context Library
 - A clear **folder structure** to keep everything organized.
 
 ---
@@ -69,6 +73,9 @@ Here’s how the boilerplate is organized:
 │   ├── eslint-config # Eslint configs library
 │   ├── zod-validation # Zod Validation Client library
 │   ├── server-utils # Server Functions which are run in UI components
+│   ├── notion # Notion Client to interact with your notion database
+│   ├── openai # OpenAI Client to interact with openai
+│   ├── recoil # Recoil Context API 
 ├── docker  # Docker configuration with example env files
 ├── scripts # Bash Scripts to run to get started
 ├── docker-compose.yaml # Docker Configuration to start the app

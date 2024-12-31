@@ -3,7 +3,7 @@ import {
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
-  } from "../../../molecules/shadcn/accordion";
+  } from "../../../../molecules/shadcn/accordion";
   import { FAQProps } from "@repo/ts-types/landing-page/v1";
 
 

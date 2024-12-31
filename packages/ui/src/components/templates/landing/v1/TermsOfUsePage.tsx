@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../../../organisms/custom/landing/Navbar'
+import Navbar from '../../../organisms/custom/landing/v1/Navbar'
 import { PrivacyPolicyPageProps, TermsOfServicePageProps } from '@repo/ts-types/landing-page/v1'
 import TermsOfUse from '../../../organisms/custom/landing/TermsOfUse'
 

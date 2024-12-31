@@ -1,5 +1,5 @@
 import { PricingProps } from "@repo/ts-types/landing-page/v1";
-import PricingItem from "../../../molecules/custom/v1/PricingItem";
+import PricingItem from "../../../../molecules/custom/v1/PricingItem";
 
 
 const Pricing = ({pricingList,supportEmailAddress}: {pricingList: PricingProps[],supportEmailAddress:string}) => {
