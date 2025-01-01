@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from '../../../organisms/custom/landing/v1/Navbar'
-import PrivacyPolicy from '../../../organisms/custom/landing/PrivacyPolicy'
+import PrivacyPolicy from '../../../organisms/custom/landing/v1/PrivacyPolicy'
 import { PrivacyPolicyPageProps } from '@repo/ts-types/landing-page/v1'
 
 const PrivacyPolicyPage = ({routeList,githubLink,githubUsername,githubRepositoryName,title,logo,darkLogo,

@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../../../organisms/custom/landing/v1/Navbar'
 import { PrivacyPolicyPageProps, TermsOfServicePageProps } from '@repo/ts-types/landing-page/v1'
-import TermsOfUse from '../../../organisms/custom/landing/TermsOfUse'
+import TermsOfUse from '../../../organisms/custom/landing/v1/TermsOfUse'
 
 const TermsOfUsePage = ({routeList,githubLink,githubUsername,githubRepositoryName,title,logo,darkLogo,
     companyName,country,lastUpdated,websiteUrl,email,version,address,donateNowLink}:TermsOfServicePageProps) => {

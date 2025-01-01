@@ -17,6 +17,7 @@
     "@repo/typescript-config": "*",
     "@repo/ui": "*",
     "@repo/zod": "*",
+    "@repo/openai": "*",
     "axios": "^1.7.9",
     "cashfree-pg": "^4.3.6",
     "ioredis": "^5.4.2",
