@@ -10,11 +10,13 @@ export async function POST(request: Request) {
     return shareRoute(request, async (req:Request,body:any) => {
         try {
             const { chatMessage } =  body;
+            console.log("chatMessage", chatMessage);
 
             if (!threadId) {
-            const thread = await openai.beta.threads.create();
-            threadId = thread.id;
+                const thread = await openai.beta.threads.create();
+                threadId = thread.id;
             }
+            console.log("threadId", threadId);
 
             await openai.beta.threads.messages.create(threadId, {
                 role: "user",
@@ -24,26 +26,27 @@ export async function POST(request: Request) {
             const assistant_id = process.env.OPENAI_ASSISTANT_ID as string;
 
             const run = await openai.beta.threads.runs.createAndPoll(threadId, {
-            assistant_id,
-            instructions: `
-                - Maintain a polite, conversational tone.
-                - Use clear and concise sentences.
-                - Add line breaks between different points or steps.
-                - Format any lists as:
-                1. Step 1
-                2. Step 2
-                - Use bold text for emphasis and wrap inline code with backticks (\`).
-                - End each response with a brief summary or suggestion if applicable.
-            `,
+                assistant_id,
+                instructions: `
+                    - Maintain a polite, conversational tone.
+                    - Use clear and concise sentences.
+                    - Add line breaks between different points or steps.
+                    - Format any lists as:
+                    1. Step 1
+                    2. Step 2
+                    - Use bold text for emphasis and wrap inline code with backticks (\`).
+                    - End each response with a brief summary or suggestion if applicable.
+                `,
             });
+            console.log("run", run);
 
             if (run.status === "completed") {
-            const messages: any = await openai.beta.threads.messages.list(run.thread_id);
-            return NextResponse.json({
-                reply: messages.data[0].content[0].text.value,
-            });
+                const messages: any = await openai.beta.threads.messages.list(run.thread_id);
+                return NextResponse.json({
+                    reply: messages.data[0].content[0].text.value,
+                });
             } else {
-            return NextResponse.json({ error: "Failed to generate a response." }, { status: 500 });
+                return NextResponse.json({ error: "Failed to generate a response." }, { status: 500 });
             }
         } catch (error) {
             console.error("Error in OpenAI API:", error);

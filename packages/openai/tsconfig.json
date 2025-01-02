@@ -1,11 +1,8 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
+  "extends": "@repo/typescript-config/nextjs.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@ui/*": ["./src/*"]
-    }
+
   },
-  "include": ["src/**/*","next-auth.d.ts"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }
