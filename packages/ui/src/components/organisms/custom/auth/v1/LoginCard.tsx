@@ -19,6 +19,7 @@ import {
 import { Input } from '../../../../atoms/shadcn/input';
 import { FormResult } from './FormResult';
 import { LoginCardProps } from '@repo/ts-types/auth/v1';
+import { useRouter } from 'next/navigation';
 
 const LoginCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinkedinProvider,onEmailSubmit,
   onGoogleProviderSubmit,onGithubProviderSubmit,onLinkedinProviderSubmit,forgotPasswordFunction,backFunction,errorMessage}
@@ -35,6 +36,7 @@ const LoginCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinkedin
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string | undefined>(errorMessage)
   const [success, setSuccess] = useState<string | undefined>("")
+  const router = useRouter();
 
   async function handleSubmit(data: z.infer<typeof LoginSchema>) {
     setError("")
@@ -122,6 +124,20 @@ const LoginCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinkedin
       </CardFooter>
       <CardFooter className='flex justify-center'>
         <div onClick={backFunction} className='text-sm text-center text-black/60 hover:text-black cursor-pointer hover:underline'>Don't have an Account?</div>
+      </CardFooter>
+      <CardFooter className='text-description text-wrap mx-2 text-center'>
+        <span>
+          By signing up, you agree to our 
+          <span
+            onClick={() => router.push('/landing/terms-of-service')} 
+            className='cursor-pointer text-blue-400 hover:text-blue-800'> Terms of Service 
+          </span> 
+          ,
+          <span
+            onClick={() => router.push('/landing/privacy-policy')} 
+            className='cursor-pointer text-blue-400 hover:text-blue-800'> Privacy Policy.
+          </span>
+        </span>
       </CardFooter>
     </Card>
   )
