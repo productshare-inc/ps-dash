@@ -3,6 +3,7 @@ import OpenAI from "openai";
 import { shareRoute } from "../../shareRoute";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY as string });
+const assistant_id = process.env.OPENAI_ASSISTANT_ID as string;
 
 let threadId: string | null = null;
 
@@ -22,8 +23,8 @@ export async function POST(request: Request) {
                 role: "user",
                 content: chatMessage,
             });
-
-            const assistant_id = process.env.OPENAI_ASSISTANT_ID as string;
+            console.log("message sent");
+            console.log("running this thread")
 
             const run = await openai.beta.threads.runs.createAndPoll(threadId, {
                 assistant_id,
