@@ -11,6 +11,7 @@ import { darkLogo, githubRepositoryName, githubUsername, logo, maxTrialCredits, 
 import { pricingList } from "../../lib/constants/landing-page";
 import { getUserDetails } from "./_actions/prisma";
 import { RecoilRoot } from "recoil";
+import { SupportChat } from "@repo/ui/organisms/custom/home/SupportChat";
 
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -87,6 +88,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <SidebarTrigger />
           {children}
         </main>
+        <SupportChat/>
       </SidebarProvider>
     </RecoilRoot>
   )

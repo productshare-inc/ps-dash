@@ -130,6 +130,7 @@ import { useToast } from "../../../../hooks/use-toast";
     const handleAvatar = async (userid:string,event: React.ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0];
       const res  = await modifyAvatarAction(userid,file)
+
       if (res.success){
         toast({title: "Success", description: res?.success, variant: 'default'})
       }
