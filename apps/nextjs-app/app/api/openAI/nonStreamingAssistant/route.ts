@@ -11,20 +11,16 @@ export async function POST(request: Request) {
     return shareRoute(request, async (req:Request,body:any) => {
         try {
             const { chatMessage } =  body;
-            console.log("chatMessage", chatMessage);
 
             if (!threadId) {
                 const thread = await openai.beta.threads.create();
                 threadId = thread.id;
             }
-            console.log("threadId", threadId);
 
             await openai.beta.threads.messages.create(threadId, {
                 role: "user",
                 content: chatMessage,
             });
-            console.log("message sent");
-            console.log("running this thread")
 
             const run = await openai.beta.threads.runs.createAndPoll(threadId, {
                 assistant_id,
@@ -39,7 +35,6 @@ export async function POST(request: Request) {
                     - End each response with a brief summary or suggestion if applicable.
                 `,
             });
-            console.log("run", run);
 
             if (run.status === "completed") {
                 const messages: any = await openai.beta.threads.messages.list(run.thread_id);

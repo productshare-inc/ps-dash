@@ -9,7 +9,7 @@ export const chatWithAssistant = async (chatMessage: string) => {
       });
   
       if (!response.ok) {
-        throw new Error("Failed to fetch assistant response.");
+        return "Failed to chat with assistant.";
       }
   
       const data = await response.json();

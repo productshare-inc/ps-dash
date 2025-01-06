@@ -11,9 +11,13 @@ Use the documentation link, to start this boilerplate quickly locally - [develop
 
 ## Deploy Your Own
 
-You can clone & deploy it to Vercel with one click:
+1) You can deploy it to Vercel with one click:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/anoopkarnik/turborepo-saas-boilerplate-code&project-name=nextjs-app&root-directory=apps/nextjs-app)
+    [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fanoopkarnik%2Fturborepo-saas-boilerplate-code&project-name=nextjs-app&build-command=npm%20run%20db%3Agenerate%20%26%26%20cd%20apps%2Fnextjs-app%20%26%26%20npm%20run%20build&output-directory=apps%2Fnextjs-app%2F.next&install-command=npm%20install&dev-command=cd%20apps%2Fnextjs-app%20%26%26%20npm%20run%20dev
+    )
+
+2) Give a repository name which will clone this repo to your account but fail buidling.
+3) In the project built in vercel go to Settings and in Environment variables fill all the variables according to these [docs](https://dev.docs.boilerplate.bsamaritan.com/docs/getting-started/start-locally)
 
 ## License
 

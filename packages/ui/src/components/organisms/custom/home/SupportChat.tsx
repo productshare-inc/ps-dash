@@ -10,7 +10,7 @@ import { Skeleton } from '../../../molecules/shadcn/skeleton';
 
 export const SupportChat = () => {
   const [messages, setMessages] = useState<any[]>([]);
-  const [userInput, setUserInput] = useState<string>('');
+  const [userInput, setUserInput] = useState<string>('Hello');
   const [hasFetched, setHasFetched] = useState(false);
   const [waitingForReply, setWaitingForReply] = useState(false);
 
