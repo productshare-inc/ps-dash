@@ -7,7 +7,7 @@ import { ThemeProvider } from "@repo/ui/providers/theme-provider";
 import "../../../packages/ui/src/styles/custom/heroBackgroundAnimation.css"
 import { SessionProviders } from "../providers/session-provider";
 import { Toaster } from "@repo/ui/molecules/custom/v1/Toaster";
-
+import { Analytics } from "@vercel/analytics/react"
 
 
 const geistSans = localFont({
@@ -39,6 +39,7 @@ export default function RootLayout({
           <SessionProviders>
             <ThemeProvider defaultTheme="dark" >
               {children}
+              <Analytics/>
               <Toaster />
             </ThemeProvider>
           </SessionProviders>
