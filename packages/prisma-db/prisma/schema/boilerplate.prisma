@@ -76,17 +76,6 @@ model ResetPasswordToken {
   @@schema("boilerplate_schema")
 }
 
-model EmailTemplate {
-  id        String   @id @default(cuid())
-  name      String
-  from      String
-  subject   String
-  html      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  @@schema("boilerplate_schema")
-}
-
 enum UserRole {
   USER
   ADMIN

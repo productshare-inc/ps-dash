@@ -19,6 +19,7 @@
     "@repo/ui": "*",
     "@repo/zod": "*",
     "@vercel/analytics": "^1.4.1",
+    "@repo/resend-email": "*",
     "axios": "^1.7.9",
     "cashfree-pg": "^4.3.6",
     "ioredis": "^5.4.2",
