@@ -16,7 +16,7 @@ import { UpgradeToProButton } from "../../../molecules/custom/v1/UpgradeToProBut
 import NotificationSheet from "./NotificationSheet";
 
 export function AppSidebar({name,quote,logo,darkLogo,homePath,items,footerItems,pricingList,
-    logoutFunction,documentationLink,supportEmailAddress,githubUsername,githubRepositoryName,redirect,connections,
+    logoutFunction,documentationLink,supportEmailAddress,githubUsername,githubRepositoryName,connections,
     maxTrialCredits,maxProCredits,showCredits,userDetails}:sidebarProps) {
         
     return (
@@ -30,8 +30,8 @@ export function AppSidebar({name,quote,logo,darkLogo,homePath,items,footerItems,
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarHeader>
-            <SidebarItems items={items} redirect={redirect}/>
-            <SidebarFooterItems footerItems={footerItems}/>
+            <SidebarItems items={items}/>
+            {/* <SidebarFooterItems footerItems={footerItems}/> */}
             <SidebarFooter className="p-0">
                 <NotificationSheet />
             </SidebarFooter>

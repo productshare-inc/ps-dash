@@ -30,12 +30,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         await signOut()
     }
 
-    const router = useRouter();
-
-    const redirect = (href: string) => {
-      router.push(href);
-    }
-
       // Refresh session manually after login
   const refreshSession = async () => {
     const response = await fetch("/api/auth/session");
@@ -79,7 +73,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             supportEmailAddress={supportEmailAddress}
             githubUsername={githubUsername}
             githubRepositoryName={githubRepositoryName}
-            redirect={redirect}
             connections={CONNECTIONS}
             userDetails={userDetails}
             maxTrialCredits={maxTrialCredits}

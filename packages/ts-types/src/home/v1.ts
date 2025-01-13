@@ -1,16 +1,11 @@
 import { PricingProps } from "../landing-page/v1";
 
-export interface sidebarHeaderSubItemsProps {
-    title: string;
-    url: string;
-}
-
 export interface sidebarHeaderItemsProps{
     title: string;
-    icon: any;
+    icon?: any;
     url?: string;
     isActive?: boolean;
-    items?: sidebarHeaderSubItemsProps[];
+    items?: sidebarHeaderItemsProps[];
 }
 
 export interface sidebarHeaderProps {
@@ -21,11 +16,6 @@ export interface sidebarFooterItemsProps {
     title: string;
     url: string;
     icon: any;
-}
-
-export interface sidebarListProps {
-    items: sidebarHeaderProps;
-    redirect: (url: string) => void;
 }
 
 export interface CompanyLogoNameProps {
@@ -40,7 +30,6 @@ export interface CompanyLogoNameProps {
 export interface sidebarProps extends CompanyLogoNameProps,UserProps {
     items: sidebarHeaderProps;
     footerItems: sidebarFooterItemsProps[];
-    redirect: (url: string) => void;
     showCredits: boolean;
     maxTrialCredits: number;
     maxProCredits: number;
