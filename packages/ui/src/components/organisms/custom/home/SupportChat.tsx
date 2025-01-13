@@ -6,29 +6,14 @@ import { ChatBubbleIcon } from '@radix-ui/react-icons';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import { Skeleton } from '../../../molecules/shadcn/skeleton';
+import { set } from 'date-fns';
 
 
 export const SupportChat = () => {
   const [messages, setMessages] = useState<any[]>([]);
   const [userInput, setUserInput] = useState<string>('Hello');
-  const [hasFetched, setHasFetched] = useState(false);
   const [waitingForReply, setWaitingForReply] = useState(false);
-
-
-  useEffect(() => {
-    if (!hasFetched) {
-      const fetchMessages = async () => {
-        let input = 'Hello';
-        setWaitingForReply(true);
-        setMessages((prevMessages) => [...prevMessages, { role: 'user', value: input }]);
-        const reply = await chatWithAssistant(input);
-        setWaitingForReply(false);
-        setMessages((prevMessages) => [...prevMessages, { role: 'assistant', value: reply }]);
-      };
-      fetchMessages();
-      setHasFetched(true);
-    }
-  },[hasFetched])
+  const [firstMessage, setFirstMessage] = useState(true);
 
   const sendMessage = async () => {
     setWaitingForReply(true);
@@ -51,12 +36,21 @@ export const SupportChat = () => {
 
   const {data:session} = useSession()
 
+  const handleChatOpening = async () => {
+    setIsChatOpen(true);
+    if(firstMessage){
+      await sendMessage();
+      setFirstMessage(false);
+    }
+    setIsChatOpen(true);
+  }
+
 
   return (
     <div className="fixed bottom-4 right-4">
       {!isChatOpen && (
         <button
-          onClick={() => setIsChatOpen(true)}
+          onClick={handleChatOpening}
           className="bg-primary text-background rounded-full p-4 shadow-lg"
         >
           <ChatBubbleIcon className='w-8 h-8'/> 

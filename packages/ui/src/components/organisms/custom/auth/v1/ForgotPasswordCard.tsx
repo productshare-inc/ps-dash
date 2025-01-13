@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {z} from "zod"
 import { Card, CardContent, CardFooter, CardHeader } from '../../../../molecules/shadcn/card';
 import { useTransition } from 'react';
@@ -27,8 +27,8 @@ const ForgotPasswordCard = ({errorMessage,successMessage,resetFunction,backFunct
       email: '',
     },
   })
-  const [error, setError] = useState<string | undefined>(errorMessage)
-  const [success, setSuccess] = useState<string | undefined>(successMessage)
+  const [error, setError] = useState<string | undefined>("")
+  const [success, setSuccess] = useState<string | undefined>("")
 
   const [isPending, startTransition] = useTransition()
 
@@ -37,20 +37,13 @@ const ForgotPasswordCard = ({errorMessage,successMessage,resetFunction,backFunct
     setSuccess("")
     startTransition(() => {
       resetFunction(data.email)
-        .then((data: any) => {
-          setError(data?.error);
-          setSuccess(data?.success);
+        .then((result: any) => {
+          setError(result?.error);
+          setSuccess(result?.success);
         })
-        .catch((err: any) => {
-          console.error("Reset Function Error:", err);
-          setError("An unexpected error occurred.");
-        });
     });
   }
 
-  useEffect(() => {
-
-  }, [error, success]);
   return (
     <Card className='w-[400px] bg-white text-black shadow-xl shadow-white/20'>
       <CardHeader>
@@ -71,7 +64,7 @@ const ForgotPasswordCard = ({errorMessage,successMessage,resetFunction,backFunct
                 </FormItem>
               )}/>
             </div>
-            <FormResult type="error" message={error }/>
+            <FormResult type="error" message={error}/>
             <FormResult type="success" message={success}/>
             <Button  disabled={isPending}  variant="default" type="submit">Send Email</Button>
           </form>

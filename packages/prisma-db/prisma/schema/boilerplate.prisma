@@ -6,7 +6,8 @@ model User {
   image         String?
   role          UserRole        @default(USER)
   access        AccountAccess   @default(TRIAL)
-  creditsUsed    Int             @default(0)
+  creditsUsed   Int             @default(0)
+  creditsTotal  Int             @default(20)
   accounts      Account[]
   sessions      Session[]
   connections   Connection[]

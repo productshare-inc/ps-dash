@@ -4,7 +4,6 @@ import { useRouter} from 'next/navigation'
 import React, {useState,useEffect } from 'react'
 import ForgotPasswordPage from '@repo/ui/templates/auth/v1/ForgotPasswordPage'
 import { ForgotPassword } from '../_actions/forgot-password'
-import { DataResultProps } from '@repo/ts-types/auth/v1'
 
 const ForgotPasswordClient = () => {
     const router = useRouter()
@@ -24,7 +23,7 @@ const ForgotPasswordClient = () => {
     const ResetPasswordFunction = async (email: string) => {
         if (success || error) return;
         try {
-            const data:DataResultProps = await ForgotPassword(email)
+            const data = await ForgotPassword(email)
             setSuccess(data?.success)
             setError(data?.error)
         } catch  {

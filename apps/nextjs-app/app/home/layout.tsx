@@ -12,6 +12,8 @@ import { pricingList } from "../../lib/constants/landing-page";
 import { getUserDetails } from "./_actions/prisma";
 import { RecoilRoot } from "recoil";
 import { SupportChat } from "@repo/ui/organisms/custom/home/SupportChat";
+import { Separator } from "@repo/ui/atoms/shadcn/separator";
+import {BreadcrumbsHeader} from "@repo/ui/molecules/custom/v1/BreadcrumbsHeader"
 
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -84,10 +86,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             maxProCredits={maxProCredits}
             showCredits={showCredits}
           />
-        <main>
-          <SidebarTrigger />
+        <div className="flex flex-col flex-1 min-h-screen">
+          <div className="flex items-center gap-4 py-2">
+            <SidebarTrigger />
+            <BreadcrumbsHeader />
+          </div>
+          <Separator/>
           {children}
-        </main>
+        </div>
         <SupportChat/>
       </SidebarProvider>
     </RecoilRoot>
