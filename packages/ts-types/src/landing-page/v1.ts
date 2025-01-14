@@ -3,6 +3,32 @@ export interface RouteProps {
     label: string;
   }
 
+  export interface ServiceProps {
+    title: string;
+    description: string;
+  }
+
+  export interface ProductProps {
+    title: string;
+    description: string;
+    demo?: string;
+    github?: string;
+    image?: string;
+    notion?: string;
+
+}
+    
+  export interface StatisticsProps {
+    users: string;
+    subscribers: string;
+    products: string;
+    downloads: string;
+  }
+
+  export interface AboutProps  extends StatisticsProps{
+    companyDetails: string;
+
+}
 export interface NavbarProps {
     donateNowLink?: string;
     routeList: RouteProps[];
@@ -35,8 +61,11 @@ export interface FeaturesProps {
     featureList: string[];
   }
 
+  export interface AboutProps  extends StatisticsProps{
+    companyDetails: string;
 
-export interface LandingPageProps  extends NavbarProps{
+}
+export interface LandingPageProps  extends NavbarProps, HeroProps{
     documentationLink: string;
     loginFunction: () => void;
     tagline: string;
@@ -50,6 +79,9 @@ export interface LandingPageProps  extends NavbarProps{
     creator: string;
     creatorLink: string;
     teamList: TeamProps[];
+    productsList?: ProductProps[];
+    servicesList?: ServiceProps[];
+    about?: AboutProps;
     supportEmailAddress: string;
   }
 

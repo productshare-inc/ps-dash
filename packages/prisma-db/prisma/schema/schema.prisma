@@ -12,6 +12,6 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  schemas = ["boilerplate_schema"]
+  schemas = ["boilerplate_schema","scrapeflow_schema"]
 }
 

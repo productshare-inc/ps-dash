@@ -8,7 +8,7 @@ import "../../../packages/ui/src/styles/custom/heroBackgroundAnimation.css"
 import { SessionProviders } from "../providers/session-provider";
 import { Toaster } from "@repo/ui/molecules/custom/v1/Toaster";
 import { Analytics } from "@vercel/analytics/react"
-
+import { TanstackProvider } from "../providers/tanstack-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,17 +31,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
           <SessionProviders>
-            <ThemeProvider defaultTheme="dark" >
-              {children}
-              <Analytics/>
-              <Toaster />
-            </ThemeProvider>
+            <TanstackProvider>
+              <ThemeProvider defaultTheme="dark" >
+                {children}
+                <Analytics/>
+                <Toaster />
+              </ThemeProvider>
+            </TanstackProvider>
           </SessionProviders>
 
       </body>

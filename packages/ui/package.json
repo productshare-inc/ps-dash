@@ -10,6 +10,7 @@
     "./templates/*": "./src/components/templates/*.tsx",
     "./styles/*": "./src/styles/*.css",
     "./lib/*": "./src/lib/*.ts",
+    "./hooks/*": "./src/hooks/*.tsx",
     "./providers/*": "./src/providers/*.tsx",
     "./postcss.config": "./postcss.config.cjs",
     "./tailwind.config": "./tailwind.config.js"
