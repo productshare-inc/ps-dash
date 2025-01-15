@@ -18,7 +18,7 @@ const NodeCard = ({children,nodeId,isSelected}:{nodeId: string; children: React.
             if (!x || !y) return;
             setCenter(x,y,{zoom:1, duration: 500})
         }}
-        className={cn('rounded-md cursor-pointer bg-background border-2 border-separate w-[420px] text-xs gap-1 flex flex-col',
+        className={cn('rounded-md cursor-pointer bg-background border-2 border-separate w-[420px] text-xs gap-1 flex flex-col rounded-b-none',
             isSelected && 'border-primary'
         )}>
             {children}

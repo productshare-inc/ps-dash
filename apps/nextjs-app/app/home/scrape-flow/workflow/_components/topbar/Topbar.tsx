@@ -6,10 +6,10 @@ import React from 'react'
 import { ChevronLeftIcon } from 'lucide-react'
 import SaveBtn from './SaveBtn'
 
-const Topbar = ({title,subtitle}:{title:string, subtitle?:string}) => {
+const Topbar = ({title,subtitle,workflowId}:{title:string, subtitle?:string,workflowId:string}) => {
     const router = useRouter()
   return (
-    <header className='flex p-2 border-p-2 border-separate justify-between w-full h-[60px] sticky top-0 bg-background z-10'>
+    <header className='flex p-2 border-b-2 border-separate justify-between w-full h-[60px] sticky top-0 bg-background z-10'>
         <div className='flex gap-1 flex-1'>
             <TooltipWrapper content="Back">
                 <Button variant="ghost" size="icon" onClick={() => router.back()}>
@@ -24,7 +24,7 @@ const Topbar = ({title,subtitle}:{title:string, subtitle?:string}) => {
             </div>
         </div>
         <div className='flex gap-1 flex-1 justify-end'>
-            <SaveBtn/>
+            <SaveBtn workflowId={workflowId}/>
         </div>
     </header>
   )

@@ -1,5 +1,6 @@
-import {LucideIcon} from "lucide-react";
+import {LucideIcon, LucideProps} from "lucide-react";
 import React from "react";
+import { TaskParam, TaskType } from "./node";
 
 export interface CustomDialogHeaderProps {
     title?: string;
@@ -27,4 +28,15 @@ export interface DeleteWorkflowDialogProps {
     setOpen: (open: boolean) => void;
     workflowName: string;
     workflowId: string;
+}
+
+export type WorkflowTask = {
+    label: string;
+    icon: React.FC<LucideProps>;
+    type: TaskType;
+    isEntryPoint?: boolean;
+    inputs: TaskParam[];
+    outputs: TaskParam[];
+    credits: number;
+
 }

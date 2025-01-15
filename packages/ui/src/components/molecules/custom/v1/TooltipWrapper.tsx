@@ -1,6 +1,6 @@
 "use client"
 
-import { TooltipWrapperProps } from '@repo/ts-types/scrape-flow/v1'
+import { TooltipWrapperProps } from '@repo/ts-types/scrape-flow/workflow'
 import {
     Tooltip,
     TooltipContent,

@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import { DialogHeader,DialogTitle } from '../../shadcn/dialog'
-import {CustomDialogHeaderProps} from '@repo/ts-types/scrape-flow/v1'
+import {CustomDialogHeaderProps} from '@repo/ts-types/scrape-flow/workflow'
 import { cn } from '../../../../lib/utils'
 import {Separator} from '../../../atoms/shadcn/separator'
 
