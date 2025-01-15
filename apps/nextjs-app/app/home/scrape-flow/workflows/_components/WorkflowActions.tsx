@@ -6,11 +6,11 @@ import TooltipWrapper from '@repo/ui/molecules/custom/v1/TooltipWrapper'
 import { TrashIcon } from 'lucide-react'
 import DeleteWorkflowDialog from './DeleteWorkflowDialog'
 
-const WorkflowActions = ({workflowName}:{workflowName:string}) => {
+const WorkflowActions = ({workflowName,workflowId}:{workflowName:string,workflowId:string}) => {
     const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   return (
     <>
-        <DeleteWorkflowDialog open={showDeleteDialog} setOpen={setShowDeleteDialog} workflowName={workflowName}/>
+        <DeleteWorkflowDialog open={showDeleteDialog} setOpen={setShowDeleteDialog} workflowName={workflowName} workflowId={workflowId}/>
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant='outline' size='sm'>

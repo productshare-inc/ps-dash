@@ -15,13 +15,22 @@ import {
 import { Input } from '@repo/ui/atoms/shadcn/input'
 import { useMutation } from '@tanstack/react-query'
 import { DeleteWorkflow } from '../../_actions/workflows'
+import { DeleteWorkflowDialogProps } from '@repo/ts-types/scrape-flow/workflow'
+import { useToast } from '@repo/ui/hooks/use-toast'
 
-const DeleteWorkflowDialog = ({open, setOpen,workflowName}:{open:boolean, setOpen: (open:boolean)=> void, workflowName:string}) => {
+const DeleteWorkflowDialog = ({open, setOpen,workflowName,workflowId}:DeleteWorkflowDialogProps) => {
+    const {toast} = useToast()
     const [confirmText, setConfirmText] = useState('')
     const deleteMutation = useMutation({
         mutationFn: DeleteWorkflow,
-        onSuccess: ()=>{},
-        onError: ()=>{}
+        onSuccess: ()=>{
+            toast({title: "Success", description: "Workflow deleted", variant: 'success'})
+            setConfirmText('')
+        },
+        onError: ()=>{
+            toast({title: "Error", description: "Failed to delete workflow", variant: 'destructive'})
+
+        }
     })
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
@@ -37,8 +46,13 @@ const DeleteWorkflowDialog = ({open, setOpen,workflowName}:{open:boolean, setOpe
                 </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction disabled={confirmText !== workflowName || deleteMutation.isPending} className='bg-destructive text-destructive-foreground hover:bg-destructive/90'>
+                <AlertDialogCancel onClick={() => setConfirmText('')}>Cancel</AlertDialogCancel>
+                <AlertDialogAction disabled={confirmText !== workflowName || deleteMutation.isPending} 
+                className='bg-destructive text-destructive-foreground hover:bg-destructive/90'
+                onClick={()=>{
+                    toast({title: "Deleting workflow....", description: "Please wait", variant: 'default'})
+                    deleteMutation.mutate(workflowId)
+                }}>
                     Delete
                 </AlertDialogAction>
             </AlertDialogFooter>

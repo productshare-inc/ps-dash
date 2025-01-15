@@ -2,7 +2,7 @@
 import React from 'react'
 import { Workflow } from "@prisma/client"
 import { Card, CardContent } from '@repo/ui/molecules/shadcn/card'
-import { WorkflowStatus } from '@repo/ts-types/scrape-flow/v1'
+import { WorkflowStatus } from '@repo/ts-types/scrape-flow/workflow'
 import { FileTextIcon, PlayIcon } from 'lucide-react'
 import { cn } from '@repo/ui/lib/utils'
 import Link from 'next/link'
@@ -46,7 +46,7 @@ const WorkflowCard = ({workflow}: {workflow: Workflow}) => {
                     <ShuffleIcon size={16}/>
                     Edit
                 </Link>
-                <WorkflowActions workflowName={workflow.name}/>
+                <WorkflowActions workflowName={workflow.name} workflowId={workflow.id}/>
             </div>
         </CardContent>
     </Card>

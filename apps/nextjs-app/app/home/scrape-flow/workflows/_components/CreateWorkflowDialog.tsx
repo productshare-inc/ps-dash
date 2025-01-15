@@ -34,7 +34,7 @@ const CreateWorkflowDialog = ({triggerText}:{triggerText?:string}) => {
     const onSubmit = useCallback((values:createWorkflowSchemaType)=>{
       toast({title: "Creating workflow....", description: "Please wait", variant: 'default'})
       mutate(values)
-    },[mutate])
+    },[mutate,toast])
 
   return (
     <Dialog open={open} onOpenChange={(open)=>{form.reset();setOpen(open)}}>

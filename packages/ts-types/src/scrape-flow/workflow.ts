@@ -21,3 +21,10 @@ export interface TooltipWrapperProps {
     content: React.ReactNode;
     side?: 'top' | 'bottom' | 'left' | 'right';
 }
+
+export interface DeleteWorkflowDialogProps {
+    open: boolean;
+    setOpen: (open: boolean) => void;
+    workflowName: string;
+    workflowId: string;
+}

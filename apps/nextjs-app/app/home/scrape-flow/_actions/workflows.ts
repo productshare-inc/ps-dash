@@ -2,7 +2,7 @@
 
 import { auth } from "@repo/next-auth/auth"
 import db from "@repo/prisma-db/client"
-import { WorkflowStatus } from "@repo/ts-types/scrape-flow/v1";
+import { WorkflowStatus } from "@repo/ts-types/scrape-flow/workflow";
 import { createWorkflowSchema, createWorkflowSchemaType } from "@repo/zod/scrape-flow/workflow";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -50,7 +50,7 @@ export async function DeleteWorkflow(id:string) {
     if (!session?.user?.id) {
         throw new Error("User not authenticated");
     }
-    const result = await db.workflow.delete({
+    await db.workflow.delete({
         where: {
             id,
             userId: session.user.id
