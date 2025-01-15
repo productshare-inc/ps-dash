@@ -9,6 +9,8 @@ import { SessionProviders } from "../providers/session-provider";
 import { Toaster } from "@repo/ui/molecules/custom/v1/Toaster";
 import { Analytics } from "@vercel/analytics/react"
 import { TanstackProvider } from "../providers/tanstack-provider";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -42,6 +44,7 @@ export default function RootLayout({
               <ThemeProvider defaultTheme="dark" >
                 {children}
                 <Analytics/>
+                <SpeedInsights/>
                 <Toaster />
               </ThemeProvider>
             </TanstackProvider>
