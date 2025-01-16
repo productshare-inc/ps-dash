@@ -115,25 +115,26 @@ const FlowEditor = ({ workflow }: { workflow: Workflow }) => {
 
   return (
     <main className="h-full w-full">
-      <ReactFlow 
-        nodes={nodes} 
-        edges={edges} 
-        onNodesChange={onNodesChange} 
-        onEdgesChange={onEdgesChange} 
-        nodeTypes={nodeTypes} 
-        edgeTypes={edgeTypes} 
-        snapToGrid 
-        snapGrid={snapGrid} 
-        fitView 
-        fitViewOptions={fitViewOptions} 
-        onDragOver={onDragOver} 
-        onDrop={onDrop} 
-        onConnect={onConnect}
-        isValidConnection={isValidConnection}
-      >
-        <Controls position ="top-right" style={{color: "black"}} fitViewOptions={fitViewOptions}/>
-        <Background variant={BackgroundVariant.Dots} gap={12} size={1}/>
-      </ReactFlow>
+
+        <ReactFlow 
+          nodes={nodes} 
+          edges={edges} 
+          onNodesChange={onNodesChange} 
+          onEdgesChange={onEdgesChange} 
+          nodeTypes={nodeTypes} 
+          edgeTypes={edgeTypes} 
+          snapToGrid 
+          snapGrid={snapGrid} 
+          fitView 
+          fitViewOptions={fitViewOptions} 
+          onDragOver={onDragOver} 
+          onDrop={onDrop} 
+          onConnect={onConnect}
+          isValidConnection={isValidConnection}
+        >
+          <Controls position ="top-right" style={{color: "black"}} fitViewOptions={fitViewOptions}/>
+          <Background variant={BackgroundVariant.Dots} gap={12} size={1}/>
+        </ReactFlow>
     </main>
   );
 };

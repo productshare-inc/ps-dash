@@ -29,3 +29,8 @@ export interface TaskParam {
     hideHandle?: boolean;
     [key:string] : any;
 }
+
+export type AppNodeMissingInputs = {
+    nodeId: string;
+    inputs: string[];
+}

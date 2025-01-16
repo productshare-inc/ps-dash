@@ -3,9 +3,13 @@
 import { cn } from '@repo/ui/lib/utils';
 import { useReactFlow } from '@xyflow/react';
 import React from 'react'
+import useFlowValidation from '../../../_hooks/useFlowValidation';
 
 const NodeCard = ({children,nodeId,isSelected}:{nodeId: string; children: React.ReactNode,isSelected:boolean}) => {
     const {getNode, setCenter} = useReactFlow()
+    const {invalidInputs} = useFlowValidation();
+    const hasInvalidInputs = invalidInputs.some((input)=>input.nodeId === nodeId);
+
     return (
         <div onDoubleClick={()=>{
             const node = getNode(nodeId)
@@ -19,7 +23,8 @@ const NodeCard = ({children,nodeId,isSelected}:{nodeId: string; children: React.
             setCenter(x,y,{zoom:1, duration: 500})
         }}
         className={cn('rounded-md cursor-pointer bg-background border-2 border-separate w-[420px] text-xs gap-1 flex flex-col rounded-b-none',
-            isSelected && 'border-primary'
+            isSelected && 'border-primary',
+            hasInvalidInputs && "border-destructive border-2"
         )}>
             {children}
         </div>

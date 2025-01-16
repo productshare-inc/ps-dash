@@ -224,7 +224,7 @@ export const pricingList: PricingProps[] = [
       popular: 0,
       price: "",
       priceType: "/Customized Pricing",
-      href: "https://mail.google.com/mail?view=cm&fs=1&to=support@bsamaritan.com&su=Support",
+      href: "https://mail.google.com/mail?view=cm&fs=1&to=support@bayesian-labs.com&su=Support",
       description:
         "Customize this boilerplate code to your own startup needs.",
       buttonText: "Contact Us",
@@ -290,23 +290,23 @@ export const pricingList: PricingProps[] = [
     "Documentation": [
         {
             label: "Overview",
-            href: "https://docs.bsamaritan.com/docs/overview/"
+            href: "https://docs.bayesian-labs.com/docs/overview/"
         },
         {
             label: "Getting Started",
-            href: "https://docs.bsamaritan.com/docs/category/getting-started"
+            href: "https://docs.bayesian-labs.com/docs/category/getting-started"
         },
         {
             label: "Deployment",
-            href: "https://docs.bsamaritan.com/docs/category/deployment"
+            href: "https://docs.bayesian-labs.com/docs/category/deployment"
         },
         {
             label: "Troubleshooting",
-            href: "https://docs.bsamaritan.com/docs/troubleshooting"
+            href: "https://docs.bayesian-labs.com/docs/troubleshooting"
         },
         {
             label: "FAQs",
-            href: "https://docs.bsamaritan.com/docs/faqs"
+            href: "https://docs.bayesian-labs.com/docs/faqs"
         }
     ],
     "Legal": [

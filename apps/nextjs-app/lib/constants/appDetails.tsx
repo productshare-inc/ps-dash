@@ -10,14 +10,14 @@ export const tagline = "Best Turborepo Micro SaaS Boilerplate Code"
 export const description = "Build your Turborepo Micro SaaS Application effortlessly by keeping and modifying the required components, packages and apps to your project."
 export const creator = "Anoop Karnik"
 export const creatorLink = "https://www.linkedin.com/in/anoopkarnik/"
-export const supportEmailAddress = "support@bsamaritan.com"
+export const supportEmailAddress = "support@bayesian-labs.com"
 export const donateNowLink = "https://razorpay.me/@bayesianlabs"
 
 //legal constants
 
 export const lastUpdatedPrivacyPolicy = '2024-12-22';
 export const companyName = 'ANOOP KARNIK DASIKA';
-export const websiteUrl = 'https://dev.boilerplate.bsamaritan.com';
+export const websiteUrl = 'https://dev.boilerplate.bayesian-labs.com';
 export const country = 'India';
 export const version = '1.0.0';
 export const address = 'B-2, Maruthi Enclave, Domalguda, Hyderabad, Telangana, India - 500029';
