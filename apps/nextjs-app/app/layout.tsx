@@ -10,6 +10,7 @@ import { Toaster } from "@repo/ui/molecules/custom/v1/Toaster";
 import { Analytics } from "@vercel/analytics/react"
 import { TanstackProvider } from "../providers/tanstack-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 
 const geistSans = localFont({
@@ -49,7 +50,7 @@ export default function RootLayout({
               </ThemeProvider>
             </TanstackProvider>
           </SessionProviders>
-
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID as string}/>
       </body>
     </html>
   );
