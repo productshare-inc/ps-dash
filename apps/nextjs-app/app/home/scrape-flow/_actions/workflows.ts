@@ -3,7 +3,7 @@
 import { auth } from "@repo/next-auth/auth"
 import db from "@repo/prisma-db/client"
 import { AppNode, TaskType } from "@repo/ts-types/scrape-flow/node";
-import { WorkflowExecutionPlan, WorkflowStatus } from "@repo/ts-types/scrape-flow/workflow";
+import { ExecutionPhaseStatus, WorkflowExecutionPlan, WorkflowExecutionStatus, WorkflowExecutionTrigger, WorkflowStatus } from "@repo/ts-types/scrape-flow/workflow";
 import { createWorkflowSchema, createWorkflowSchemaType } from "@repo/zod/scrape-flow/workflow";
 import { Edge } from "@xyflow/react";
 import { revalidatePath } from "next/cache";
@@ -11,6 +11,7 @@ import { redirect } from "next/navigation";
 import { CreateFlowNode } from "../_lib/workflow/tasks";
 import { FlowToExecutionPlan } from "../_lib/workflow/executionPlan";
 import { TaskRegistry } from "../_lib/workflow/registry";
+import { executeWorkflow } from "../_lib/workflow/executeWorkflow";
 
 const initialFlow: { nodes: AppNode[]; edges: Edge[]} ={
     nodes: [],
@@ -142,15 +143,16 @@ export async function RunWorkflow(form: {workflowId:string, flowDefinition?:stri
         data:{
             workflowId,
             userId: session.user.id,
-            status: "PENDING",
+            status: WorkflowExecutionStatus.PENDING,
             startedAt: new Date(),
-            trigger: "manual",
+            trigger: WorkflowExecutionTrigger.MANUAL,
+            definition: flowDefinition,
             phases: {
                 create: executionPlan.flatMap(phase => {
                     return phase.nodes.flatMap(node=>{
                         return {
                             userId: session.user.id,
-                            status: "CREATED",
+                            status: ExecutionPhaseStatus.CREATED,
                             number: phase.phase,
                             node: JSON.stringify(node),
                             name: TaskRegistry[node.data.type].label
@@ -167,4 +169,41 @@ export async function RunWorkflow(form: {workflowId:string, flowDefinition?:stri
     if (!execution){
         throw new Error("Failed to create execution");
     }
+    executeWorkflow(execution.id); //run this on background
+    redirect(`/home/scrape-flow/workflow/runs/${workflowId}/${execution.id}`);
+}
+
+export async function GetWorkflowExecutionWithPhases(executionId: string){
+    const session = await auth();
+    if (!session?.user?.id) {
+        throw new Error("User not authenticated");
+    }
+    const execution = await db.workflowExecution.findUnique({
+        where: {
+            id: executionId,
+            userId: session.user.id
+        },
+        include: {
+            phases: {
+                orderBy: {
+                    number: 'asc',
+                }
+            }
+        }
+    })
+    return execution;
+}
+
+export async function GetWorkflowPhaseDetails(phaseId: string){
+    const session = await auth();
+    if (!session?.user?.id) {
+        throw new Error("User not authenticated");
+    }
+    const phase = await db.executionPhase.findUnique({
+        where: {
+            id: phaseId,
+            userId: session.user.id
+        }
+    })
+    return phase;
 }

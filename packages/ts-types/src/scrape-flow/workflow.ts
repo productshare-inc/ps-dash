@@ -1,6 +1,7 @@
 import {LucideIcon, LucideProps} from "lucide-react";
 import React from "react";
 import { AppNode, TaskParam, TaskType } from "./node";
+import { Browser, Page } from "puppeteer";
 
 export interface CustomDialogHeaderProps {
     title?: string;
@@ -48,5 +49,42 @@ export type WorkflowExecutionPlanPhase = {
 
 export type WorkflowExecutionPlan = WorkflowExecutionPlanPhase[];
 
+export enum WorkflowExecutionStatus {
+    PENDING = 'PENDING',
+    RUNNING = 'RUNNING',
+    COMPLETED = 'COMPLETED',
+    FAILED = 'FAILED',
+}
 
+export enum ExecutionPhaseStatus {
+    CREATED = 'CREATED',
+    PENDING = 'PENDING',
+    RUNNING = 'RUNNING',
+    COMPLETED = 'COMPLETED',
+    FAILED = 'FAILED',
+}
 
+export enum WorkflowExecutionTrigger {
+    MANUAL = "MANUAL"
+}
+
+export type Environment = {
+    browser?: Browser;
+    page?: Page;
+    phases: Record<string, {
+            inputs: Record<string, string>;
+            outputs: Record<string, string>;
+        }>
+    }
+
+export type ExecutionEnvironment<T extends WorkflowTask> = {
+    getInput(name:T["inputs"][number]["name"]): string | undefined;
+    setOutput(name:T["outputs"][number]["name"], value:string): void;
+
+    getBrowser(): Browser | undefined;
+    setBrowser(browser: Browser): void;
+
+    getPage(): Page | undefined;
+    setPage(page: Page): void;
+
+}

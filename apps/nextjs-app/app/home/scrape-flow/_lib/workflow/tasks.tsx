@@ -15,16 +15,16 @@ export const LaunchBrowserTask = {
             name: "Website Url",
             type: TaskParamType.STRING,
             helperText: "eg: https://www.google.com",
-            required: false,
+            required: true,
             hideHandle: true
         }
-    ],
+    ] as const,
     outputs: [
         {
             name: "Web page",
             type: TaskParamType.BROWSER_INSTANCE,
         }
-    ],
+    ] as const,
     credits: 5
 } satisfies WorkflowTask;
 
@@ -42,7 +42,7 @@ export const PageToHtmlTask = {
             required: true,
             hideHandle: false
         }
-    ],
+    ] as const,
     outputs: [
         {
             name: "Html",
@@ -52,7 +52,7 @@ export const PageToHtmlTask = {
             name: "Web Page",
             type: TaskParamType.BROWSER_INSTANCE,
         }
-    ],
+    ] as const,
     credits: 2
 } satisfies WorkflowTask;
 
@@ -75,13 +75,13 @@ export const ExtractTextFromElementTask = {
             type: TaskParamType.STRING,
             required: true,
         }
-    ],
+    ] as const,
     outputs: [
         {
             name: "Extracted Text",
             type: TaskParamType.STRING,
         }
-    ],
+    ] as const,
     credits: 2
 } satisfies WorkflowTask;
 
