@@ -5,7 +5,7 @@ import { LaunchBrowserTask } from '../tasks'
 export async function LaunchBrowserExecutor(environment:ExecutionEnvironment<typeof LaunchBrowserTask>):Promise<boolean>{
     try{
         const websiteUrl = environment.getInput("Website Url")
-        const browser = await puppeteer.launch({headless:true})
+        const browser = await puppeteer.launch({headless:true,args: ['--no-sandbox', '--disable-setuid-sandbox'],})
         environment.setBrowser(browser)
         const page = await browser.newPage()
         await page.goto(websiteUrl as string)
