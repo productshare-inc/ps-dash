@@ -7,7 +7,7 @@ import React from 'react'
 
 const NavigationTabs = ({workflowId}:{workflowId:string}) => {
     const pathname = usePathname()
-    const activeValue = pathname?.split('/')[4]
+    const activeValue = pathname?.split('/')[3]
 
   return (
     <Tabs value={activeValue} className='w-[400px]'>

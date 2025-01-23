@@ -3,15 +3,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "../../../packages/ui/src/styles/shadcn/shadcn-green.css"
 import "../../../packages/ui/src/styles/custom/scroll.css"
-import { ThemeProvider } from "@repo/ui/providers/theme-provider";
 import "../../../packages/ui/src/styles/custom/heroBackgroundAnimation.css"
-import { SessionProviders } from "../providers/session-provider";
-import { Toaster } from "@repo/ui/molecules/custom/v1/Toaster";
-import { Analytics } from "@vercel/analytics/react"
-import { TanstackProvider } from "../providers/tanstack-provider";
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { GoogleAnalytics } from "@next/third-parties/google";
-import NextTopLoader from "nextjs-toploader";
+import RootClientLayout from "./_components/RootClientLayout";
+import { description, title } from "../lib/constants/appDetails";
 
 
 const geistSans = localFont({
@@ -26,33 +20,19 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Turborepo Micro SaaS Boilerplate",
-  description: "Build your Turborepo Micro SaaS Application in turborepo effortlessly by keeping and modifying the required components, packages and apps to your project.",
+  title: title,
+  description: description,
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-
+}) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-          <SessionProviders>
-            <TanstackProvider>
-              <NextTopLoader color="#10b981" showSpinner={false} />
-              <ThemeProvider defaultTheme="dark" >
-                {children}
-                <Analytics/>
-                <SpeedInsights/>
-                <Toaster />
-              </ThemeProvider>
-            </TanstackProvider>
-          </SessionProviders>
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID as string}/>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} >
+      <body className="px-4" >
+        <RootClientLayout>{children}</RootClientLayout>
       </body>
     </html>
   );

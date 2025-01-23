@@ -34,9 +34,9 @@ import { UserProps } from "@repo/ts-types/home/v1"
 import { SettingsDialog } from "../../../templates/home/Settings"
 import { useTheme } from "../../../../providers/theme-provider"
 import { Theme } from "./Theme"
-import { useSession } from "next-auth/react"
+import { signOut, useSession } from "next-auth/react"
 
-const SidebarUser = ({ logoutFunction,documentationLink,supportEmailAddress, githubUsername,githubRepositoryName,
+const SidebarUser = ({ documentationLink,supportEmailAddress, githubUsername,githubRepositoryName,
    connections,pricingList}:UserProps) => {
 
   const { data:session,status } = useSession();
@@ -172,7 +172,9 @@ const SidebarUser = ({ logoutFunction,documentationLink,supportEmailAddress, git
                   </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="flex gap-2 cursor-pointer" onClick={logoutFunction}>
+            <DropdownMenuItem className="flex gap-2 cursor-pointer" onClick={
+              ()=> signOut()
+            }>
               <LogOut  size={20} />
               Log out
             </DropdownMenuItem>

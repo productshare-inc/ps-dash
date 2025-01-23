@@ -24,7 +24,6 @@ export interface CompanyLogoNameProps {
     quote: string;
     logo: string;
     darkLogo: string;
-    homePath: string;
 }
 
 
@@ -42,7 +41,6 @@ export interface UserProps {
     supportEmailAddress?: string;
     githubUsername?: string;
     githubRepositoryName?: string;
-    logoutFunction?: () => void;
     connections?: ConnectionCardProps[];
     pricingList: PricingProps[];
 }

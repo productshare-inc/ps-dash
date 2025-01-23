@@ -3,7 +3,7 @@
 import { SidebarProvider, SidebarTrigger } from "@repo/ui/organisms/shadcn/sidebar"
 import { AppSidebar } from "@repo/ui/organisms/custom/home/AppSidebar"
 import { CONNECTIONS, sidebarFooterItems, sidebarItems } from "../../lib/constants/home"
-import { useSession, signOut } from "next-auth/react";
+import { useSession} from "next-auth/react";
 import { useEffect, useState } from "react";
 import LoadingCard from "@repo/ui/organisms/custom/auth/v1/LoadingCard";
 import { darkLogo, githubRepositoryName, githubUsername, logo, showCredits, supportEmailAddress, tagline, title } from "../../lib/constants/appDetails";
@@ -17,17 +17,12 @@ import {BreadcrumbsHeader} from "@repo/ui/molecules/custom/v1/BreadcrumbsHeader"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 
-    const homePath = '/home'
     const documentationLink = process.env.NEXT_PUBLIC_DOCUMENTATION_URL as string;
 
     const { status } = useSession();
     
     const [userDetails, setUserDetails] = useState<any>(null)
     
-    const logout = async () => {
-        await signOut()
-    }
-
     // Function to fetch user details
     const fetchUserDetails = async () => {
       try {
@@ -63,8 +58,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             logo={logo}
             darkLogo={darkLogo}
             quote={tagline}
-            homePath={homePath}
-            logoutFunction={logout}
             pricingList={pricingList}
             documentationLink={documentationLink}
             supportEmailAddress={supportEmailAddress}

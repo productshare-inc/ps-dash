@@ -4,7 +4,7 @@ import { CompanyLogoNameProps } from "@repo/ts-types/home/v1";
 import Image from "next/image";
 import { useEffect } from "react";
 
-export function CompanyLogoName({logo,darkLogo,name,quote,homePath}:CompanyLogoNameProps) {
+export function CompanyLogoName({logo,darkLogo,name,quote}:CompanyLogoNameProps) {
     const {theme} = useTheme();
 
     useEffect(()=>{
@@ -12,7 +12,7 @@ export function CompanyLogoName({logo,darkLogo,name,quote,homePath}:CompanyLogoN
     },[theme])
 
   return (
-    <a href={homePath} className="flex gap-2 m-2">
+    <a href={'/'} className="flex gap-2 m-2">
         <div className="flex aspect-square size-8 items-center justify-center ">
             {theme === "dark" ?
                 <Image src={darkLogo} alt='/next.svg' width={30} height={30} /> : 

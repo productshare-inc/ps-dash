@@ -5,7 +5,7 @@ import {NextRequest,NextResponse} from "next/server";
 import { apiAuthPrefix, authRoutes, DEFAULT_LOGIN_REDIRECT, publicRoutes, settingsRoutes } from "./routes";
 import { RateLimiterMemory } from "rate-limiter-flexible";
 
-const allowedOrigins = ['http://localhost', 'https://bsamaritan.com']
+const allowedOrigins = ['http://localhost', 'https://bsamaritan.com','https://bayesian-labs.com']
 
 const corsOptions = {
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',

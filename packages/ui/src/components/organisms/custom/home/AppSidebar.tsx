@@ -15,8 +15,8 @@ import ProgressWithCredits from "../../../molecules/custom/v1/ProgressWithCredit
 import { UpgradeToProButton } from "../../../molecules/custom/v1/UpgradeToProButton";
 import NotificationSheet from "./NotificationSheet";
 
-export function AppSidebar({name,quote,logo,darkLogo,homePath,items,footerItems,pricingList,
-    logoutFunction,documentationLink,supportEmailAddress,githubUsername,githubRepositoryName,connections,showCredits,userDetails}:sidebarProps) {
+export function AppSidebar({name,quote,logo,darkLogo,items,footerItems,pricingList,documentationLink,
+    supportEmailAddress,githubUsername,githubRepositoryName,connections,showCredits,userDetails}:sidebarProps) {
         
     return (
         <Sidebar>
@@ -24,7 +24,7 @@ export function AppSidebar({name,quote,logo,darkLogo,homePath,items,footerItems,
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
-                            <CompanyLogoName logo={logo} darkLogo={darkLogo} name={name} quote={quote} homePath={homePath}/>
+                            <CompanyLogoName logo={logo} darkLogo={darkLogo} name={name} quote={quote}/>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>
@@ -39,7 +39,7 @@ export function AppSidebar({name,quote,logo,darkLogo,homePath,items,footerItems,
                 {userDetails?.access === "TRIAL" ? <UpgradeToProButton />:null}
                 {showCredits && 
                 <ProgressWithCredits creditsUsed={userDetails?.creditsUsed } creditsTotal={userDetails?.creditsTotal}/>}
-                <SidebarUser logoutFunction={logoutFunction} pricingList={pricingList}
+                <SidebarUser  pricingList={pricingList}
                       documentationLink={documentationLink} supportEmailAddress={supportEmailAddress} githubUsername={githubUsername} 
                       githubRepositoryName={githubRepositoryName} connections={connections}/>
             </SidebarFooter>
