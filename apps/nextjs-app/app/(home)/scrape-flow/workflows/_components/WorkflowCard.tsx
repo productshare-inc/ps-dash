@@ -29,7 +29,7 @@ const WorkflowCard = ({workflow}: {workflow: Workflow}) => {
                 </div>
                 <div>
                     <div className='text-emphasized text-muted-foreground flex items-center'>
-                        <Link href={`/home/scrape-flow/workflow/editor/${workflow.id}`} className='flex items-center hover:underline'>
+                        <Link href={`/scrape-flow/workflow/editor/${workflow.id}`} className='flex items-center hover:underline'>
                             {workflow.name}
                         </Link>
                         {isDraft && (
@@ -41,7 +41,7 @@ const WorkflowCard = ({workflow}: {workflow: Workflow}) => {
                 </div>
             </div>
             <div className='flex items-center gap-2 space-x-2'>
-                <Link href={`/home/scrape-flow/workflow/editor/${workflow.id}`} 
+                <Link href={`/scrape-flow/workflow/editor/${workflow.id}`} 
                 className={cn(buttonVariants({variant: "outline", size: "sm"}),"flex items-center gap-2")}>
                     <ShuffleIcon size={16}/>
                     Edit

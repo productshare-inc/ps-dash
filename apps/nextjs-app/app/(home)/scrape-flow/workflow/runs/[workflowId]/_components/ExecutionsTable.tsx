@@ -40,7 +40,7 @@ const ExecutionsTable = ({workflowId,initialData}:{workflowId:string,initialData
                     formatDistanceToNow(execution.startedAt, { addSuffix: true })
                     return (
                     <TableRow key={execution.id} className='hover:bg-accent cursor-pointer'
-                        onClick={() => router.push(`/home/scrape-flow/workflow/runs/${workflowId}/${execution.id}`)}>
+                        onClick={() => router.push(`/scrape-flow/workflow/runs/${workflowId}/${execution.id}`)}>
                         <TableCell className='flex flex-col'>
                            <span className='font-semibold'>{execution.id}</span>
                            <div className='text-muted-foreground text-xs'>

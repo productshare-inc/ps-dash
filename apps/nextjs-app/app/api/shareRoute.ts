@@ -1,5 +1,5 @@
 import { increaseCredits} from "@repo/prisma-db/repo/user";
-import { getUserDetails } from "../home/_actions/prisma";
+import { getUserDetails } from "../(home)/_actions/prisma";
 import { NextResponse } from "next/server";
 import { auth } from "@repo/next-auth/auth";
 

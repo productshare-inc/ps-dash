@@ -1,16 +1,22 @@
 
 import { atom, useRecoilState, useSetRecoilState } from "recoil";
-import {UserDetailsProps } from "@repo/ts-types/home/v1";
+import { AccountAccess, User, UserRole } from "@prisma/client";
 
-export const userDetailsState = atom<UserDetailsProps>({
+export const userDetailsState = atom<User>({
     key: "userDetailsState", // Unique key for this atom
     default: {
         creditsUsed: 0,
-        access: "",
+        creditsTotal: 0,
+        access: AccountAccess.TRIAL,
         name: "",
         email: "",
-        role: "",
-        image: ""
+        emailVerified: null,
+        role: UserRole.USER,
+        image: "",
+        id: "",
+        password: "",
+        createdAt: new Date(),
+        updatedAt: new Date(),
     } // Initial empty array of notifications
 });
 

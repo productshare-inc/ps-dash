@@ -4,17 +4,17 @@ import {  Home, Inbox,AppWindowIcon } from "lucide-react"
 export const sidebarItems:sidebarHeaderProps = 
 {
     "Application":[
-        {title: "Home", url: "/home", icon: Home},
-        {title: "Systems", url: "/home/systems", icon: Inbox, isActive:true, items: [
-            {title: "System 1", url: "/home/systems/system1"},
-            {title: "System 2", url: "/home/systems/system2"},
-            {title: "System 3", url: "/home/systems/system3"},
+        {title: "Home", url: "/", icon: Home},
+        {title: "Systems", url: "/systems", icon: Inbox, isActive:true, items: [
+            {title: "System 1", url: "/systems/system1"},
+            {title: "System 2", url: "/systems/system2"},
+            {title: "System 3", url: "/systems/system3"},
         ]},
-        {title: "Scrape Flow", url: "/home/scrape-flow", icon: AppWindowIcon, isActive:true, items: [
-          {title: "Home", url: "/home/scrape-flow/home"},
-          {title: "Workflows", url: "/home/scrape-flow/workflows"},
-          {title: "Credentials", url: "/home/scrape-flow/credentials"},
-          {title: "Billing", url: "/home/scrape-flow/billing"},
+        {title: "Scrape Flow", url: "/scrape-flow", icon: AppWindowIcon, isActive:true, items: [
+          {title: "Home", url: "/scrape-flow/home"},
+          {title: "Workflows", url: "/scrape-flow/workflows"},
+          {title: "Credentials", url: "/scrape-flow/credentials"},
+          {title: "Billing", url: "/scrape-flow/billing"},
       ]},
     ],
 }

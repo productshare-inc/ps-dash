@@ -11,7 +11,7 @@ const Dashboard = () => {
       <h1 className='text-8xl text-primary'>404</h1>
       <h1 className='text-2xl'>Page Not Found</h1>
       <div className='text-description'>Don&apos;t worry, even the best data sometimes gets lotst in the internet</div>
-      <Button className='flex items-center gap-2 my-8' onClick={()=>router.push('/home')}>
+      <Button className='flex items-center gap-2 my-8' onClick={()=>router.push('/')}>
           <ArrowLeft size={20}/>  Back to Home
       </Button>
         <div className='text-description'>If you believe this is an error, please contack our support team</div>

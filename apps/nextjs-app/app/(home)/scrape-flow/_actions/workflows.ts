@@ -55,7 +55,7 @@ export async function CreateWorkflow(form: createWorkflowSchemaType){
     if(!result){
         throw new Error("Failed to create workflow");
     }
-    redirect(`/home/scrape-flow/workflow/editor/${result.id}`);
+    redirect(`/scrape-flow/workflow/editor/${result.id}`);
 }
 
 export async function DeleteWorkflow(id:string) {
@@ -69,7 +69,7 @@ export async function DeleteWorkflow(id:string) {
             userId: session.user.id
         }
     })
-    revalidatePath("/home/scrape-flow/workflows");
+    revalidatePath("/scrape-flow/workflows");
 }
 
 export async function UpdateWorkflow({id,definition}:{id:string,definition:string}){
@@ -98,7 +98,7 @@ export async function UpdateWorkflow({id,definition}:{id:string,definition:strin
             userId: session.user.id
         }
     })
-    revalidatePath("/home/scrape-flow/workflows")
+    revalidatePath("/scrape-flow/workflows")
 }
 
 export async function RunWorkflow(form: {workflowId:string, flowDefinition?:string}){
@@ -170,7 +170,7 @@ export async function RunWorkflow(form: {workflowId:string, flowDefinition?:stri
         throw new Error("Failed to create execution");
     }
     executeWorkflow(execution.id); //run this on background
-    redirect(`/home/scrape-flow/workflow/runs/${workflowId}/${execution.id}`);
+    redirect(`/scrape-flow/workflow/runs/${workflowId}/${execution.id}`);
 }
 
 export async function GetWorkflowExecutionWithPhases(executionId: string){
