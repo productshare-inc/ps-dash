@@ -4,7 +4,7 @@ import { auth } from "@repo/next-auth/auth"
 import db from "@repo/prisma-db/client"
 import { AppNode, TaskType } from "@repo/ts-types/scrape-flow/node";
 import { ExecutionPhaseStatus, WorkflowExecutionPlan, WorkflowExecutionStatus, WorkflowExecutionTrigger, WorkflowStatus } from "@repo/ts-types/scrape-flow/workflow";
-import { createWorkflowSchema, createWorkflowSchemaType } from "@repo/zod/scrape-flow/workflow";
+import { createWorkflowSchema, createWorkflowSchemaType, duplicateWorkflowSchema, duplicateWorkflowSchemaType } from "@repo/zod/scrape-flow/workflow";
 import { Edge } from "@xyflow/react";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -13,6 +13,7 @@ import { FlowToExecutionPlan } from "../_lib/workflow/executionPlan";
 import { TaskRegistry } from "../_lib/workflow/registry";
 import { executeWorkflow } from "../_lib/workflow/executeWorkflow";
 import { CalculateWorkflowCost } from "../_lib/workflow/helpers";
+import parser  from "cron-parser";
 
 const initialFlow: { nodes: AppNode[]; edges: Edge[]} ={
     nodes: [],
@@ -314,4 +315,85 @@ export async function UnpublishWorkflow({id}:{id:string}){
         },
     })
     revalidatePath(`/scrape-flow/workflow/editor/${id}`);
+}
+
+export async function UpdateWorkflowCron({id,cron}:{id:string,cron:string}){
+    const session = await auth();
+    if (!session?.user?.id) {
+        throw new Error("User not authenticated");
+    }
+
+    try{
+        const interval = parser.parseExpression(cron,{utc:true});
+        await db.workflow.update({
+            where: {
+                id,
+                userId: session.user.id
+            },
+            data: {
+                cron,
+                nextRunAt: interval.next().toDate()
+            },
+        })
+        
+    }catch(error){
+        console.log("Invalid cron expression",error);
+        throw new Error("Invalid cron expression");
+    }
+    revalidatePath(`/scrape-flow/workflows`);
+}
+
+export async function RemoveWorkflowSchedule(id:string){
+    const session = await auth();
+    if (!session?.user?.id) {
+        throw new Error("User not authenticated");
+    }
+    await db.workflow.update({
+        where: {
+            id,
+            userId: session.user.id
+        },
+        data: {
+            cron: null,
+            nextRunAt: null
+        },
+    })
+    revalidatePath(`/scrape-flow/workflows`);
+}
+
+export async function DuplicateWorkflow(form: duplicateWorkflowSchemaType){
+    const {success, data} = duplicateWorkflowSchema.safeParse(form);
+    if(!success){
+        throw new Error("Invalid form data");
+    }
+    const session = await auth();
+    if (!session?.user?.id) {
+        throw new Error("User not authenticated");
+    }
+    const sourceWorkflow = await db.workflow.findUnique({
+        where: {
+            id: data.workflowId,
+            userId: session.user.id
+        }
+    })
+
+    if(!sourceWorkflow){
+        throw new Error("Workflow not found");
+    }
+
+    const result = await db.workflow.create({
+        data:{
+            userId: session.user.id,
+            status: WorkflowStatus.DRAFT,
+            definition: sourceWorkflow.definition,
+            name: data.name,
+            description: data.description
+        }
+    })
+
+    if(!result){
+        throw new Error("Failed to duplicate workflow");
+    }
+
+    revalidatePath(`/scrape-flow/workflows`);
 }

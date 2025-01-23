@@ -16,7 +16,7 @@ import { decrementCredits } from "../../../../_actions/billing";
 
 
 
-export async function executeWorkflow(executionId: string) {
+export async function executeWorkflow(executionId: string, nextRunAt?: Date) {
     const execution = await db.workflowExecution.findUnique({
         where: {
             id: executionId
@@ -39,7 +39,7 @@ export async function executeWorkflow(executionId: string) {
     const environment = {phases:{}}
 
     // Initialize workflow Execution
-    await initializeWorkflowExecution(executionId, execution.workflowId)
+    await initializeWorkflowExecution(executionId, execution.workflowId, nextRunAt)
 
     //initialize phase status
     await initializePhaseStatuses(execution)
@@ -66,7 +66,7 @@ export async function executeWorkflow(executionId: string) {
     revalidatePath("/workflow/runs")
 }
 
-async function initializeWorkflowExecution(executionId: string, workflowId: string) {
+async function initializeWorkflowExecution(executionId: string, workflowId: string, nextRunAt?: Date) {
     await db.workflowExecution.update({
         where: {
             id: executionId
@@ -83,7 +83,8 @@ async function initializeWorkflowExecution(executionId: string, workflowId: stri
         data: {
             lastRunAt: new Date(),
             lastRunStatus: WorkflowExecutionStatus.RUNNING,
-            lastRunId: executionId
+            lastRunId: executionId,
+            ...(nextRunAt && { nextRunAt })
         }
     })
 }
@@ -154,7 +155,7 @@ async function executeWorkflowPhase(phase: ExecutionPhase, environment: Environm
     console.log(`Executing phase ${phase.name} with ${creditsRequired} credits`)
 
     // removing user balance
-    let success = await decrementCredits(creditsRequired, logCollector);
+    let success = await decrementCredits(phase.userId,creditsRequired, logCollector);
     const creditsConsumed = success ? creditsRequired : 0;
     if(success){
         success = await executePhase(phase,node,environment,logCollector)

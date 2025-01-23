@@ -32,6 +32,6 @@ export const sendResetEmail = async (email: string, token:string) => {
 export const createContact = async( email: string) => {
     await resend.contacts.create({
         email: email,
-        audienceId: process.env.NEXT_PUBLIC_RESEND_AUDIENCE_ID || "",
+        audienceId: process.env.RESEND_AUDIENCE_ID || "",
     })
 }

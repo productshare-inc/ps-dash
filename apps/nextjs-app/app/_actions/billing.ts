@@ -22,14 +22,10 @@ export async function GetAvailableCredits(){
     return balance;
 }
 
-export async function decrementCredits(amount: number, logCollector: LogCollector){
-    const session = await auth();
-    if (!session?.user?.id) {
-        throw new Error("User not authenticated");
-    }
+export async function decrementCredits(userId:string, amount: number, logCollector: LogCollector){
     try{
         const user = await db.user.findUnique({
-            where: { id: session.user.id },
+            where: { id: userId },
             select: { creditsTotal: true, creditsUsed: true },
           });
         
@@ -47,7 +43,7 @@ export async function decrementCredits(amount: number, logCollector: LogCollecto
 
         await db.user.update({
             where:{
-                id: session.user.id,
+                id: userId,
             },
             data:{
                 creditsUsed: {

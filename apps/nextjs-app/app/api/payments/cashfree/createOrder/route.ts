@@ -5,8 +5,8 @@ export async function POST(request: Request) {
     const { order_amount, customer_id, customer_email, customer_name} = await request.json();
     
     try {
-        Cashfree.XClientId = process.env.NEXT_PUBLIC_CASHFREE_CLIENT_ID;
-        Cashfree.XClientSecret = process.env.NEXT_PUBLIC_CASHFREE_CLIENT_SECRET;
+        Cashfree.XClientId = process.env.CASHFREE_CLIENT_ID;
+        Cashfree.XClientSecret = process.env.CASHFREE_CLIENT_SECRET;
         if(process.env.NEXT_PUBLIC_ENV==="development"){
             Cashfree.XEnvironment = Cashfree.Environment.SANDBOX;
         }else{

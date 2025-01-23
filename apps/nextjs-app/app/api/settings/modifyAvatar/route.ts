@@ -20,7 +20,7 @@ export async function POST(request: Request) {
     const response = await putBlob({
       filename,
       body: file,
-      token: process.env.NEXT_PUBLIC_BLOB_READ_WRITE_TOKEN,
+      token: process.env.BLOB_READ_WRITE_TOKEN,
     });
 
     // 4. Once uploaded, get the resulting URL and update DB

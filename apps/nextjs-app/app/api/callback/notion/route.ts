@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
     const session = await auth();
   const code = req.nextUrl.searchParams.get('code');
   const encoded = Buffer.from(
-    `${process.env.NEXT_PUBLIC_NOTION_CLIENT_ID}:${process.env.NEXT_PUBLIC_NOTION_CLIENT_SECRET}`
+    `${process.env.NOTION_CLIENT_ID}:${process.env.NOTION_CLIENT_SECRET}`
   ).toString('base64');
   if (code) {
     const response = await axios('https://api.notion.com/v1/oauth/token', {
