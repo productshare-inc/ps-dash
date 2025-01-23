@@ -203,7 +203,31 @@ export async function GetWorkflowPhaseDetails(phaseId: string){
         where: {
             id: phaseId,
             userId: session.user.id
+        },
+        include:{
+            logs:{
+                orderBy:{
+                    timestamp: 'asc'
+                }
+            }
         }
     })
     return phase;
+}
+
+export async function GetWorkflowExecutions(workflowId: string){
+    const session = await auth();
+    if (!session?.user?.id) {
+        throw new Error("User not authenticated");
+    }
+    const executions = await db.workflowExecution.findMany({
+        where: {
+            workflowId,
+            userId: session.user.id
+        },
+        orderBy:{
+            createdAt: 'desc'
+        }
+    })
+    return executions;
 }

@@ -1,4 +1,5 @@
 import { PricingProps } from "../landing-page/v1";
+import {User} from "@prisma/client";
 
 export interface sidebarHeaderItemsProps{
     title: string;
@@ -31,19 +32,9 @@ export interface sidebarProps extends CompanyLogoNameProps,UserProps {
     items: sidebarHeaderProps;
     footerItems: sidebarFooterItemsProps[];
     showCredits: boolean;
-    maxTrialCredits: number;
-    maxProCredits: number;
-    userDetails: UserDetailsProps;
+    userDetails: User;
 }
 
-export interface UserDetailsProps {
-    creditsUsed: number;
-    access: string;
-    name: string;
-    email: string;
-    role: string;
-    image: string;  
-}
 
 
 export interface UserProps {
@@ -93,9 +84,7 @@ export interface ConnectionCardFormProps {
 
 export interface CreditsProps {
     creditsUsed: number;
-    maxTrialCredits: number;
-    maxProCredits: number;
-    access: string;
+    creditsTotal: number;
 }
 
 export interface NotificationProps {

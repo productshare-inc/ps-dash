@@ -6,8 +6,8 @@ export async function PageToHtmlExecutor(environment:ExecutionEnvironment<typeof
         const html = await environment.getPage()!.content()
         environment.setOutput("Html",html)
         return true
-    } catch(e){
-        console.log("Failed to launch browser",e)
+    } catch(e:any){
+        environment.log.error(e.message)
         return false
     }
 }

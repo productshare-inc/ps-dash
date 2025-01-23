@@ -152,7 +152,8 @@ export const modifyAccess = async (id: string, access:string)=>{
     const user = await db.user.update({
         where: {id},
         data: {
-            access: access as AccountAccess
+            access: access as AccountAccess,
+            creditsTotal: 200
         }
     });
     return user;

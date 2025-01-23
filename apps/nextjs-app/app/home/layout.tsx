@@ -6,7 +6,7 @@ import { CONNECTIONS, sidebarFooterItems, sidebarItems } from "../../lib/constan
 import { useSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 import LoadingCard from "@repo/ui/organisms/custom/auth/v1/LoadingCard";
-import { darkLogo, githubRepositoryName, githubUsername, logo, maxTrialCredits, maxProCredits, showCredits, supportEmailAddress, tagline, title } from "../../lib/constants/appDetails";
+import { darkLogo, githubRepositoryName, githubUsername, logo, showCredits, supportEmailAddress, tagline, title } from "../../lib/constants/appDetails";
 import { pricingList } from "../../lib/constants/landing-page";
 import { getUserDetails } from "./_actions/prisma";
 import { RecoilRoot } from "recoil";
@@ -20,8 +20,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     const homePath = '/home'
     const documentationLink = process.env.NEXT_PUBLIC_DOCUMENTATION_URL as string;
 
-
-    const { data:session,status } = useSession();
+    const { status } = useSession();
     
     const [userDetails, setUserDetails] = useState<any>(null)
     
@@ -29,27 +28,26 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         await signOut()
     }
 
-      // Refresh session manually after login
-  const refreshSession = async () => {
-    const response = await fetch("/api/auth/session");
-    const newSession = await response.json();
-    const userDetails = await getUserDetails(newSession?.user?.id || "");
-    setUserDetails(userDetails);
-  };
-
-    useEffect(() => {
-      const fetchUserData = async () => {
-        if (status === "authenticated") {
-          if (!session?.user) return;
-          const userDetails = await getUserDetails(session?.user?.id || "");
-          setUserDetails(userDetails);
-          
-        } else if (status === "unauthenticated") {
-          refreshSession();
-        }
+    // Function to fetch user details
+    const fetchUserDetails = async () => {
+      try {
+        const data = await getUserDetails(); // Call server action
+        setUserDetails(data); // Update state with fetched data
+      } catch (error) {
+        console.error("Failed to fetch user details:", error);
       }
-      fetchUserData();
-    }, [session, status]);
+    };
+  
+    // Poll every 30 seconds
+    useEffect(() => {
+      fetchUserDetails(); // Fetch immediately on mount
+  
+      const interval = setInterval(() => {
+        fetchUserDetails();
+      }, 30 * 1000); // 30 seconds interval
+  
+      return () => clearInterval(interval); // Cleanup on unmount
+    }, []);
 
     if (status === "loading") {
         return <LoadingCard title="" description="Loading the Home Page"/>
@@ -74,8 +72,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             githubRepositoryName={githubRepositoryName}
             connections={CONNECTIONS}
             userDetails={userDetails}
-            maxTrialCredits={maxTrialCredits}
-            maxProCredits={maxProCredits}
             showCredits={showCredits}
           />
         <div className="flex flex-col flex-1 min-h-screen">

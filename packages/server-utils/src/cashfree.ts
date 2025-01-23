@@ -1,7 +1,7 @@
 export const createOrder = async ({order_amount,customer_id,customer_email,customer_name}:any) => {
     
     try {
-      const response = await fetch('/api/payments/createOrder', {
+      const response = await fetch('/api/payments/cashfree/createOrder', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

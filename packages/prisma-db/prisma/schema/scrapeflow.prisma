@@ -60,5 +60,20 @@ model ExecutionPhase {
 
     workflowExecution WorkflowExecution @relation(fields: [workflowExecutionId], references: [id], onDelete: Cascade)
 
+    logs ExecutionLog[]
+
+    @@schema("scrapeflow_schema")
+}
+
+model ExecutionLog {
+    id         String   @id @default(cuid())
+    logLevel    String
+    message     String
+    timestamp   DateTime @default(now())
+
+    executionPhaseId String
+
+    executionPhase ExecutionPhase @relation(fields: [executionPhaseId], references: [id], onDelete: Cascade)
+
     @@schema("scrapeflow_schema")
 }

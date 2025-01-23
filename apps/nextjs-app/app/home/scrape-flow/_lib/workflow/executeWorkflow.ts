@@ -10,6 +10,9 @@ import { ExecutorRegistry } from "./executor/registry";
 import { Environment } from "@repo/ts-types/scrape-flow/workflow";
 import { Browser, Page } from "puppeteer";
 import { Edge } from "@xyflow/react";
+import { LogCollector } from "@repo/ts-types/scrape-flow/log";
+import { createLogCollector } from "../helper/log";
+import { decrementCredits } from "../../../../_actions/billing";
 
 
 
@@ -36,22 +39,22 @@ export async function executeWorkflow(executionId: string) {
     const environment = {phases:{}}
 
     // Initialize workflow Execution
-    console.log("Initializing workflow execution")
     await initializeWorkflowExecution(executionId, execution.workflowId)
 
-    console.log("Initializing phase statuses")
     //initialize phase status
     await initializePhaseStatuses(execution)
-    console.log("Starting execution")
+    
 
-    const creditsConsumed = 0;
+    let creditsConsumed = 0;
     let executionFailed = false;
     for (const phase of execution.phases) {
+        
        const phaseExecution = await executeWorkflowPhase(phase, environment,edges)
        if(!phaseExecution.success){
             executionFailed = true;
             break;
        }
+       creditsConsumed += phaseExecution.creditsConsumed;
     }
 
     // Finalize Execution
@@ -128,6 +131,7 @@ async function finalizeWorkflowExecution(executionId: string, workflowId: string
 }
 
 async function executeWorkflowPhase(phase: ExecutionPhase, environment: Environment,edges: Edge[]) {
+    const logCollector = createLogCollector();
     const startedAt = new Date();
     const node = JSON.parse(phase.node) as AppNode;
 
@@ -150,17 +154,23 @@ async function executeWorkflowPhase(phase: ExecutionPhase, environment: Environm
     console.log(`Executing phase ${phase.name} with ${creditsRequired} credits`)
 
     // removing user balance
-
+    let success = await decrementCredits(creditsRequired, logCollector);
+    const creditsConsumed = success ? creditsRequired : 0;
+    if(success){
+        success = await executePhase(phase,node,environment,logCollector)
+    }
     // Execute phase simulation
-    const success = await executePhase(phase,node,environment)
+    
     
     // @ts-expect-error Object possibly undefined error
     const outputs = environment.phases[node.id].outputs;
-    await finalizePhase(phase.id, success,outputs)
-    return {success}
+    await finalizePhase(phase.id, success,outputs,logCollector,creditsConsumed)
+    return {success,creditsConsumed}
 }
 
-async function finalizePhase(phaseId: string, success: boolean, outputs:any) {
+async function finalizePhase(phaseId: string, success: boolean, outputs:any, logCollector:LogCollector,
+    creditsConsumed: number
+) {
     const status = success ? WorkflowExecutionStatus.COMPLETED : WorkflowExecutionStatus.FAILED;
     await db.executionPhase.update({
         where: {
@@ -169,17 +179,27 @@ async function finalizePhase(phaseId: string, success: boolean, outputs:any) {
         data: {
             status,
             completedAt: new Date(),
-            outputs: JSON.stringify(outputs)
+            outputs: JSON.stringify(outputs),
+            creditsConsumed,
+            logs:{
+                createMany:{
+                    data:logCollector.getAll().map(log=>({
+                        message: log.message,
+                        logLevel: log.level,
+                        timestamp: log.timestamp
+                    }))
+                }
+            }
         }
     })
 }
 
-async function executePhase(phase:ExecutionPhase, node:AppNode, environment:Environment):Promise<boolean>{
+async function executePhase(phase:ExecutionPhase, node:AppNode, environment:Environment,logCollector:LogCollector):Promise<boolean>{
     const runFn = ExecutorRegistry[node.data.type];
     if(!runFn){
         return false
     }
-    const executionEnvironment:ExecutionEnvironment<any> = createExecutionEnvironment(node, environment)
+    const executionEnvironment:ExecutionEnvironment<any> = createExecutionEnvironment(node, environment,logCollector)
     return await runFn(executionEnvironment);
 }
 
@@ -211,7 +231,7 @@ function setupEnvironmentForPhase(node: AppNode, environment: Environment, edges
     }
 }
 
-function createExecutionEnvironment(node: AppNode, environment: Environment):ExecutionEnvironment<any> {
+function createExecutionEnvironment(node: AppNode, environment: Environment, logCollector:LogCollector):ExecutionEnvironment<any> {
     return {
         getInput: (name: string) => environment.phases[node.id]?.inputs[name],
         // @ts-expect-error Object possibly undefined error
@@ -221,7 +241,9 @@ function createExecutionEnvironment(node: AppNode, environment: Environment):Exe
         setBrowser: (browser:Browser) => (environment.browser = browser),
 
         getPage: () => environment.page,
-        setPage: (page:Page) => (environment.page = page)
+        setPage: (page:Page) => (environment.page = page),
+
+        log: logCollector
     }
 }
 
@@ -230,3 +252,4 @@ async function cleanupEnvironment(environment: Environment) {
         await environment.browser.close().catch((e) => {console.log("Failed to close browser", e)});
     }
 }
+

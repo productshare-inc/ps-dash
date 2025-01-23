@@ -16,8 +16,7 @@ import { UpgradeToProButton } from "../../../molecules/custom/v1/UpgradeToProBut
 import NotificationSheet from "./NotificationSheet";
 
 export function AppSidebar({name,quote,logo,darkLogo,homePath,items,footerItems,pricingList,
-    logoutFunction,documentationLink,supportEmailAddress,githubUsername,githubRepositoryName,connections,
-    maxTrialCredits,maxProCredits,showCredits,userDetails}:sidebarProps) {
+    logoutFunction,documentationLink,supportEmailAddress,githubUsername,githubRepositoryName,connections,showCredits,userDetails}:sidebarProps) {
         
     return (
         <Sidebar>
@@ -38,8 +37,8 @@ export function AppSidebar({name,quote,logo,darkLogo,homePath,items,footerItems,
 
             <SidebarFooter>
                 {userDetails?.access === "TRIAL" ? <UpgradeToProButton />:null}
-                {showCredits && <ProgressWithCredits creditsUsed={userDetails?.creditsUsed} maxTrialCredits={maxTrialCredits}
-                 maxProCredits={maxProCredits} access={userDetails?.access}/>}
+                {showCredits && 
+                <ProgressWithCredits creditsUsed={userDetails?.creditsUsed } creditsTotal={userDetails?.creditsTotal}/>}
                 <SidebarUser logoutFunction={logoutFunction} pricingList={pricingList}
                       documentationLink={documentationLink} supportEmailAddress={supportEmailAddress} githubUsername={githubUsername} 
                       githubRepositoryName={githubRepositoryName} connections={connections}/>

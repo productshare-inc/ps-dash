@@ -11,6 +11,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { TanstackProvider } from "../providers/tanstack-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { GoogleAnalytics } from "@next/third-parties/google";
+import NextTopLoader from "nextjs-toploader";
 
 
 const geistSans = localFont({
@@ -42,6 +43,7 @@ export default function RootLayout({
       >
           <SessionProviders>
             <TanstackProvider>
+              <NextTopLoader color="#10b981" showSpinner={false} />
               <ThemeProvider defaultTheme="dark" >
                 {children}
                 <Analytics/>

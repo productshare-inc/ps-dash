@@ -120,3 +120,4 @@ model Notification {
 
   @@schema("boilerplate_schema")
 }
+

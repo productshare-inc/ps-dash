@@ -2,6 +2,7 @@ import {LucideIcon, LucideProps} from "lucide-react";
 import React from "react";
 import { AppNode, TaskParam, TaskType } from "./node";
 import { Browser, Page } from "puppeteer";
+import { LogCollector } from "./log";
 
 export interface CustomDialogHeaderProps {
     title?: string;
@@ -86,5 +87,7 @@ export type ExecutionEnvironment<T extends WorkflowTask> = {
 
     getPage(): Page | undefined;
     setPage(page: Page): void;
+
+    log: LogCollector;
 
 }

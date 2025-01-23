@@ -6,34 +6,34 @@ export async function ExtractTextFromElementExecutor(environment:ExecutionEnviro
     try{
         const selector = environment.getInput("Selector")
         if(!selector){
-            console.log("Selector not found")
+            environment.log.error("Selector not defined")
             return false
         }
         const html = environment.getInput("Html")
         if(!html){
-            console.log("Html not found")
+            environment.log.error("Html not found")
             return false
         }
         const $ = cheerio.load(html)
         const element = $(selector)
 
         if(!element){
-            console.log("Element not found")
+            environment.log.error("Element not found")
             return false
         }
 
         const extractedText = $.text(element)
 
         if(!extractedText){
-            console.log("Failed to extract text")
+            environment.log.error("Failed to extract text")
             return false
         }
 
         environment.setOutput("Extracted Text",extractedText)
 
         return true
-    } catch(e){
-        console.log("Failed to launch browser",e)
+    } catch(e:any){
+        environment.log.error(e.message)
         return false
     }
 }

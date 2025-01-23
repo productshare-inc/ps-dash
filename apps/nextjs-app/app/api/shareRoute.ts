@@ -1,6 +1,5 @@
 import { increaseCredits} from "@repo/prisma-db/repo/user";
 import { getUserDetails } from "../home/_actions/prisma";
-import { maxTrialCredits,maxProCredits } from "../../lib/constants/appDetails";
 import { NextResponse } from "next/server";
 import { auth } from "@repo/next-auth/auth";
 
@@ -13,22 +12,23 @@ export async function shareRoute(request: Request, handler: (request: Request, b
 
     if (contentType?.includes("application/json")) {
         body = await request.json(); // Parse JSON body
-        const userDetails = await getUserDetails(session.user.id);
-        if (userDetails?.access=="TRIAL" && userDetails?.creditsUsed>=maxTrialCredits) {
+        const userDetails = await getUserDetails();
+        if (!userDetails) {
+            return NextResponse.json({error:"User details not found"},{status:400});
+        }
+        if (userDetails?.creditsUsed>=userDetails?.creditsTotal) {
             return NextResponse.json({error:"Credits exhausted"},{status:400});
         }
-        if (userDetails?.access=="PRO" && userDetails?.creditsUsed>=maxProCredits) {
-            return NextResponse.json({error:"Credits exhausted"},{status:400});
-        }
+       
         await increaseCredits(session.user.id,1);
         return await handler(request,body);
     } else if (contentType?.includes("multipart/form-data")) {
         const formData = await request.formData(); // Parse form-data body
-        const userDetails = await getUserDetails(session.user.id);
-        if (userDetails?.access=="TRIAL" && userDetails?.creditsUsed>=maxTrialCredits) {
-            return NextResponse.json({error:"Credits exhausted"},{status:400});
+        const userDetails = await getUserDetails();
+        if (!userDetails) {
+            return NextResponse.json({error:"User details not found"},{status:400});
         }
-        if (userDetails?.access=="PRO" && userDetails?.creditsUsed>=maxProCredits) {
+        if (userDetails?.creditsUsed>=userDetails?.creditsTotal) {
             return NextResponse.json({error:"Credits exhausted"},{status:400});
         }
         await increaseCredits(session.user.id,1);

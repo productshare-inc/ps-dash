@@ -24,6 +24,4 @@ export const address = 'B-2, Maruthi Enclave, Domalguda, Hyderabad, Telangana, I
 export const contactNumber = "+919666678363"
 
 // features constants
-export const maxTrialCredits  = 20;
-export const maxProCredits = 200;
 export const showCredits = true;
