@@ -23,7 +23,7 @@ const RootClientLayout = ({ children }: { children: React.ReactNode }) => {
 
   if (!isReady) {
     return (
-        <LoadingCard title="Loading" description="Patience ia a virtue beyond anything" />
+        <LoadingCard title="Home Page" description="Patience ia a virtue beyond anything" />
     );
   }
 

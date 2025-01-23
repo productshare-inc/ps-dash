@@ -9,6 +9,7 @@ import Link from 'next/link'
 import {ShuffleIcon} from 'lucide-react'
 import { buttonVariants } from '@repo/ui/atoms/shadcn/button'
 import WorkflowActions from './WorkflowActions'
+import RunBtn from './RunBtn'
 
 const statusColors = {
     [WorkflowStatus.DRAFT]: 'bg-yellow-400 text-yellow-600',
@@ -41,6 +42,7 @@ const WorkflowCard = ({workflow}: {workflow: Workflow}) => {
                 </div>
             </div>
             <div className='flex items-center gap-2 space-x-2'>
+                {!isDraft && <RunBtn workflowId={workflow.id}/>}
                 <Link href={`/scrape-flow/workflow/editor/${workflow.id}`} 
                 className={cn(buttonVariants({variant: "outline", size: "sm"}),"flex items-center gap-2")}>
                     <ShuffleIcon size={16}/>

@@ -32,7 +32,10 @@ const Testimonials = ({testimonials}: {testimonials: TestimonialProps[]}) => {
   }, [api, current]);
 
   return (
-    <div className="w-full  py-24 sm:py-32 space-y-8">
+    <section
+      id="testimonials"
+      className="w-full  py-24 sm:py-32 space-y-8"
+    >
       <div className="container mx-auto">
         <div className="flex flex-col gap-10">
         <div>
@@ -76,7 +79,7 @@ const Testimonials = ({testimonials}: {testimonials: TestimonialProps[]}) => {
           </Carousel>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

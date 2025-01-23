@@ -12,6 +12,7 @@ import { CreateFlowNode } from "../_lib/workflow/tasks";
 import { FlowToExecutionPlan } from "../_lib/workflow/executionPlan";
 import { TaskRegistry } from "../_lib/workflow/registry";
 import { executeWorkflow } from "../_lib/workflow/executeWorkflow";
+import { CalculateWorkflowCost } from "../_lib/workflow/helpers";
 
 const initialFlow: { nodes: AppNode[]; edges: Edge[]} ={
     nodes: [],
@@ -120,24 +121,28 @@ export async function RunWorkflow(form: {workflowId:string, flowDefinition?:stri
     if(!workflow){
         throw new Error("Workflow not found");
     }
-
-    if(!flowDefinition){
-        throw new Error("Flow definition not provided");
+    let executionPlan: WorkflowExecutionPlan;
+    let workflowDefinition = flowDefinition
+    if (workflow.status === WorkflowStatus.PUBLISHED){
+        if(!workflow.executionPlan){
+            throw new Error("Execution plan not found");
+        }
+        executionPlan = JSON.parse(workflow.executionPlan);
+        workflowDefinition = workflow.definition;
+    }else{
+        if(!flowDefinition){
+            throw new Error("Flow definition not provided");
+        }
+        const flow = JSON.parse(flowDefinition);
+        const result = FlowToExecutionPlan(flow.nodes, flow.edges);
+        if(result.error){
+            throw new Error("Invalid flow definition");
+        }
+        if(!result.executionPlan){
+            throw new Error("Failed to generate execution plan");
+        }
+        executionPlan = result.executionPlan;
     }
-
-    const flow = JSON.parse(flowDefinition);
-
-    const result = FlowToExecutionPlan(flow.nodes, flow.edges);
-
-    if(result.error){
-        throw new Error("Invalid flow definition");
-    }
-
-    if(!result.executionPlan){
-        throw new Error("Failed to generate execution plan");
-    }
-
-    const executionPlan: WorkflowExecutionPlan = result.executionPlan;
     
     const execution = await db.workflowExecution.create({
         data:{
@@ -146,7 +151,7 @@ export async function RunWorkflow(form: {workflowId:string, flowDefinition?:stri
             status: WorkflowExecutionStatus.PENDING,
             startedAt: new Date(),
             trigger: WorkflowExecutionTrigger.MANUAL,
-            definition: flowDefinition,
+            definition: workflowDefinition,
             phases: {
                 create: executionPlan.flatMap(phase => {
                     return phase.nodes.flatMap(node=>{
@@ -230,4 +235,83 @@ export async function GetWorkflowExecutions(workflowId: string){
         }
     })
     return executions;
+}
+
+export async function PublishWorkflow({id,flowDefinition}:{id:string,flowDefinition:string}){
+    const session = await auth();
+    if (!session?.user?.id) {
+        throw new Error("User not authenticated");
+    }
+    const workflow = await db.workflow.findUnique({
+        where: {
+            id,
+            userId: session.user.id
+        }
+    })
+    if(!workflow){
+        throw new Error("Workflow not found");
+    }
+    if (workflow.status !== WorkflowStatus.DRAFT) {
+        throw new Error("Workflow is not in draft state");
+    }
+
+    const flow = JSON.parse(flowDefinition);
+
+    const result = FlowToExecutionPlan(flow.nodes, flow.edges);
+
+    if(result.error){
+        throw new Error("Invalid flow definition");
+    }
+
+    if(!result.executionPlan){
+        throw new Error("Failed to generate execution plan");
+    }
+
+    const creditsCost = CalculateWorkflowCost(flow.nodes);
+    await db.workflow.update({
+        where: {
+            id,
+            userId: session.user.id
+        },
+        data: {
+            status: WorkflowStatus.PUBLISHED,
+            definition: flowDefinition,
+            executionPlan: JSON.stringify(result.executionPlan),
+            creditsCost
+        },
+    })
+    revalidatePath(`/scrape-flow/workflow/editor/${id}`);
+}
+
+
+export async function UnpublishWorkflow({id}:{id:string}){
+    const session = await auth();
+    if (!session?.user?.id) {
+        throw new Error("User not authenticated");
+    }
+    const workflow = await db.workflow.findUnique({
+        where: {
+            id,
+            userId: session.user.id
+        }
+    })
+    if(!workflow){
+        throw new Error("Workflow not found");
+    }
+    if (workflow.status !== WorkflowStatus.PUBLISHED) {
+        throw new Error("Workflow is not in published state");
+    }
+
+    await db.workflow.update({
+        where: {
+            id,
+            userId: session.user.id
+        },
+        data: {
+            status: WorkflowStatus.DRAFT,
+            executionPlan: null,
+            creditsCost: 0
+        },
+    })
+    revalidatePath(`/scrape-flow/workflow/editor/${id}`);
 }
