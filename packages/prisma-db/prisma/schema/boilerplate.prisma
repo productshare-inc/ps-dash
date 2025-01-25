@@ -21,6 +21,7 @@ model User {
   @@schema("boilerplate_schema")
 }
 
+
 model Account {
   userId            String
   type              String
