@@ -29,7 +29,7 @@ const statusColors = {
 const WorkflowCard = ({workflow}: {workflow: Workflow}) => {
     const isDraft = workflow.status == WorkflowStatus.DRAFT
   return (
-    <Card className="border border-separate shadow-sm rounded-lg overflow-hidden hover:shadow-md dark:shadow-primary/30 group/card">
+    <Card className="border border-separate bg-sidebar shadow-sm rounded-lg overflow-hidden hover:shadow-md dark:shadow-primary/30 group/card">
         <CardContent className='p-4 flex items-center justify-between h-[100px]'>
             <div className='flex items-center gap-4'>
                 <div className={cn("w-10 h-10 rounded-full flex items-center bg-destructive justify-center",

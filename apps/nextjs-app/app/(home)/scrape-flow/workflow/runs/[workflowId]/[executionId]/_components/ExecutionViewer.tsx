@@ -35,7 +35,7 @@ const ExecutionViewer = ({initialData}:{initialData:ExecutionData}) => {
     const creditsConsumed = GetPhasesTotalCost(query.data?.phases || []);
     const [selectedPhase, setSelectedPhase] = useState<string | null>(null);
     const phaseDetails = useQuery({
-        queryKey: ["phaseDetails", selectedPhase],
+        queryKey: ["phaseDetails", selectedPhase,query.data?.status],
         enabled: selectedPhase !== null,
         queryFn: () => GetWorkflowPhaseDetails(selectedPhase!)
     })

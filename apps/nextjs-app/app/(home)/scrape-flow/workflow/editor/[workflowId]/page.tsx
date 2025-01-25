@@ -20,7 +20,7 @@ async function page({params}: {params:{workflowId:string}}){
     }
 
   return (
-    <pre className='h-screen'>
+    <pre className='h-full'>
         <Editor workflow={workflow}/>
     </pre>
   )

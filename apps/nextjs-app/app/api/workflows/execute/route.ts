@@ -1,7 +1,7 @@
 import { timingSafeEqual } from "crypto";
 import db from "@repo/prisma-db/client";
 import { ExecutionPhaseStatus, WorkflowExecutionPlan, WorkflowExecutionStatus, WorkflowExecutionTrigger } from "@repo/ts-types/scrape-flow/workflow";
-import { TaskRegistry } from "../../../(home)/scrape-flow/_lib/workflow/registry";
+import { TaskRegistry } from "../../../(home)/scrape-flow/_lib/workflow/tasks/registry";
 import { executeWorkflow } from "../../../(home)/scrape-flow/_lib/workflow/executeWorkflow";
 import parser  from "cron-parser";
 

@@ -7,7 +7,7 @@ import NodeInputs from './NodeInputs';
 import NodeInput from './NodeInput';
 import NodeOutputs from './NodeOutputs';
 import NodeOutput from './NodeOutput';
-import { TaskRegistry } from '../../../_lib/workflow/registry';
+import { TaskRegistry } from '../../../_lib/workflow/tasks/registry';
 import { Badge } from '@repo/ui/atoms/shadcn/badge';
 
 const DEV_MODE = process.env.NEXT_PUBLIC_DEV_MODE === 'true';

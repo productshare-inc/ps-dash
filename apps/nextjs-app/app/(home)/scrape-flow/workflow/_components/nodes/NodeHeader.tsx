@@ -1,12 +1,12 @@
 "use client"
 import { AppNode, TaskType } from '@repo/ts-types/scrape-flow/node'
 import React from 'react'
-import { CreateFlowNode} from '../../../_lib/workflow/tasks'
 import { Badge } from '@repo/ui/atoms/shadcn/badge'
 import { CoinsIcon,GripVerticalIcon, TrashIcon, CopyIcon} from 'lucide-react'
 import { Button } from '@repo/ui/atoms/shadcn/button'
 import { useReactFlow } from '@xyflow/react'
-import { TaskRegistry } from '../../../_lib/workflow/registry'
+import { TaskRegistry } from '../../../_lib/workflow/tasks/registry'
+import { CreateFlowNode } from '../../../_lib/workflow/tasks/CreateFlowNode'
 
 const NodeHeader = ({taskType,nodeId}:{taskType: TaskType, nodeId: string}) => {
     const task = TaskRegistry[taskType];

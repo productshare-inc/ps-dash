@@ -2,7 +2,7 @@
 
 import { SidebarProvider, SidebarTrigger } from "@repo/ui/organisms/shadcn/sidebar"
 import { AppSidebar } from "@repo/ui/organisms/custom/home/AppSidebar"
-import { CONNECTIONS, sidebarFooterItems, sidebarItems } from "../../lib/constants/home"
+import { sidebarFooterItems, sidebarItems } from "../../lib/constants/home"
 import { useSession} from "next-auth/react";
 import { useEffect, useState } from "react";
 import LoadingCard from "@repo/ui/organisms/custom/auth/v1/LoadingCard";
@@ -13,6 +13,7 @@ import { RecoilRoot } from "recoil";
 import { SupportChat } from "@repo/ui/organisms/custom/home/SupportChat";
 import { Separator } from "@repo/ui/atoms/shadcn/separator";
 import {BreadcrumbsHeader} from "@repo/ui/molecules/custom/v1/BreadcrumbsHeader"
+import { CONNECTIONS } from "./connections/_lib/connections";
 
 
 export default function Layout({ children }: { children: React.ReactNode }) {

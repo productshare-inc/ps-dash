@@ -1,8 +1,9 @@
 import {  ExecutionEnvironment } from '@repo/ts-types/scrape-flow/workflow'
-import { ExtractTextFromElementTask} from '../tasks'
 import * as cheerio from 'cheerio';
+import { ExtractTextFromElementTask } from '../tasks/ExtractTextFromElementTask';
 
-export async function ExtractTextFromElementExecutor(environment:ExecutionEnvironment<typeof ExtractTextFromElementTask>):Promise<boolean>{
+export async function ExtractTextFromElementExecutor(
+    environment:ExecutionEnvironment<typeof ExtractTextFromElementTask>):Promise<boolean>{
     try{
         const selector = environment.getInput("Selector")
         if(!selector){

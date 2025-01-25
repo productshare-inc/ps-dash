@@ -8,12 +8,12 @@ import { createWorkflowSchema, createWorkflowSchemaType, duplicateWorkflowSchema
 import { Edge } from "@xyflow/react";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { CreateFlowNode } from "../_lib/workflow/tasks";
 import { FlowToExecutionPlan } from "../_lib/workflow/executionPlan";
-import { TaskRegistry } from "../_lib/workflow/registry";
+import { TaskRegistry } from "../_lib/workflow/tasks/registry";
 import { executeWorkflow } from "../_lib/workflow/executeWorkflow";
 import { CalculateWorkflowCost } from "../_lib/workflow/helpers";
 import parser  from "cron-parser";
+import { CreateFlowNode } from "../_lib/workflow/tasks/CreateFlowNode";
 
 const initialFlow: { nodes: AppNode[]; edges: Edge[]} ={
     nodes: [],

@@ -1,7 +1,7 @@
 import { AppNode, AppNodeMissingInputs } from "@repo/ts-types/scrape-flow/node";
 import { WorkflowExecutionPlan, WorkflowExecutionPlanPhase } from "@repo/ts-types/scrape-flow/workflow";
 import { Edge} from "@xyflow/react";
-import { TaskRegistry } from "./registry";
+import { TaskRegistry } from "./tasks/registry";
 
 export enum FlowToExecutionPlanValidationError{
     "NO_ENTRY_POINT",

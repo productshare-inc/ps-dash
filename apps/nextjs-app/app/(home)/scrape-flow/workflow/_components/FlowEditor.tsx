@@ -16,11 +16,11 @@ import {
   useReactFlow,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import { CreateFlowNode } from "../../_lib/workflow/tasks";
 import { AppNode, TaskType } from "@repo/ts-types/scrape-flow/node";
 import NodeComponent from "./nodes/NodeComponent";
 import DeletableEdge from "./edges/DeletableEdge";
-import { TaskRegistry } from "../../_lib/workflow/registry";
+import { TaskRegistry } from "../../_lib/workflow/tasks/registry";
+import { CreateFlowNode } from "../../_lib/workflow/tasks/CreateFlowNode";
 
 const nodeTypes = {
     Node: NodeComponent

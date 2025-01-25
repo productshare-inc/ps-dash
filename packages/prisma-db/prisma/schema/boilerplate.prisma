@@ -95,13 +95,16 @@ enum AccountAccess {
 model Connection {
   id               String          @id @default(uuid())
   name             String          @default("New Connection")
+  description      String?
   type             String
-  details          Json 
+  details          String          @default("{}")
   User             User?           @relation(fields: [userId], references: [id])
   userId           String?
 
   createdAt        DateTime        @default(now())  
   updatedAt        DateTime        @updatedAt
+
+  @@unique([userId, name])
 
   @@schema("boilerplate_schema")
 }

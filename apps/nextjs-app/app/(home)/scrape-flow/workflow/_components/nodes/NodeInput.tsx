@@ -3,7 +3,7 @@ import { cn } from '@repo/ui/lib/utils'
 import { Handle,Position, useEdges } from '@xyflow/react'
 import React from 'react'
 import NodeParamField from './NodeParamField'
-import { ColorForHandle } from '../../../_lib/workflow/registry'
+import { ColorForHandle } from '../../../_lib/workflow/tasks/registry'
 import useFlowValidation from '../../../_hooks/useFlowValidation'
 
 const NodeInput = ({input,nodeId}:{input:TaskParam,nodeId:string}) => {

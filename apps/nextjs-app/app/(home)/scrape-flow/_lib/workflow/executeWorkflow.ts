@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { ExecutionEnvironment, WorkflowExecutionStatus } from "@repo/ts-types/scrape-flow/workflow";
 import {ExecutionPhase} from '@prisma/client'
 import { AppNode, TaskParamType} from "@repo/ts-types/scrape-flow/node";
-import { TaskRegistry } from "./registry";
+import { TaskRegistry } from "./tasks/registry";
 import { ExecutorRegistry } from "./executor/registry";
 import { Environment } from "@repo/ts-types/scrape-flow/workflow";
 import { Browser, Page } from "puppeteer";
@@ -198,6 +198,7 @@ async function finalizePhase(phaseId: string, success: boolean, outputs:any, log
 async function executePhase(phase:ExecutionPhase, node:AppNode, environment:Environment,logCollector:LogCollector):Promise<boolean>{
     const runFn = ExecutorRegistry[node.data.type];
     if(!runFn){
+        logCollector.error(`Executor not found for task type`)
         return false
     }
     const executionEnvironment:ExecutionEnvironment<any> = createExecutionEnvironment(node, environment,logCollector)

@@ -4,7 +4,7 @@ import { TaskParam } from '@repo/ts-types/scrape-flow/node'
 import { cn } from '@repo/ui/lib/utils'
 import { Handle, Position } from '@xyflow/react'
 import React from 'react'
-import { ColorForHandle } from '../../../_lib/workflow/registry'
+import { ColorForHandle } from '../../../_lib/workflow/tasks/registry'
 
 const NodeOutput = ({output}:{output: TaskParam}) => {
   return (

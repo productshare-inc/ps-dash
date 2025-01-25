@@ -14,6 +14,11 @@ export const BreadcrumbsHeader = () => {
         <div className="flex items-center flex-start">
             <Breadcrumb>
                 <BreadcrumbList>
+                    <BreadcrumbItem>
+                        <div className='capitalize cursor-pointer hover:dark:text-white hover:text-black' onClick={() => router.push("/")}>
+                            Home
+                        </div>
+                    </BreadcrumbItem>
                     {paths.map((path, index) => (
                         <React.Fragment key={index}>
                             <BreadcrumbItem>
