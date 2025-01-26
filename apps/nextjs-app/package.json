@@ -13,6 +13,7 @@
     "@notionhq/client": "^2.2.15",
     "@repo/next-auth": "*",
     "@repo/openai": "*",
+    "@repo/payments": "*",
     "@repo/prisma-db": "*",
     "@repo/recoil": "*",
     "@repo/resend-email": "*",
@@ -46,6 +47,7 @@
     "react-dom": "^18.2.0",
     "recharts": "^2.15.0",
     "recoil": "^0.7.7",
+    "stripe": "^17.5.0",
     "tailwind-scrollbar": "^3.1.0"
   },
   "devDependencies": {

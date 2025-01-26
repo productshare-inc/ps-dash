@@ -21,6 +21,17 @@ model User {
   @@schema("boilerplate_schema")
 }
 
+model UserPurchase {
+  id            String          @id @default(cuid())
+  userId        String
+  eventId       String
+  description   String
+  amount        Int
+  currency      String
+  date          DateTime @default(now())
+  @@schema("boilerplate_schema")
+}
+
 
 model Account {
   userId            String
