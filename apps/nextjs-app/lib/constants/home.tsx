@@ -1,5 +1,5 @@
 import { sidebarFooterItemsProps, sidebarHeaderProps } from "@repo/ts-types/home/v1"
-import {  Home, Inbox, AppWindowIcon, BoxesIcon } from "lucide-react"
+import {  Home, Inbox, AppWindowIcon, BoxesIcon, CoinsIcon } from "lucide-react"
 
 export const sidebarItems:sidebarHeaderProps = 
 {
@@ -12,9 +12,9 @@ export const sidebarItems:sidebarHeaderProps =
         ]},
         {title: "Scrape Flow", url: "/scrape-flow", icon: AppWindowIcon, isActive:true, items: [
           {title: "Workflows", url: "/scrape-flow/workflows"},
-          {title: "Billing", url: "/scrape-flow/billing"},
         ]},
         {title: "Connections", url: "/connections", icon: BoxesIcon},
+        {title: "Billing", url: "/billing", icon: CoinsIcon},
     ],
 }
 

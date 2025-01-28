@@ -3,10 +3,8 @@
 import { auth } from "@repo/next-auth/auth";
 import db from "@repo/prisma-db/client";
 import { LogCollector } from "@repo/ts-types/scrape-flow/log";
-import { getCreditsPack, PackId } from "../(home)/scrape-flow/_lib/helper/billing";
-import {stripe} from "@repo/payments/stripe"
-import { getAppUrl } from "../(home)/scrape-flow/_lib/helper/appUrl";
-import { redirect } from "next/navigation";
+import { billingAddressSchemaType } from "@repo/zod/billing";
+import { createNewCustomer } from "./dodo";
 
 
 export async function GetAvailableCredits(){
@@ -63,48 +61,50 @@ export async function decrementCredits(userId:string, amount: number, logCollect
     }
 }
 
-export async function PurchaseCredits(packId: PackId){
+export async function GetUserPurchaseHistory() {
     const session = await auth();
     if (!session?.user?.id) {
         throw new Error("User not authenticated");
     }
-    
-    await db.user.findUnique({
+
+    return db.userPurchase.findMany({
         where: {
-            id: session.user.id
+            userId: session.user.id
+        },
+        orderBy:{
+            date: "desc"
         }
     })
-    
-    const selectedPack = getCreditsPack(packId);
+}
 
-    if(!selectedPack){
-        throw new Error("Invalid pack selected");
+export async function AddUserAddress(form: billingAddressSchemaType){
+    const session = await auth();
+    if (!session?.user?.id) {
+        throw new Error("User not authenticated");
     }
 
-    // const productId = selectedPack?.productId;
-
-    await stripe.checkout.sessions.create({
-        mode:"payment",
-        invoice_creation: {
-            enabled: true,
-        },
-        success_url: getAppUrl("/scrape-flow/billing"),
-        cancel_url: getAppUrl("/scrape-flow/billing"),
-        metadata: {
-            userId: session.user.id,
-            packId
-        },
-        line_items: [
-            {
-                price: selectedPack?.productId,
-                quantity: 1
-            }
-        ]
+    const userFinancial = await db.userFinancial.findUnique({
+        where: {
+            userId: session.user.id
+        }
     })
 
-    if(!session.url){
-        throw new Error("Stripe session creation failed");
+    if (!userFinancial){
+        const customer = await createNewCustomer(form.name,form.email)
+        await db.userFinancial.create({
+            data:{
+                name: form.name,
+                email: form.email,
+                street: form.street,    
+                city: form.city,
+                state: form.state,
+                zipcode: form.zipcode,
+                country: form.country,
+                customerId: customer.customer_id,
+                userId: session.user.id
+            }
+        })
     }
-
-    redirect(session.url)
+  
 }
+

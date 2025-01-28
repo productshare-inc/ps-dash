@@ -6,7 +6,7 @@ import { Skeleton } from '@repo/ui/molecules/shadcn/skeleton'
 import {CirclePlayIcon, WaypointsIcon, CoinsIcon} from 'lucide-react'
 import StatCard from './_components/StatCard'
 import ExecutionStatusChart from './_components/ExecutionStatusChart'
-import CreditUsageChart from './billing/_components/CreditUsageChart'
+import CreditUsageChart from '../billing/_components/CreditUsageChart'
 
 const ScrapeFlowHome = ({searchParams}:{
   searchParams: {month?: string, year?: string}

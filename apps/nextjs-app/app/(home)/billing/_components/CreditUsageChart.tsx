@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@repo
 import { ChartColumnStacked } from 'lucide-react'
 import { ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent} from '@repo/ui/molecules/shadcn/chart'
 import {  Bar, BarChart, CartesianGrid, XAxis } from 'recharts'
-import { GetCreditsUsageInPeriod } from '../../../_actions/analytics'
+import { GetCreditsUsageInPeriod } from '../../_actions/analytics'
 
 type ChartData = Awaited<ReturnType<typeof GetCreditsUsageInPeriod>>
 

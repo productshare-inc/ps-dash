@@ -1,13 +1,12 @@
 import React, { Suspense } from 'react'
-import { GetAvailableCredits } from '../../../_actions/billing'
+import { GetAvailableCredits, GetUserPurchaseHistory } from '../../_actions/payments/billing'
 import { Skeleton } from '@repo/ui/molecules/shadcn/skeleton'
 import { Card, CardContent, CardDescription, CardFooter, CardTitle } from '@repo/ui/molecules/shadcn/card'
 import { CoinsIcon, ArrowLeftRightIcon } from 'lucide-react'
 import CreditsPurchase from './_components/CreditsPurchase'
 import { Period } from '@repo/ts-types/scrape-flow/analytics'
-import { GetCreditsUsageInPeriod } from '../../_actions/analytics'
+import { GetCreditsUsageInPeriod } from '../_actions/analytics'
 import CreditUsageChart from './_components/CreditUsageChart'
-import { GetUserPurchaseHistory } from '../../_actions/billing'
 import InvoiceBtn from './_components/InvoiceBtn'
 
 const BillingPage = () => {
@@ -70,7 +69,7 @@ async function CreditsUsageCard() {
 async function TransactionHistoryCard(){
   const purchases = await GetUserPurchaseHistory();
   return (
-    <Card className='bg-sidebar'>
+    <Card className='bg-sidebar p-4'>
       <CardTitle className='text-2xl font-bold flex items-center gap-2'>
         <ArrowLeftRightIcon className="h-6 w-6 text-primary"/>
         Transaction History
@@ -84,17 +83,22 @@ async function TransactionHistoryCard(){
             No transactions found
           </p>
         )}
-        {purchases.map((purchase) => (
+        {purchases.map((purchase,index) => (
           <div key={purchase.id} className='flex justify-between items-center py-3 border-b last:border-b-0'>
-            <div >
-              <p className='font-medium'>{formatDate(purchase.date)}</p>
-              <p className='text-sm text-muted-foreground'>{purchase.description}</p>
+            <div className='flex items-center gap-2 '>
+              <div>
+                {index+1})
+              </div>
+              <div >
+                <p className='font-medium'> {formatDate(purchase.date)}</p>
+                <p className='text-sm text-muted-foreground'>{purchase.description}</p>
+              </div>
             </div>
-            <div className='text-right'>
+            <div className='text-right flex items-center gap-4'>
               <p className='font-medium'>
                 {formatAmount(purchase.amount, purchase.currency)}
               </p>
-              <InvoiceBtn id={purchase.id}/>
+              <InvoiceBtn id={purchase.eventId}/>
             </div>
           </div>
         ))}

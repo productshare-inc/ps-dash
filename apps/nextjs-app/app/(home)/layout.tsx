@@ -8,12 +8,12 @@ import { useEffect, useState } from "react";
 import LoadingCard from "@repo/ui/organisms/custom/auth/v1/LoadingCard";
 import { darkLogo, githubRepositoryName, githubUsername, logo, showCredits, supportEmailAddress, tagline, title } from "../../lib/constants/appDetails";
 import { pricingList } from "../../lib/constants/landing-page";
-import { getUserDetails } from "./_actions/prisma";
 import { RecoilRoot } from "recoil";
 import { SupportChat } from "@repo/ui/organisms/custom/home/SupportChat";
 import { Separator } from "@repo/ui/atoms/shadcn/separator";
 import {BreadcrumbsHeader} from "@repo/ui/molecules/custom/v1/BreadcrumbsHeader"
 import { CONNECTIONS } from "./connections/_lib/connections";
+import { getUserDetails } from "../_actions/user";
 
 
 export default function Layout({ children }: { children: React.ReactNode }) {

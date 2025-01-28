@@ -3,20 +3,25 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@repo/ui/molecules/shadcn/card'
 import React, { useState } from 'react'
 import { CoinsIcon, CreditCard } from 'lucide-react'
-import { CreditsPack, PackId } from '../../_lib/helper/billing'
+import { CreditsPack, PackId } from '../../scrape-flow/_lib/helper/billing'
 import { RadioGroup, RadioGroupItem } from '@repo/ui/atoms/shadcn/radio'
 import { Label } from '@repo/ui/atoms/shadcn/label'
 import { Button } from '@repo/ui/atoms/shadcn/button'
 import { useMutation } from '@tanstack/react-query'
-import { PurchaseCredits } from '../../../../_actions/billing'
+import { PurchaseCreditsWithDodo } from '../../../_actions/payments/dodo'
+import AddAddressDialog from './AddAddressDialog'
+import { useToast } from '@repo/ui/hooks/use-toast'
+
 
 const CreditsPurchase = () => {
     const [selectedPack, setSelectedPack] = useState(PackId.MEDIUM)
 
+    const { toast } = useToast()
+
     const mutation = useMutation({
-        mutationFn: PurchaseCredits,
-        onSuccess:() => {},
-        onError:() => {}
+        mutationFn: PurchaseCreditsWithDodo,
+        onSuccess:() => {toast({title: "Success", description: "Credits Purchased", variant: 'success'})},
+        onError:(error) => {toast({title: "Error", description: error.message || "Failed to purchase credits ", variant: 'destructive'})}
     })
   return (
     <Card className='bg-sidebar'>
@@ -49,11 +54,12 @@ const CreditsPurchase = () => {
                 ))}
             </RadioGroup>
         </CardContent>
-        <CardFooter>
+        <CardFooter className='flex items-center gap-4'>
             <Button className='w-full' disabled={mutation.isPending} 
             onClick={()=> mutation.mutate(selectedPack)}>
                 <CreditCard className='mr-2 h-5 w-5'/> Purchase Credits              
             </Button>
+            <AddAddressDialog/>
         </CardFooter>
     </Card>
   )

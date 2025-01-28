@@ -1,7 +1,7 @@
 import { stripe } from "@repo/payments/stripe";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
-import { HandleCheckoutSessionCompleted } from "../../../(home)/scrape-flow/billing/_actions/stripe";
+import { HandleCheckoutSessionCompleted } from "../../../_actions/payments/stripe";
 
 
 export async function POST(request: Request) {

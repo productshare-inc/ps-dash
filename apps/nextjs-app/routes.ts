@@ -1,7 +1,7 @@
 
 export const publicRoutes = [
     "/landing","/auth/new-verification",'/api/hooks/catch','/landing/privacy-policy','/landing/terms',
-    '/api/workflows'
+    '/api/workflows','/api/payments/dodo'
 ]
 
 export const authRoutes =[
