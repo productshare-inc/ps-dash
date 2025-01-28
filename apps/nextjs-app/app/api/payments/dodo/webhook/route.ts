@@ -18,7 +18,7 @@ export async function POST(request: Request) {
         .update(verificationString)
         .digest('hex');
 
-    if (computedSignature !== webhookSignature) {
+    if (!safeCompare(computedSignature, webhookSignature)) {
         console.error('Invalid webhook signature');
         return new NextResponse('Invalid signature', { status: 400 });
     }
@@ -28,6 +28,10 @@ export async function POST(request: Request) {
     HandleCheckoutSessionCompleted(event);
 
     return new NextResponse(null, { status: 200 });
-    
-
 }
+
+function safeCompare(a:any, b:any) {
+    const len = Math.max(a.length, b.length);
+    return crypto.timingSafeEqual(Buffer.from(a.padEnd(len)), Buffer.from(b.padEnd(len)));
+  }
+  
