@@ -7,7 +7,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import CustomDialogHeader from '@repo/ui/molecules/custom/v1/CustomDialogHeader'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod';
-import  {Form, FormField, FormItem, FormMessage, FormControl, FormLabel, FormDescription} from '@repo/ui/molecules/shadcn/form'
+import  {Form, FormField, FormItem, FormMessage, FormControl, FormLabel} from '@repo/ui/molecules/shadcn/form'
 import { Input } from '@repo/ui/atoms/shadcn/input'
 import { useMutation } from '@tanstack/react-query'
 import { useToast } from '@repo/ui/hooks/use-toast'
@@ -132,7 +132,7 @@ const AddAddressDialog = () => {
                  <FormField
                   control={form.control}
                   name="country"
-                  render={({field}) => (
+                  render={() => (
                     <FormItem>
                       <FormLabel className='flex gap-1 items-center'>
                         Country
