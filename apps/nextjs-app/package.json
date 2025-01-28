@@ -47,6 +47,7 @@
     "react-dom": "^18.2.0",
     "recharts": "^2.15.0",
     "recoil": "^0.7.7",
+    "standardwebhooks": "^1.0.0",
     "stripe": "^17.5.0",
     "tailwind-scrollbar": "^3.1.0"
   },
