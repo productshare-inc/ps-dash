@@ -16,7 +16,7 @@ const Home = () => {
   }
 
 
-  return <div> natural
+  return <div>
     <p>Welcome!</p>
     </div>
 };
