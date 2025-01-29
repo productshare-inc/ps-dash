@@ -30,7 +30,13 @@ export async function GET(request: Request){
     }
 
     const { searchParams} = new URL(request.url);
+    const executionId = searchParams.get("executionId");
     const workflowId = searchParams.get("workflowId");
+
+    if(executionId && executionId?.length > 0){
+        await executeWorkflow(executionId);
+        return Response.json({success:true});
+    }
 
     if (!workflowId){
         return Response.json({error: "Missing workflowId"}, {status: 400});

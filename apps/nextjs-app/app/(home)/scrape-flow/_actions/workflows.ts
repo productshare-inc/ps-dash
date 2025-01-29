@@ -10,10 +10,10 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { FlowToExecutionPlan } from "../_lib/workflow/executionPlan";
 import { TaskRegistry } from "../_lib/workflow/tasks/registry";
-import { executeWorkflow } from "../_lib/workflow/executeWorkflow";
 import { CalculateWorkflowCost } from "../_lib/workflow/helpers";
 import parser  from "cron-parser";
 import { CreateFlowNode } from "../_lib/workflow/tasks/CreateFlowNode";
+import { getAppUrl } from "../../../../lib/helper/appUrl";
 
 const initialFlow: { nodes: AppNode[]; edges: Edge[]} ={
     nodes: [],
@@ -175,7 +175,17 @@ export async function RunWorkflow(form: {workflowId:string, flowDefinition?:stri
     if (!execution){
         throw new Error("Failed to create execution");
     }
-    executeWorkflow(execution.id); //run this on background
+    // executeWorkflow(execution.id); //run this on background
+    const triggerApiUrl = getAppUrl(`api/workflows/execute?executionId=${execution.id}`);
+
+    fetch(triggerApiUrl, {
+        headers: {
+            Authorization: `Bearer ${process.env.API_SECRET!  }`,
+        },
+        cache: "no-store"
+        }).catch((err) => {
+        console.log("Error triggering workflow", workflowId, err);
+        });
     redirect(`/scrape-flow/workflow/runs/${workflowId}/${execution.id}`);
 }
 
