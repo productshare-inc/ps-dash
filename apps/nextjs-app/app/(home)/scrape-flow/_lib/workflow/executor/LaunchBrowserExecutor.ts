@@ -3,6 +3,9 @@ import { ExecutionEnvironment } from '@repo/ts-types/scrape-flow/workflow'
 import { LaunchBrowserTask } from '../tasks/LaunchBrowserTask'
 // import { exec } from 'child_process';
 // import { waitFor } from '../../helper/waitFor';
+import chromium from "@sparticuz/chromium";
+import puppeteerCore from "puppeteer-core";
+chromium.setGraphicsMode =false
 
 // const BROWSER_WS = process.env.BROWSER_WS
 
@@ -26,13 +29,24 @@ export async function LaunchBrowserExecutor(
     environment:ExecutionEnvironment<typeof LaunchBrowserTask>):Promise<boolean>{
     try{
         const websiteUrl = environment.getInput("Website Url")
+        let browser;
 
         // ********launch without proxy*********
-        const browser = await puppeteer.launch({
-            headless:true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox',],})
+        if (process.env.NEXT_PUBLIC_URL?.includes('localhost')) {
+            browser = await puppeteer.launch({
+                headless:true,
+                args: ['--no-sandbox', '--disable-setuid-sandbox',],})
+        }else{
+            browser = await puppeteerCore.launch({
+                args: chromium.args,
+                defaultViewport: chromium.defaultViewport,
+                executablePath: await chromium.executablePath(),
+                headless:true,
+                ignoreDefaultArgs: ['--disable-extensions'],    
+            })
+        }
         environment.log.info("Browser launched Successfully")
-        environment.setBrowser(browser)
+        environment.setBrowser(browser as any)
         const page = await browser.newPage()
 
         // ***********launch with proxy************
@@ -60,7 +74,7 @@ export async function LaunchBrowserExecutor(
         // await openDevtools(page,client)
 
         await page.goto(websiteUrl as string)
-        environment.setPage(page)
+        environment.setPage(page as any)
         environment.log.info(`Opened page at ${websiteUrl}`)
         return true
     } catch(e:any){

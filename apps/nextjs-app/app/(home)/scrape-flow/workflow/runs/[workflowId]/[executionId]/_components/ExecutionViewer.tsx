@@ -9,7 +9,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { Separator } from '@repo/ui/atoms/shadcn/separator';
 import { Button } from '@repo/ui/atoms/shadcn/button';
 import { Badge } from '@repo/ui/atoms/shadcn/badge';
-import { DatesToDurationString } from '../../../../../_lib/helper/dates';
+import { DatesToDurationString } from '../../../../../../../../lib/helper/dates';
 import { GetPhasesTotalCost } from '../../../../../_lib/helper/phases';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@repo/ui/molecules/shadcn/card';
 import { Input } from '@repo/ui/atoms/shadcn/input';

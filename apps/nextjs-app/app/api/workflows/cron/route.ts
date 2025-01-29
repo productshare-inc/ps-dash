@@ -1,6 +1,6 @@
 import db from "@repo/prisma-db/client";
 import { WorkflowStatus } from "@repo/ts-types/scrape-flow/workflow";
-import { getAppUrl } from "../../../(home)/scrape-flow/_lib/helper/appUrl";
+import { getAppUrl } from "../../../../lib/helper/appUrl";
 
 export async function GET(){
     const now = new Date();

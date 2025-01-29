@@ -3,7 +3,7 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@repo/ui/molecules/shadcn/card'
 import React, { useState } from 'react'
 import { CoinsIcon, CreditCard } from 'lucide-react'
-import { CreditsPack, PackId } from '../../scrape-flow/_lib/helper/billing'
+import { CreditsPack, PackId } from '../../../../lib/constants/billing'
 import { RadioGroup, RadioGroupItem } from '@repo/ui/atoms/shadcn/radio'
 import { Label } from '@repo/ui/atoms/shadcn/label'
 import { Button } from '@repo/ui/atoms/shadcn/button'

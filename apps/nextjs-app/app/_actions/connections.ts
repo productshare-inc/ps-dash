@@ -5,7 +5,7 @@ import db from "@repo/prisma-db/client"
 import { ConnectionType } from "@repo/ts-types/home/v1";
 import { addApiKeyConnectionSchema, addApiKeyConnectionSchemaType } from "@repo/zod/scrape-flow/connection";
 import { revalidatePath } from "next/cache";
-import { symmetricEncrypt } from "../../lib/encryption";
+import { symmetricEncrypt } from "../../lib/helper/encryption";
 
 export async function GetConnectionsForUser(){
     const session = await auth();

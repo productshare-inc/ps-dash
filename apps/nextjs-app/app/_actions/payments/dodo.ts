@@ -1,7 +1,7 @@
 "use server"
 
 import DodoPayments from 'dodopayments';
-import { getCreditsPack, PackId } from '../../(home)/scrape-flow/_lib/helper/billing';
+import { getCreditsPack, PackId } from '../../../lib/constants/billing';
 import { auth } from '@repo/next-auth/auth';
 import db from '@repo/prisma-db/client';
 import { redirect } from 'next/navigation';

@@ -1,8 +1,8 @@
 "use server"
 
 import {stripe} from "@repo/payments/stripe"
-import { getAppUrl } from "../../(home)/scrape-flow/_lib/helper/appUrl";
-import { getCreditsPack, PackId } from "../../(home)/scrape-flow/_lib/helper/billing";
+import { getAppUrl } from "../../../lib/helper/appUrl";
+import { getCreditsPack, PackId } from "../../../lib/constants/billing";
 import { redirect } from "next/navigation";
 import { auth } from "@repo/next-auth/auth";
 import db from "@repo/prisma-db/client";

@@ -1,7 +1,7 @@
 import { ExecutionEnvironment } from '@repo/ts-types/scrape-flow/workflow';
 import { ExtractDataWithAITask } from '../tasks/ExtractDataWithAI';
 import db from '@repo/prisma-db/client';
-import { symmetricDecrypt } from '../../../../../../lib/encryption';
+import { symmetricDecrypt } from '../../../../../../lib/helper/encryption';
 import { chatCompletion } from '@repo/openai/chat';
 
 export async function ExtractDataWithAIExecutor(

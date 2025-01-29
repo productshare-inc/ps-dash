@@ -3,7 +3,7 @@
 import { auth } from "@repo/next-auth/auth"
 import db from "@repo/prisma-db/client"
 import { Period } from "@repo/ts-types/scrape-flow/analytics"
-import { PeriodToDateRange } from "../scrape-flow/_lib/helper/dates";
+import { PeriodToDateRange } from "../../../lib/helper/dates";
 import { ExecutionPhaseStatus, WorkflowExecutionStatus } from "@repo/ts-types/scrape-flow/workflow";
 import { eachDayOfInterval, format } from "date-fns";
 
