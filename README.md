@@ -1,3 +1,14 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=anoopkarnik_turborepo-saas-boilerplate-code&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=anoopkarnik_turborepo-saas-boilerplate-code)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=anoopkarnik_turborepo-saas-boilerplate-code&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=anoopkarnik_turborepo-saas-boilerplate-code)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=anoopkarnik_turborepo-saas-boilerplate-code&metric=bugs)](https://sonarcloud.io/summary/new_code?id=anoopkarnik_turborepo-saas-boilerplate-code)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=anoopkarnik_turborepo-saas-boilerplate-code&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=anoopkarnik_turborepo-saas-boilerplate-code)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=anoopkarnik_turborepo-saas-boilerplate-code&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=anoopkarnik_turborepo-saas-boilerplate-code)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=anoopkarnik_turborepo-saas-boilerplate-code&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=anoopkarnik_turborepo-saas-boilerplate-code)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=anoopkarnik_turborepo-saas-boilerplate-code&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=anoopkarnik_turborepo-saas-boilerplate-code)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=anoopkarnik_turborepo-saas-boilerplate-code&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=anoopkarnik_turborepo-saas-boilerplate-code)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=anoopkarnik_turborepo-saas-boilerplate-code&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=anoopkarnik_turborepo-saas-boilerplate-code)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=anoopkarnik_turborepo-saas-boilerplate-code&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=anoopkarnik_turborepo-saas-boilerplate-code)
+
 # COMPLETE SAAS BOILERPLATE CODE
 
 ## Overview
