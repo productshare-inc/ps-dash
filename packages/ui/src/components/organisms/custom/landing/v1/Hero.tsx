@@ -21,7 +21,7 @@ const Hero = ({loginFunction,documentationLink,tagline,description,testimonials,
     const router = useRouter()
 
   return (
-    <section className="container grid xl:grid-cols-2 place-items-center py-20 md:py-32 gap-10">
+    <section className="container grid xl:grid-cols-2 place-items-center py-20 md:py-32 gap-10 relative">
       <div className="text-center lg:text-start space-y-6">
         <main className="text-5xl md:text-6xl font-bold">
           <h1 className="inline">

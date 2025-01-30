@@ -1,58 +1,39 @@
 import { queryDatabase, createPage, modifyPage, getPage, getBlockChildren, deleteBlock, appendBlockChildren,
      getDatabaseProperties } from './index'; // Adjust the import path accordingly
 
-export const queryNotionDatabase = async ({apiToken, database_id, filters=[], filter_condition='and', sorts = [],
-     includes=[],cursor=null}:{apiToken:string, database_id: string, filters:any[], filter_condition:string,
-        sorts:any[], includes:any[], cursor:    string|null}):Promise<any> => {
-    let has_more = true;
-    let results = [];
-
-    let body = await constructFilterBody(filters,filter_condition, cursor);
-    body = await constructSortBody(body, sorts);
-    console.log(`body - ${JSON.stringify(body)}`);
-    let response = await queryDatabase({apiToken,database_id, body});
-    if (response.results.length > 0) {
-        has_more = response.has_more;
-        cursor = response.next_cursor
-        const modifiedResults = await Promise.all(response.results.map(async (result: any) => {
-            const modifiedResult = await modifyResult(result);
-            return modifiedResult;
-        }));
-        results.push(...modifiedResults);
-        console.log(`sucessfully modified results - length - ${results.length} - has_more - ${has_more}`);
-    } 
-    return { 
-        "results": results,
-        "has_more": has_more,
-        "next_cursor": cursor
-     };
-}
-
-export const queryAllNotionDatabase = async ({apiToken, database_id, filters, filter_condition='and',sorts = []}:{
-    apiToken:string, database_id: string, filters:any[], filter_condition:string, sorts:any[]
-}):Promise<any> => {
-    let has_more = true;
-    let cursor = null;
-    let results = [];
-    while (has_more) {
-        let body = await constructFilterBody(filters, filter_condition, cursor);
-        body = await constructSortBody(body, sorts);
-        console.log(`body - ${JSON.stringify(body)}`);
-        let response = await queryDatabase({apiToken,database_id, body});
+     export async function queryNotionDatabase({ apiToken, database_id, filters = [], filter_condition = 'and', sorts = [], includes = [], cursor = null }:any) {
+        let results = [];
+        let { has_more, next_cursor, response } = await fetchNotionData(apiToken, database_id, filters, filter_condition, sorts, cursor);
+        
         if (response.results.length > 0) {
-            has_more = response.has_more;
-            cursor = response.next_cursor
-            const modifiedResults = await Promise.all(response.results.map(async (result: any) => {
-                const modifiedResult = await modifyResult(result);
-                return modifiedResult;
-            }));
-            results.push(...modifiedResults);
-            console.log(`sucessfully modified results - length - ${results.length} - has_more - ${has_more}`);
-        } else {
-            has_more = false;
+            results = await Promise.all(response.results.map(modifyResult));
         }
+        
+        return { results, has_more, next_cursor };
     }
-    return { "results": results };
+    
+    export async function queryAllNotionDatabase({ apiToken, database_id, filters, filter_condition = 'and', sorts = [] }:any) {
+        let results = [];
+        let has_more = true;
+        let cursor = null;
+        
+        while (has_more) {
+            let { has_more: more, next_cursor, response } = await fetchNotionData(apiToken, database_id, filters, filter_condition, sorts, cursor);
+            if (response.results.length > 0) {
+                results.push(...(await Promise.all(response.results.map(modifyResult))));
+            }
+            has_more = more;
+            cursor = next_cursor;
+        }
+        
+        return { results };
+    }
+    
+async function fetchNotionData(apiToken:string, database_id:string, filters:any[], filter_condition:string, sorts:any[], cursor:string | null) {
+    let body = await constructFilterBody(filters, filter_condition, cursor);
+    body = await constructSortBody(body, sorts);
+    let response = await queryDatabase({ apiToken, database_id, body });
+    return { has_more: response.has_more, next_cursor: response.next_cursor, response };
 }
 
 export const getNotionDatabaseProperties = async ({apiToken, database_id}:{apiToken:string, database_id:string}) => {
