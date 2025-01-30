@@ -9,8 +9,7 @@ import {
 } from "../../../../molecules/shadcn/card";
 import { ProductProps } from "@repo/ts-types/landing-page/v1";
 import { useRouter } from "next/navigation";
-import { useTheme } from "../../../../../providers/theme-provider";
-
+import { useTheme } from "next-themes";
 
 const Products = ({productsList}: {productsList:ProductProps[]}) => {
   const router = useRouter();

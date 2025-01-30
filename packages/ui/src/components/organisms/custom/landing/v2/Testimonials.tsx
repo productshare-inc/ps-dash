@@ -34,7 +34,7 @@ const Testimonials = ({testimonials}: {testimonials: TestimonialProps[]}) => {
   return (
     <section
       id="testimonials"
-      className="w-full  py-24 sm:py-32 space-y-8"
+      className="w-full  py-24 sm:py-32 space-y-8 relative"
     >
       <div className="container mx-auto">
         <div className="flex flex-col gap-10">
@@ -79,6 +79,8 @@ const Testimonials = ({testimonials}: {testimonials: TestimonialProps[]}) => {
           </Carousel>
         </div>
       </div>
+      {/* Shadow effect */}
+      <div className="shadow "></div>
     </section>
   );
 };

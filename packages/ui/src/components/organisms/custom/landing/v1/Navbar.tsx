@@ -59,7 +59,7 @@ const Navbar = ({routeList,githubLink,githubUsername,githubRepositoryName,title,
               {theme === "dark" ?
                <Image src={darkLogo} alt={title} width={30} height={30} /> : 
                <Image src={logo} alt={title} width={30} height={30} />}
-               <div className="hidden lg:flex">{title}</div>
+               <div className="hidden lg:flex text-paragraph font-semibold w-[200px] text-wrap leading-snug ">{title}</div>
             </a>
           </NavigationMenuItem>
 
@@ -94,7 +94,7 @@ const Navbar = ({routeList,githubLink,githubUsername,githubRepositoryName,title,
                     </a>
                   ))}
                   <a rel="noreferrer noopener" href={donateNowLink}>    
-                    <Button size="sm" >
+                    <Button size={'sm'} >
                       Donate Now
                     </Button>
                   </a>
@@ -102,8 +102,9 @@ const Navbar = ({routeList,githubLink,githubUsername,githubRepositoryName,title,
                     rel="noreferrer noopener"
                     href={githubLink}
                     target="_blank"
-                    className={`w-[110px] border ${buttonVariants({
+                    className={`${buttonVariants({
                       variant: "secondary",
+                      size: "sm",
                     })}`}
                   >
                       <GitHubLogoIcon className="mr-2 w-5 h-5" />
@@ -139,7 +140,7 @@ const Navbar = ({routeList,githubLink,githubUsername,githubRepositoryName,title,
             ))}
           </nav>
 
-          <div className="hidden md:flex gap-2">
+          <div className="hidden md:flex gap-2 items-center">
             <a rel="noreferrer noopener" href={donateNowLink}>    
               <Button size="sm" >
                 Donate Now
@@ -149,7 +150,7 @@ const Navbar = ({routeList,githubLink,githubUsername,githubRepositoryName,title,
               rel="noreferrer noopener"
               href={githubLink}
               target="_blank"
-              className={`border flex items-center ${buttonVariants({ variant: "secondary" })}`}
+              className={`border flex items-center ${buttonVariants({ variant: "secondary", size: "sm" })}`}
             >
               <GitHubLogoIcon className="mr-2 w-5 h-5" />
 

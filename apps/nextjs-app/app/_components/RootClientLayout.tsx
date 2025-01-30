@@ -32,7 +32,7 @@ const RootClientLayout = ({ children }: { children: React.ReactNode }) => {
       <SessionProviders>
         <TanstackProvider>
           <NextTopLoader color="#10b981" showSpinner={false} />
-          <ThemeProvider defaultTheme="dark">
+          <ThemeProvider defaultTheme="dark" attribute="class" enableSystem disableTransitionOnChange >
             {children}
             <Analytics />
             <SpeedInsights />

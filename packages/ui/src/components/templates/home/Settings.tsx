@@ -34,10 +34,10 @@ const data = {
   nav: [
     { name: "My Account", icon: CircleUserIcon},
     { name: "Sessions", icon: RadioIcon },
-    { name: "Plans & Billing", icon: ReceiptIcon },
+    // { name: "Plans & Billing", icon: ReceiptIcon },
     { name: "Notifications", icon: Bell },
     { name: "Language & Region", icon: Globe },
-    { name: "My Connections", icon: Link },
+    // { name: "My Connections", icon: Link },
     { name: "Privacy & Visibility", icon: Lock },
   ],
 }

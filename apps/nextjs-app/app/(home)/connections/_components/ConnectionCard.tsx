@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from 'react'
 
 import Image from 'next/image'
-import { useTheme } from '@repo/ui/providers/theme-provider';
 import { ConnectionCardProps, ConnectionType } from '@repo/ts-types/home/v1';
 import { Card, CardDescription, CardHeader, CardTitle } from '@repo/ui/molecules/shadcn/card';
 import { Button } from '@repo/ui/atoms/shadcn/button';
 import AddApiKeyConnectionDialog from './AddApiKeyConnectionsDialog';
+import { useTheme } from 'next-themes';
+import AddOAuthConnectionsDialog from './AddOAuthConnectionsDialog';
 
 
 const ConnectionCard = ({connection}:{connection:ConnectionCardProps }) => {
@@ -19,7 +20,7 @@ const ConnectionCard = ({connection}:{connection:ConnectionCardProps }) => {
     }, [theme]);
 
   return (
-    <Card className="flex flex-col items-center justify-between bg-sidebar min-h-[250px] max-h-[250px] max-w-[300px]">
+    <Card className="flex flex-col items-center justify-between bg-sidebar min-h-[250px] max-h-[250px] min-w-[250px] max-w-[250px] overflow-hidden">
     <CardHeader className="flex flex-col items-center justify-center gap-2">
         <div className="flex aspect-square size-8 items-center justify-center ">
             {theme === "dark" ?
@@ -33,6 +34,7 @@ const ConnectionCard = ({connection}:{connection:ConnectionCardProps }) => {
     </CardHeader>
     { connection.published && <div className="flex flex-col items-center gap-2 p-4 mx-4 ">
         {connection.type === ConnectionType.ApiKey && <AddApiKeyConnectionDialog connection={connection}/>}
+        {connection.type === ConnectionType.OAuth2 && <AddOAuthConnectionsDialog connection={connection}/>}
     </div>}
     {/* Blur effect when dialog is open */}
     {isDialogOpen && (

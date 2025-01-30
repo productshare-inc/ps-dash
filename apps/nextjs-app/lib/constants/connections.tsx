@@ -11,4 +11,12 @@ export const CONNECTIONS: ConnectionCardProps[] = [
       type: ConnectionType.ApiKey,
       published: true,
     },
+    {
+      title: 'Notion',
+      description: 'Interact with Notion Databases',
+      logo: '/connections/notion.png',
+      darkLogo: '/connections/notion.png',
+      type: ConnectionType.OAuth2,
+      published: true,
+    }
   ]

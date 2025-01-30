@@ -1,6 +1,6 @@
 'use client'
-import { useTheme } from "../../../../providers/theme-provider";
 import { CompanyLogoNameProps } from "@repo/ts-types/home/v1";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useEffect } from "react";
 

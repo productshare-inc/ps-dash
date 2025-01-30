@@ -192,7 +192,7 @@ export const pricingList: PricingProps[] = [
       priceType: "/one-time",
       href: "/auth/login",
       description:
-        "To test live how this project works, you can use this trial plan and perform 20 credits worth of operations.",
+        "To test live how this project works, you can use this trial plan and perform 100 credits worth of operations.",
       buttonText: "Get Started",
       benefitList: [
         "Open Source Code",
@@ -205,12 +205,12 @@ export const pricingList: PricingProps[] = [
     {
       title: "Pro",
       popular: 0,
-      price: "Rs 20",
+      price: "Rs 200",
       priceType: "/one-time",
       href: "/auth/login",
       description:
-        "To test live how this project works, you can use this trial plan and perform 200 credits worth of operations.",
-      buttonText: "Upgrade (Only after Login)",
+        "To test live how this project works, you can use this trial plan and perform 2000 credits worth of operations.",
+      buttonText: "Get Started",
       benefitList: [
         "Open Source Code",
         "Testing how it works live",

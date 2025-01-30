@@ -17,12 +17,15 @@ import {Loader2} from 'lucide-react'
 import { ConnectionCardProps } from '@repo/ts-types/home/v1'
 import { AddApiKeyConnection } from '../../../_actions/connections'
 
-const AddApiKeyConnectionDialog = ({connection}:{connection:ConnectionCardProps}) => {
+const AddApiKeyConnectionsDialog = ({connection}:{connection:ConnectionCardProps}) => {
     const [open, setOpen] = useState(false)
     const {toast} = useToast()
 
     const form = useForm<addApiKeyConnectionSchemaType>({
       resolver: zodResolver(addApiKeyConnectionSchema),
+      defaultValues:{
+        connection: connection.title
+      }
     })
 
     const {mutate, isPending} = useMutation({
@@ -123,4 +126,4 @@ const AddApiKeyConnectionDialog = ({connection}:{connection:ConnectionCardProps}
   )
 }
 
-export default AddApiKeyConnectionDialog;
+export default AddApiKeyConnectionsDialog;

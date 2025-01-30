@@ -1,5 +1,5 @@
 
-import { CONNECTIONS } from "../_lib/connections";
+import { CONNECTIONS } from "../../../../lib/constants/connections";
 import ConnectionCard from "./ConnectionCard";
 
 const AddConnectionsList = () => {

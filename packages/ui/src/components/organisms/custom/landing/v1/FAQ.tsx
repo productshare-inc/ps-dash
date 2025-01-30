@@ -15,7 +15,7 @@ import {
     return (
       <section
         id="faq"
-        className="container py-24 sm:py-32"
+        className="container py-24 sm:py-32 relative"
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
           Frequently Asked{" "}
@@ -54,6 +54,8 @@ import {
             Contact us
           </a>
         </h3>
+              {/* Shadow effect */}
+      <div className="shadow left-0"></div>
       </section>
     );
   };

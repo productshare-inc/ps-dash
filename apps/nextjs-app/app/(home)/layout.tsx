@@ -12,7 +12,7 @@ import { RecoilRoot } from "recoil";
 import { SupportChat } from "@repo/ui/organisms/custom/home/SupportChat";
 import { Separator } from "@repo/ui/atoms/shadcn/separator";
 import {BreadcrumbsHeader} from "@repo/ui/molecules/custom/v1/BreadcrumbsHeader"
-import { CONNECTIONS } from "./connections/_lib/connections";
+import { CONNECTIONS } from "../../lib/constants/connections";
 import { getUserDetails } from "../_actions/user";
 
 

@@ -128,6 +128,7 @@ model Connection {
   id               String          @id @default(uuid())
   name             String          @default("New Connection")
   description      String?
+  connection       String?
   type             String
   details          String          @default("{}")
   User             User?           @relation(fields: [userId], references: [id])

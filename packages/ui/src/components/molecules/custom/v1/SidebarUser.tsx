@@ -32,9 +32,9 @@ import {
 } from "../../../organisms/shadcn/sidebar"
 import { UserProps } from "@repo/ts-types/home/v1"
 import { SettingsDialog } from "../../../templates/home/Settings"
-import { useTheme } from "../../../../providers/theme-provider"
 import { Theme } from "./Theme"
 import { signOut, useSession } from "next-auth/react"
+import { useTheme } from "next-themes"
 
 const SidebarUser = ({ documentationLink,supportEmailAddress, githubUsername,githubRepositoryName,
    connections,pricingList}:UserProps) => {

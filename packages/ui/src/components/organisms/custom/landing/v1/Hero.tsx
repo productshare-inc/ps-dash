@@ -4,6 +4,8 @@ import { buttonVariants } from "../../../../atoms/shadcn/button";
 import HeroCards  from "./HeroCards";
 import { useEffect, useState } from "react";
 import { HeroProps } from "@repo/ts-types/landing-page/v1";
+import { useSession} from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Hero = ({loginFunction,documentationLink,tagline,description,testimonials,
     pricingList,teamList,featuresWithDescription}: HeroProps) => {
@@ -13,6 +15,11 @@ const Hero = ({loginFunction,documentationLink,tagline,description,testimonials,
             setTaglineArray(tagline.split(" "))
         }
     },[tagline])
+
+    const {data:session} = useSession()
+
+    const router = useRouter()
+
   return (
     <section className="container grid xl:grid-cols-2 place-items-center py-20 md:py-32 gap-10">
       <div className="text-center lg:text-start space-y-6">
@@ -39,7 +46,11 @@ const Hero = ({loginFunction,documentationLink,tagline,description,testimonials,
 
         <div className="space-y-4 md:space-y-0 md:space-x-4">
             
-          <Button onClick={loginFunction} className="w-full md:w-1/3">Get Started</Button>
+          {!session?.user && <Button onClick={loginFunction} className="w-full md:w-1/3">Get Started</Button>}
+          {session?.user &&
+            <Button onClick={()=>router.push('/')} className="w-full md:w-1/3">
+            Go to Dashboard
+            </Button>}
 
           <a
             rel="noreferrer noopener"

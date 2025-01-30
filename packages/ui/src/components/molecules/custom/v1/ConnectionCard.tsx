@@ -5,10 +5,10 @@ import Image from 'next/image'
 import { Card, CardDescription, CardHeader, CardTitle } from '../../shadcn/card'
 import { Dialog, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '../../shadcn/dialog'
 import { ConnectionCardProps } from '@repo/ts-types/home/v1'
-import { useTheme } from '../../../../providers/theme-provider'
 import { Button } from '../../../atoms/shadcn/button'
 import { DialogContent } from '@radix-ui/react-dialog'
 import AddConnectionsModal from '../../../organisms/custom/home/AddConnectionsModal'
+import { useTheme } from 'next-themes'
 
 
 const ConnectionCard = ({connection}:{connection:ConnectionCardProps }) => {

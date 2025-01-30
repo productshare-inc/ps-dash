@@ -22,9 +22,11 @@ const LandingPage = ({routeList,githubLink,githubUsername,githubRepositoryName,l
       tagline={tagline} description={description} testimonials={testimonials}
        pricingList={pricingList} teamList={teamList}
        featuresWithDescription={featuresWithDescription} />
+
       <Features featureList={featureList} featuresWithDescription={featuresWithDescription} />
       <Testimonials testimonials={testimonials} />
       <Team teamList={teamList} />
+
       <Pricing pricingList={pricingList} supportEmailAddress={supportEmailAddress}/>
       <FAQ FAQList={FAQList} supportEmailAddress={supportEmailAddress}/>
       <Footer footerList={footerList} creator={creator} creatorLink={creatorLink} title={title} logo={logo}

@@ -8,6 +8,9 @@ export const chatCompletion = async ({apiKey,model,systemMessage,userMessages,te
     userMessages:string[],
     temperature:number   
 }) => {
+    if(!apiKey){
+        throw new Error('API key is missing')
+    }
     const openai = new OpenAI({apiKey});
 
     let messages:any = []

@@ -7,7 +7,7 @@ const Pricing = ({pricingList,supportEmailAddress}: {pricingList: PricingProps[]
   return (
     <section
       id="pricing"
-      className="container py-24 sm:py-32"
+      className="container py-24 sm:py-32 relative"
     >
       <h2 className="text-3xl md:text-4xl font-bold text-center">
         Get
@@ -26,6 +26,8 @@ const Pricing = ({pricingList,supportEmailAddress}: {pricingList: PricingProps[]
           <PricingItem key={pricing.title} pricing={pricing} />
         ))}
       </div>
+            {/* Shadow effect */}
+            <div className="shadow "></div>
     </section>
   );
 };

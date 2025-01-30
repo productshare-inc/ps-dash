@@ -19,3 +19,5 @@ export const chatWithAssistant = async (chatMessage: string) => {
       return "Sorry, something went wrong.";
     }
   };
+
+  

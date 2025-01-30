@@ -12,7 +12,7 @@ const Features = ({featuresWithDescription,featureList}: FeaturesProps) => {
   return (
     <section
       id="features"
-      className="container py-24 sm:py-32 space-y-8"
+      className="container py-24 sm:py-32 space-y-8 relative"
     >
       <h2 className="text-3xl lg:text-4xl font-bold md:text-center">
         Many{" "}
@@ -33,6 +33,8 @@ const Features = ({featuresWithDescription,featureList}: FeaturesProps) => {
           </div>
         ))}
       </div>
+        {/* Shadow effect */}
+        <div className="shadow left-0"></div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {featuresWithDescription.map(({ title, description,href}: FeatureWithDescriptionProps) => (
