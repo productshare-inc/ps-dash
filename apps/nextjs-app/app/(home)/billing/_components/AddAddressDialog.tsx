@@ -13,15 +13,19 @@ import { useMutation } from '@tanstack/react-query'
 import { useToast } from '@repo/ui/hooks/use-toast'
 import {Loader2} from 'lucide-react'
 import { billingAddressSchemaType, billingAddressSchema } from '@repo/zod/billing'
-import { AddUserAddress } from '../../../_actions/payments/billing'
+import { AddUserAddress, GetUserAddress } from '../../../_actions/payments/billing'
 import { CountryCode } from 'dodopayments/resources/misc/supported-countries.mjs'
 import { getCountryCodes } from '../../../_actions/payments/dodo'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@repo/ui/molecules/shadcn/select'
+import { useSession } from 'next-auth/react'
 
 const AddAddressDialog = () => {
 
     const [countryCodes, setCountryCodes] = useState<CountryCode[]>([])
     const [open, setOpen] = useState(false)
+    const [existingAddress, setExistingAddress] = useState<billingAddressSchemaType | null>(null)
+
+
     const {toast} = useToast()
 
     useEffect(()=>{
@@ -31,16 +35,32 @@ const AddAddressDialog = () => {
       }
       getCountries()
     },[])
+
+    useEffect(() => {
+      if (open) {
+          const fetchAddress = async () => {
+              const response = await GetUserAddress()
+              if (response) {
+                  setExistingAddress(response)
+                  form.reset(response) // Populate form with existing values
+              }
+          }
+          fetchAddress()
+      }
+    }, [open])
     
 
     const form = useForm<billingAddressSchemaType>({
       resolver: zodResolver(billingAddressSchema),
-      defaultValues:{}
+      defaultValues: existingAddress || {}
     })
 
     const {mutate, isPending} = useMutation({
       mutationFn: AddUserAddress,
-      onSuccess: ()=>{toast({title: "Success", description: "Address Added", variant: 'default'})},
+      onSuccess: ()=>{
+        toast({title: "Success", description: "Address Added", variant: 'default'})
+        setOpen(false);
+      },
       onError: (error)=>{toast({title: "Error", description: error.message || "Failed to add address", variant: 'destructive'})},
     })
 
@@ -53,7 +73,7 @@ const AddAddressDialog = () => {
     <Dialog open={open} onOpenChange={(open)=>{form.reset();setOpen(open)}}>
         <DialogTrigger asChild>
             <Button className='w-full'>
-              <MapPinIcon className='mr-2 h-5 w-5'/>{"Add Billing Address"} 
+              <MapPinIcon className='mr-2 h-5 w-5'/>{"Add/Edit Billing Address"} 
             </Button>
         </DialogTrigger>
         <DialogContent className='px-0 '>

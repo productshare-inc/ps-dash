@@ -12,6 +12,7 @@ import {
 import { Check} from "lucide-react";
 import { LightbulbIcon } from "lucide-react";
 import { HeroCardsProps } from "@repo/ts-types/landing-page/v1";
+import PricingItem from "../../../../molecules/custom/v1/PricingItem";
 
 const HeroCards = ({testimonials,pricingList,teamList,featuresWithDescription}:HeroCardsProps) => {
   return (
@@ -58,48 +59,9 @@ const HeroCards = ({testimonials,pricingList,teamList,featuresWithDescription}:H
       </Card>
 
       {/* Pricing */}
-
-      <Card className="absolute top-[180px] left-[50px] w-72  drop-shadow-xl shadow-black/10 dark:shadow-white/10">
-        <CardHeader>
-              <CardTitle className="flex item-center justify-between">
-                {pricingList[0]?.title}
-                  <Badge
-                    variant="secondary"
-                    className="text-sm text-primary"
-                  >
-                    Most popular
-                  </Badge>
-              </CardTitle>
-              <div>
-                <span className="text-3xl font-bold">{pricingList[0]?.price}</span>
-                <span className="text-muted-foreground"> {pricingList[0]?.priceType}</span>
-              </div>
-
-              <CardDescription>{pricingList[0]?.description}</CardDescription>
-            </CardHeader>
-
-        <CardContent>
-          <Button className="w-full">{pricingList[0]?.buttonText}</Button>
-        </CardContent>
-
-        <hr className="w-4/5 m-auto mb-4" />
-
-        <CardFooter className="flex">
-          <div className="space-y-4">
-            {pricingList[0]?.benefitList.filter((_, index) => index >= 0 && index <= 2).map(
-              (benefit: string) => (
-                <span
-                  key={benefit}
-                  className="flex"
-                >
-                  <Check className="text-green-500" />{" "}
-                  <h3 className="ml-2">{benefit}</h3>
-                </span>
-              )
-            )}
-          </div>
-        </CardFooter>
-      </Card>
+      <div className="absolute top-[180px] left-[50px] w-72 ">
+        <PricingItem pricing={pricingList[1]!} />
+      </div>
 
       {/* Feature*/}
       <Card className="absolute w-[350px] -right-[10px] top-[250px]  drop-shadow-xl shadow-black/10 dark:shadow-white/10">
@@ -108,9 +70,9 @@ const HeroCards = ({testimonials,pricingList,teamList,featuresWithDescription}:H
             <LightbulbIcon />
           </div>
           <div>
-            <CardTitle>{featuresWithDescription[1]?.title}</CardTitle>
+            <CardTitle>{featuresWithDescription[3]?.title}</CardTitle>
             <CardDescription className="text-md mt-2 ">
-              {featuresWithDescription[1]?.description}
+              {featuresWithDescription[3]?.description}
             </CardDescription>
           </div>
         </CardHeader>

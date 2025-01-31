@@ -4,6 +4,7 @@ import PricingItem from "../../../../molecules/custom/v1/PricingItem";
 
 const Pricing = ({pricingList,supportEmailAddress}: {pricingList: PricingProps[],supportEmailAddress:string}) => {
   let href = "https://mail.google.com/mail?view=cm&fs=1&to="+supportEmailAddress+"&su=Support";
+  
   return (
     <section
       id="pricing"
@@ -17,11 +18,11 @@ const Pricing = ({pricingList,supportEmailAddress}: {pricingList: PricingProps[]
         </span>
         Access
       </h2>
-      <h3 className="text-xl text-center text-muted-foreground pt-4 pb-8">
+      <h3 className="text-xl text-center text-muted-foreground pt-4 pb-8 ">
         It's all available for free. You can contact us for any customized solution based on this boilerplate code, you want to implement.
         You can also show your support by giving us a star on Github or donating to our project.
       </h3>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="flex flex-wrap gap-8 justify-center">
         {pricingList.map((pricing: PricingProps) => (
           <PricingItem key={pricing.title} pricing={pricing} />
         ))}

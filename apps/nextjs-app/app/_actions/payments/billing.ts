@@ -105,6 +105,34 @@ export async function AddUserAddress(form: billingAddressSchemaType){
             }
         })
     }
+    else {
+        await db.userFinancial.update({
+            where:{
+                userId: session.user.id
+            },
+            data:{
+                name: form.name,
+                email: form.email,
+                street: form.street,    
+                city: form.city,
+                state: form.state,
+                zipcode: form.zipcode,
+                country: form.country,
+            }
+        })
+    }
   
 }
 
+export async function GetUserAddress(){
+    const session = await auth();
+    if (!session?.user?.id) {
+        throw new Error("User not authenticated");
+    }
+    const userFinancial = await db.userFinancial.findUnique({
+        where: {
+            userId: session.user.id
+        }
+    })
+    return userFinancial;
+}

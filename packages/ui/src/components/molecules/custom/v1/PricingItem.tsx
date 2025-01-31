@@ -11,6 +11,8 @@ import {
 import { Check } from "lucide-react";
 import { PricingProps } from "@repo/ts-types/landing-page/v1";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 enum PopularPlanType {
     NO = 0,
@@ -19,15 +21,19 @@ enum PopularPlanType {
   
 
 const PricingItem = ({pricing}:{pricing:PricingProps}) => {
-    const isExternal = pricing.buttonText.includes("https");
+    const isExternal = pricing.registeredHref.includes("https");
+    
+        const {data:session} = useSession()
+    
+        const router = useRouter()
 
   return (
     <Card
         key={pricing.title}
         className={
             pricing.popular === PopularPlanType.YES
-            ? "drop-shadow-xl shadow-black/10 dark:shadow-white/10"
-            : ""
+            ? "drop-shadow-xl shadow-black/10 dark:shadow-white/10 max-w-[400px]"
+            : "max-w-[400px]"
         }
         >
             <CardHeader>
@@ -51,9 +57,23 @@ const PricingItem = ({pricing}:{pricing:PricingProps}) => {
             </CardHeader>
 
             <CardContent>
-                <a href={pricing.href || "#"} target="_blank" rel="noreferrer noopener" aria-label="External link"              >
-                  <Button className="w-full">{pricing.buttonText}</Button>
-                </a>
+                {pricing.registeredHref.includes("https") && session?.user && 
+                     <a href={pricing.registeredHref|| "#"} target="_blank" rel="noreferrer noopener" aria-label="External link"              >
+                     <Button className="w-full">{pricing.registeredButtonText}</Button>
+                   </a>
+                }
+                {pricing.registeredHref.includes("https") && !session?.user && 
+                     <a href={pricing.unregisteredHref|| "#"} target="_blank" rel="noreferrer noopener" aria-label="External link"              >
+                     <Button className="w-full">{pricing.unregisteredButtonText}</Button>
+                   </a>
+                }
+                {!pricing.registeredHref.includes("https") && session?.user && 
+                     <Button className="w-full" onClick={()=>router.push(pricing.registeredHref)}>{pricing.registeredButtonText}</Button>
+                }
+                {!pricing.registeredHref.includes("https") && !session?.user && 
+                  <Button className="w-full" onClick={()=>router.push(pricing.unregisteredHref)}>{pricing.unregisteredButtonText}</Button>
+                }
+                
             </CardContent>
 
             <hr className="w-4/5 m-auto mb-4" />

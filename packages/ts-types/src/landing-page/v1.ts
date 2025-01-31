@@ -102,9 +102,11 @@ export interface PricingProps {
   popular: PopularPlanType;
   price: string;
   priceType: string;
-  href: string;
+  unregisteredHref: string;
+  registeredHref: string;
   description: string;
-  buttonText: string;
+  unregisteredButtonText: string;
+  registeredButtonText: string;
   benefitList: string[];
 }
 export interface PrivacyPolicyProps {
