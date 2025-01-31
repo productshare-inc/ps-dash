@@ -17,7 +17,6 @@ import { AddUserAddress, GetUserAddress } from '../../../_actions/payments/billi
 import { CountryCode } from 'dodopayments/resources/misc/supported-countries.mjs'
 import { getCountryCodes } from '../../../_actions/payments/dodo'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@repo/ui/molecules/shadcn/select'
-import { useSession } from 'next-auth/react'
 
 const AddAddressDialog = () => {
 
