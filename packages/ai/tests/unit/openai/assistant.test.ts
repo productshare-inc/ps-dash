@@ -1,5 +1,5 @@
 import { describe, test, expect, vi } from "vitest";
-import { chatWithAssistant } from "../../src/assistant";
+import { chatWithAssistant } from "../../../src/openai/assistant";
 
 describe("chatWithAssistant", () => {
   test("returns a valid response on successful API call", async () => {

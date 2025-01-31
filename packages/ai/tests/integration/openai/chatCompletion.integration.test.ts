@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { chatCompletion } from '../../src/chatCompletion';
+import { chatCompletion } from '../../../src/openai/chatCompletion';
 import dotenv from "dotenv";
 dotenv.config();
 

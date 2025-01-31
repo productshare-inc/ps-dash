@@ -1,6 +1,6 @@
 import { describe, test, expect, vi } from 'vitest';
 import OpenAI from 'openai';
-import { chatCompletion } from '../../src/chatCompletion';
+import { chatCompletion } from '../../../src/openai/chatCompletion';
 
 // Mock OpenAI API
 vi.mock('openai', () => ({
