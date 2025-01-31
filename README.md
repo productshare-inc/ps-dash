@@ -1,6 +1,9 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=anoopkarnik_turborepo-saas-boilerplate-code&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=anoopkarnik_turborepo-saas-boilerplate-code)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=anoopkarnik_turborepo-saas-boilerplate-code&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=anoopkarnik_turborepo-saas-boilerplate-code)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=anoopkarnik_turborepo-saas-boilerplate-code&metric=coverage)](https://sonarcloud.io/summary/new_code?id=anoopkarnik_turborepo-saas-boilerplate-code)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=anoopkarnik_turborepo-saas-boilerplate-code&metric=bugs)](https://sonarcloud.io/summary/new_code?id=anoopkarnik_turborepo-saas-boilerplate-code)
+
+
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=anoopkarnik_turborepo-saas-boilerplate-code&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=anoopkarnik_turborepo-saas-boilerplate-code)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=anoopkarnik_turborepo-saas-boilerplate-code&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=anoopkarnik_turborepo-saas-boilerplate-code)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=anoopkarnik_turborepo-saas-boilerplate-code&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=anoopkarnik_turborepo-saas-boilerplate-code)
