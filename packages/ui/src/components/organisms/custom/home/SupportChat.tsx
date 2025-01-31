@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '../../../atoms/shadcn/button';
 import { Textarea } from '../../../atoms/shadcn/textarea';
-import { chatWithAssistant} from "@repo/openai/assistant";
+import { chatWithAssistant} from "../../../../../../ai/src/openai/assistant";
 import { ChatBubbleIcon } from '@radix-ui/react-icons';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import { Skeleton } from '../../../molecules/shadcn/skeleton';
-import { set } from 'date-fns';
 
 
 export const SupportChat = () => {

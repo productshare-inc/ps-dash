@@ -1,6 +1,6 @@
 "use server"
 
-import { auth } from "@repo/next-auth/auth"
+import { auth } from "@repo/auth/next-auth/auth";
 import db from "@repo/prisma-db/client"
 import { AppNode, TaskType } from "@repo/ts-types/scrape-flow/node";
 import { ExecutionPhaseStatus, WorkflowExecutionPlan, WorkflowExecutionStatus, WorkflowExecutionTrigger, WorkflowStatus } from "@repo/ts-types/scrape-flow/workflow";

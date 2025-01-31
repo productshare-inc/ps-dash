@@ -1,6 +1,6 @@
 import {Resend} from 'resend';
-import EmailVerification from './templates/EmailVertification';
-import ResetPassword from './templates/ResetPassword';
+import EmailVerification from '../templates/EmailVertification';
+import ResetPassword from '../templates/ResetPassword';
 
 const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY)
 

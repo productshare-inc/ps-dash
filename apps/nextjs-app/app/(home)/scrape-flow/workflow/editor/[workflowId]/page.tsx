@@ -1,4 +1,4 @@
-import { auth } from '@repo/next-auth/auth'
+import { auth } from '@repo/auth/next-auth/auth'
 import React from 'react'
 import db from '@repo/prisma-db/client'
 import Editor from '../../_components/Editor'

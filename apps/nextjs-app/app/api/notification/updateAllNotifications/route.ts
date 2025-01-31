@@ -1,4 +1,4 @@
-import { auth } from "@repo/next-auth/auth";
+import { auth } from "@repo/auth/next-auth/auth";
 import { markAllNotificationsAsRead} from "@repo/prisma-db/repo/notification";
 import { NextResponse } from "next/server";
 

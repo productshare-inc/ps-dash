@@ -1,5 +1,5 @@
 {
-  "name": "@repo/next-auth",
+  "name": "@repo/auth",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,8 +7,7 @@
     "test": "vitest"
   },
   "exports": {
-    "./auth": "./src/auth.ts",
-    "./config": "./src/auth.config.ts"
+    "./*": "./src/*.ts"
   },
   "keywords": [],
   "author": "",

@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 import db from '@repo/prisma-db/client';
 import { getUserByEmail } from '@repo/prisma-db/repo/user';
 import { createVerificationToken } from '@repo/prisma-db/repo/user';
-import { sendVerificationEmail } from '@repo/resend-email/mail';
+import { sendVerificationEmail } from '@repo/email/resend/index';
 
 export const register = async (values:z.infer<typeof RegisterSchema>) =>{
     const validatedFields = RegisterSchema.safeParse(values);

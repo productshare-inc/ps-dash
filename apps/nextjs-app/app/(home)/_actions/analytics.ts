@@ -1,6 +1,6 @@
 "use server"
 
-import { auth } from "@repo/next-auth/auth"
+import { auth } from "@repo/auth/next-auth/auth";
 import db from "@repo/prisma-db/client"
 import { Period } from "@repo/ts-types/scrape-flow/analytics"
 import { PeriodToDateRange } from "../../../lib/helper/dates";

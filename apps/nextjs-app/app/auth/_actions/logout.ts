@@ -1,6 +1,6 @@
 "use server";
 
-import { signOut } from '@repo/next-auth/auth';
+import { signOut } from '@repo/auth/next-auth/auth';
 export const logout = async () =>{
 
     try{

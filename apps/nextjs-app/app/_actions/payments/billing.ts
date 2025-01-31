@@ -1,6 +1,6 @@
 "use server"
 
-import { auth } from "@repo/next-auth/auth";
+import { auth } from "@repo/auth/next-auth/auth";
 import db from "@repo/prisma-db/client";
 import { LogCollector } from "@repo/ts-types/scrape-flow/log";
 import { billingAddressSchemaType } from "@repo/zod/billing";

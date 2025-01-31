@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { auth } from  "@repo/next-auth/auth"
+import { auth } from  "@repo/auth/next-auth/auth";
 import db from "@repo/prisma-db/client";
 
 export async function POST(request: Request) {

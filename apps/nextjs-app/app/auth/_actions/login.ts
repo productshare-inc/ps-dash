@@ -2,11 +2,11 @@
 
 import { LoginSchema } from '@repo/zod/auth';
 import * as z from 'zod';
-import { signIn } from '@repo/next-auth/auth';
+import { signIn } from '@repo/auth/next-auth/auth';
 import { AuthError } from 'next-auth';
 import { createVerificationToken } from '@repo/prisma-db/repo/user';
 import { getUserByEmail } from '@repo/prisma-db/repo/user';
-import { sendVerificationEmail } from '@repo/resend-email/mail';
+import { sendVerificationEmail } from '@repo/email/resend/index';
 import { DEFAULT_LOGIN_REDIRECT } from '../../../routes';
 
 export const login = async (values:z.infer<typeof LoginSchema>) =>{

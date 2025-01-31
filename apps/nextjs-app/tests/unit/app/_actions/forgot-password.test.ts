@@ -2,7 +2,7 @@ import { describe, test, expect } from 'vitest';
 import { vi } from 'vitest';
 
 import { getUserByEmail, createResetToken } from '@repo/prisma-db/repo/user';
-import { sendResetEmail } from '@repo/resend-email/mail';
+import { sendResetEmail } from '../../../../../../packages/email/src/resend';
 import { ForgotPassword } from '../../../../app/auth/_actions/forgot-password';
 
 // Mock external functions

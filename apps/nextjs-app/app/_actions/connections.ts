@@ -1,6 +1,6 @@
 "use server"
 
-import { auth } from "@repo/next-auth/auth"
+import { auth } from "@repo/auth/next-auth/auth";
 import db from "@repo/prisma-db/client"
 import { ConnectionType } from "@repo/ts-types/home/v1";
 import { addApiKeyConnectionSchema, addApiKeyConnectionSchemaType, addOAuthConnectionSchema, addOAuthConnectionSchemaType } from "@repo/zod/scrape-flow/connection";

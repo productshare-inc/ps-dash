@@ -1,4 +1,4 @@
-import authConfig from "@repo/next-auth/config"
+import authConfig from "../../packages/auth/src/next-auth/auth.config"
 
 import NextAuth from "next-auth";
 import {NextResponse} from "next/server";

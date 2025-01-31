@@ -1,6 +1,6 @@
 import { modifyAccess } from "@repo/prisma-db/repo/user";
 import { NextResponse } from "next/server";
-import { auth } from  "@repo/next-auth/auth"
+import { auth } from  "@repo/auth/next-auth/auth";
 
 export async function GET() {
     try {

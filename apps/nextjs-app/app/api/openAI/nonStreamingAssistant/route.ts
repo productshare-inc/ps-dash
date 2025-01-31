@@ -1,4 +1,4 @@
-import { handleAssistantMessage } from "@repo/openai/assistantServer";
+import { handleAssistantMessage } from "@repo/ai/openai/assistantServer";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {

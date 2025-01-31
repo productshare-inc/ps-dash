@@ -2,7 +2,7 @@
 
 import DodoPayments from 'dodopayments';
 import { getCreditsPack, PackId } from '../../../lib/constants/billing';
-import { auth } from '@repo/next-auth/auth';
+import { auth } from '@repo/auth/next-auth/auth';
 import db from '@repo/prisma-db/client';
 import { redirect } from 'next/navigation';
 import { CountryCode } from 'dodopayments/resources/misc/supported-countries.mjs';
