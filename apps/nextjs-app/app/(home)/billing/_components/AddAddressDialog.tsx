@@ -30,7 +30,7 @@ const AddAddressDialog = () => {
     useEffect(()=>{
       const getCountries = async () => {
         const response = await getCountryCodes()
-        setCountryCodes(response.sort())
+        setCountryCodes(response.sort((a,b)=>a.localeCompare(b)))
       }
       getCountries()
     },[])

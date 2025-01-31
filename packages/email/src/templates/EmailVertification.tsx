@@ -59,7 +59,6 @@ const EmailVerification = ({ verificationLink }:{verificationLink:string}) => {
                 >
                   contact us
                 </a>
-                .
               </Text>
             </Section>
           </Container>

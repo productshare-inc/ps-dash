@@ -37,10 +37,8 @@ const CreditsPurchase = () => {
         <CardContent>
             <RadioGroup onValueChange={value => setSelectedPack(value as PackId)} value={selectedPack}>
                 {CreditsPack.map((pack) => (
-                    <div key={pack.id} 
-                    className='flex items-center space-x-3 bg-secondary/50 rounded-lg
-                     p-3 hover:bg-secondary' 
-                     onClick={()=> setSelectedPack(pack.id)}>
+                    <Button key={pack.id} variant={'secondary'} onClick={()=> setSelectedPack(pack.id)} 
+                    className='flex items-center gap-2'>
                         <RadioGroupItem value={pack.id} id={pack.id}/>
                         <Label className='flex justify-between w-full cursor-pointer'>
                             <span className='font-medium'>
@@ -50,7 +48,7 @@ const CreditsPurchase = () => {
                                 $ {(pack.price/100).toFixed(2)}
                             </span>
                         </Label>
-                    </div>
+                    </Button>
                 ))}
             </RadioGroup>
         </CardContent>

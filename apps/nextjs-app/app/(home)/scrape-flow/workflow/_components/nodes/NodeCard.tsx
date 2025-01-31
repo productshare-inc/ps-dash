@@ -4,6 +4,7 @@ import { cn } from '@repo/ui/lib/utils';
 import { useReactFlow } from '@xyflow/react';
 import React from 'react'
 import useFlowValidation from '../../../_hooks/useFlowValidation';
+import { Button } from '@repo/ui/atoms/shadcn/button';
 
 const NodeCard = ({children,nodeId,isSelected}:{nodeId: string; children: React.ReactNode,isSelected:boolean}) => {
     const {getNode, setCenter} = useReactFlow()
@@ -11,7 +12,7 @@ const NodeCard = ({children,nodeId,isSelected}:{nodeId: string; children: React.
     const hasInvalidInputs = invalidInputs.some((input)=>input.nodeId === nodeId);
 
     return (
-        <div onDoubleClick={()=>{
+        <div role='button' onDoubleClick={()=>{
             const node = getNode(nodeId)
             if(!node) return;
             const {position,measured } = node

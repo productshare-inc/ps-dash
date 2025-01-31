@@ -3,7 +3,7 @@ import ErrorPage from '@repo/ui/templates/auth/v1/ErrorPage'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
-const Error = () => {
+const ErrorTemp = () => {
 
   const router = useRouter()
 
@@ -22,4 +22,4 @@ const Error = () => {
   )
 }
 
-export default Error;
+export default ErrorTemp;
