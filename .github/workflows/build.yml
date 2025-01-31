@@ -17,6 +17,8 @@ jobs:
         run: npm install
       - name: Test and coverage
         run: npx vitest run --coverage
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v4
         env:
