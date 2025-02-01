@@ -4,7 +4,6 @@ import { cn } from '@repo/ui/lib/utils';
 import { useReactFlow } from '@xyflow/react';
 import React from 'react'
 import useFlowValidation from '../../../_hooks/useFlowValidation';
-import { Button } from '@repo/ui/atoms/shadcn/button';
 
 const NodeCard = ({children,nodeId,isSelected}:{nodeId: string; children: React.ReactNode,isSelected:boolean}) => {
     const {getNode, setCenter} = useReactFlow()

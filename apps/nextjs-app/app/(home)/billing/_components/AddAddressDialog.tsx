@@ -35,6 +35,11 @@ const AddAddressDialog = () => {
       getCountries()
     },[])
 
+    const form = useForm<billingAddressSchemaType>({
+      resolver: zodResolver(billingAddressSchema),
+      defaultValues: existingAddress || {}
+    })
+
     useEffect(() => {
       if (open) {
           const fetchAddress = async () => {
@@ -46,13 +51,10 @@ const AddAddressDialog = () => {
           }
           fetchAddress()
       }
-    }, [open])
+    }, [open,form])
     
 
-    const form = useForm<billingAddressSchemaType>({
-      resolver: zodResolver(billingAddressSchema),
-      defaultValues: existingAddress || {}
-    })
+
 
     const {mutate, isPending} = useMutation({
       mutationFn: AddUserAddress,

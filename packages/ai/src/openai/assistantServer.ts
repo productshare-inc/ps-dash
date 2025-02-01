@@ -2,12 +2,13 @@
 
 import OpenAI from "openai";
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY as string });
-const assistant_id = process.env.OPENAI_ASSISTANT_ID as string;
+
 
 let threadId: string | null = null;
 
 export async function handleAssistantMessage(chatMessage: string) {
+    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY as string });
+    const assistant_id = process.env.OPENAI_ASSISTANT_ID as string;
     if (!threadId) {
         const thread = await openai.beta.threads.create();
         threadId = thread.id;

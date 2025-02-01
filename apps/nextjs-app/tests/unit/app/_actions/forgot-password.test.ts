@@ -5,13 +5,16 @@ import { getUserByEmail, createResetToken } from '@repo/prisma-db/repo/user';
 import { sendResetEmail } from '@repo/email/resend/index';
 import { ForgotPassword } from '../../../../app/auth/_actions/forgot-password';
 
+import dotenv from "dotenv";
+dotenv.config();
+
 // Mock external functions
 vi.mock('@repo/prisma-db/repo/user', () => ({
   getUserByEmail: vi.fn(),
   createResetToken: vi.fn(),
 }));
 
-vi.mock('@repo/resend-email/mail', () => ({
+vi.mock('@repo/email/resend/index', () => ({
   sendResetEmail: vi.fn(),
 }));
 

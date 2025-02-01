@@ -1,7 +1,7 @@
 import { describe, test, expect } from "vitest";
+import { chatWithAssistant } from "../../../src/openai/assistant";
 
 import dotenv from "dotenv";
-import { chatWithAssistant } from "../../../src/openai/assistant";
 dotenv.config();
 
 describe("chatWithAssistant (Integration Test)",{timeout: 15_000}, () => {
