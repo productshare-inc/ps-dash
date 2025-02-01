@@ -38,7 +38,7 @@ export const Team = ({teamList}:{teamList:TeamProps[]}) => {
     >
       <h2 className="text-3xl md:text-4xl font-bold">
         <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-          Our Dedicated{" "}
+          Our Dedicated &nbsp;
         </span>
         Crew
       </h2>

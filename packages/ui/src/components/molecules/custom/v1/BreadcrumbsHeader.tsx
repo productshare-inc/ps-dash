@@ -15,14 +15,14 @@ export const BreadcrumbsHeader = () => {
             <Breadcrumb>
                 <BreadcrumbList>
                     <BreadcrumbItem>
-                        <div role="button" className='capitalize cursor-pointer hover:dark:text-white hover:text-black' onClick={() => router.push("/")}>
+                        <div tabIndex={0} role="button" className='capitalize cursor-pointer hover:dark:text-white hover:text-black' onClick={() => router.push("/")}>
                             Home
                         </div>
                     </BreadcrumbItem>
                     {paths.map((path, index) => (
                         <React.Fragment key={index}>
                             <BreadcrumbItem>
-                                <div role="button" className='capitalize cursor-pointer hover:dark:text-white hover:text-black' onClick={() => router.push(getFullPath(index))}>
+                                <div role="button" tabIndex={0} className='capitalize cursor-pointer hover:dark:text-white hover:text-black' onClick={() => router.push(getFullPath(index))}>
                                     {path}
                                 </div>
                             </BreadcrumbItem>

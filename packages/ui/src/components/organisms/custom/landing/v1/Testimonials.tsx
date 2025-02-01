@@ -15,14 +15,13 @@ const Testimonials = ({testimonials}: {testimonials: TestimonialProps[]}) => {
       id="testimonials"
       className="container py-24 sm:py-32 relative"
     >
-      <h2 className="text-3xl md:text-4xl font-bold">
-        Discover Why
-        <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-          {" "}
-          People Love{" "}
-        </span>
-        This Micro SaaS Boilerplate Code
-      </h2>
+       <h2 className="text-3xl md:text-4xl font-bold">
+            Discover Why &nbsp;
+            <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
+            People Love &nbsp;
+            </span>
+            This Micro SaaS Boilerplate Code
+        </h2>
 
       <p className="text-xl text-muted-foreground pt-4 pb-8">
         Tweets from our happy users who have used our product and loved it.

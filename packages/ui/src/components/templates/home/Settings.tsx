@@ -29,6 +29,7 @@ import MyConnectionsSettings from "../../organisms/custom/home/MyConnectionsSett
 import SessionSettings from "../../organisms/custom/home/SessionSettings"
 import PlansBilling from "../../organisms/custom/home/PlansBilling"
 import { useSession } from "next-auth/react"
+import { Button } from "../../atoms/shadcn/button"
 
 const data = {
   nav: [
@@ -117,10 +118,10 @@ export function SettingsDialog({children, open: controlledOpen, onOpenChange: se
                           asChild
                           className={cn("cursor-pointer hover:bg-accent2", item.name === currentOpenedTab && "bg-accent2")}
                         >
-                          <div className="cursor-pointer" onClick={()=>setCurrentOpenedTab(item.name)}>
+                          <Button variant={'secondary'} className="cursor-pointer shadow-none" onClick={()=>setCurrentOpenedTab(item.name)}>
                             <item.icon />
                             <span>{item.name}</span>
-                          </div>
+                          </Button>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
                     ))}

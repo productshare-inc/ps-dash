@@ -11,7 +11,7 @@ const NodeCard = ({children,nodeId,isSelected}:{nodeId: string; children: React.
     const hasInvalidInputs = invalidInputs.some((input)=>input.nodeId === nodeId);
 
     return (
-        <div role='button' onDoubleClick={()=>{
+        <div role='button' tabIndex={0} onDoubleClick={()=>{
             const node = getNode(nodeId)
             if(!node) return;
             const {position,measured } = node

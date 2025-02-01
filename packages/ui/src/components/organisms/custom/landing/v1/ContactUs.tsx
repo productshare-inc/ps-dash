@@ -10,10 +10,10 @@ const ContactUs = ({lastUpdated,companyName,address,email,contactNumber}:Contact
         <p className="mb-4">Registered Address: {address}</p>
         <p className="mb-4">Operational Address: {address}</p>
         <p className="mb-4">Contact Number: {contactNumber}</p>
-        <p className="mb-4"> Email Id: &nbsp; 
-          <a href={`https://mail.google.com/mail?view=cm&fs=1&to=${email}&su=SupportEmail`} className='text-blue-500 cursor-pointer'>
-            {email}
-          </a>
+        <p className="mb-4"> Email Id: &nbsp;
+        <a href={`https://mail.google.com/mail?view=cm&fs=1&to=${email}&su=SupportEmail`} className='text-blue-500 cursor-pointer'>
+          {email}
+        </a>
         </p>
 
     </div>
