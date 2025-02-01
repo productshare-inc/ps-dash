@@ -11,8 +11,7 @@ export const Services = ({services}:{services:ServiceProps[]}) => {
         <div>
           <h2 className="text-3xl md:text-4xl font-bold">
             <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-              Client-Centric &nbsp;
-            </span>
+              Client-Centric </span>
             Services
           </h2>
 

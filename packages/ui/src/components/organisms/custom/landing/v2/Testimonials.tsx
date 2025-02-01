@@ -40,11 +40,9 @@ const Testimonials = ({testimonials}: {testimonials: TestimonialProps[]}) => {
         <div className="flex flex-col gap-10">
         <div>
             <h2 className="text-3xl md:text-4xl font-bold">
-                Discover Why &nbsp;
-                <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-                People Love &nbsp;
-                </span>
-                This Micro SaaS Boilerplate Code
+            Discover Why <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
+              People Love
+              </span> This Micro SaaS Boilerplate Code
             </h2>
             <p className="text-xl text-muted-foreground pt-4 pb-8">
                 Tweets from our happy users who have used our product and loved it.
@@ -62,7 +60,7 @@ const Testimonials = ({testimonials}: {testimonials: TestimonialProps[]}) => {
                               </h3>
                           </div>
                           <p className="flex flex-row gap-2 text-sm items-center">
-                              <span className="text-muted-foreground">By</span>{" "}
+                              <span className="text-muted-foreground">By </span>
                                   <Avatar className="h-6 w-6">
                                       <AvatarImage src={testimonial.image} />
                                       <AvatarFallback>{testimonial.userName}</AvatarFallback>
