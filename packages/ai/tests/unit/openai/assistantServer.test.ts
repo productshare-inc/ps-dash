@@ -48,7 +48,7 @@ describe("handleAssistantMessage", () => {
     });
 
     test("should throw an error if user is not authenticated", async () => {
-        (auth as any).mockResolvedValue(null);
+        (auth).mockResolvedValue(null);
         await expect(handleAssistantMessage("Hello"))
             .rejects.toThrow("User not authenticated");
     });

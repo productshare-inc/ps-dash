@@ -13,7 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "openai": "^4.77.0",
-    "@repo/auth": "any"
+    "openai": "^4.77.0"
   }
 }
