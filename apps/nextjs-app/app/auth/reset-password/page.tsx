@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import React, { Suspense, useEffect, useState } from 'react'
 import ResetPasswordPage from '@repo/ui/templates/auth/v1/ResetPasswordPage'
 import { verifyResetToken } from '../_actions/verify-reset-token'
@@ -10,7 +10,6 @@ import { DataResultProps } from '@repo/ts-types/auth/v1'
 
 const ResetPasswordContent = () => {
 
-    const router = useRouter();
     const [error, setError] = useState<string | undefined>('')
     const [success, setSuccess] = useState<string | undefined>('')
     const searchParams = useSearchParams();
@@ -33,9 +32,6 @@ const ResetPasswordContent = () => {
   const author = 'Late Steve Jobs'
   const credential = 'Ex CEO of Apple Inc.'
 
-  const goToLoginPage = () => {
-    router.push('/auth/login')
-  }
 
   if (error){
     return (
@@ -43,8 +39,7 @@ const ResetPasswordContent = () => {
         errorMessage={error}
         quote={quote}
         author={author}
-        credential={credential}
-        backFunction={goToLoginPage}/>
+        credential={credential}/>
     )
   }
   else if (success){
@@ -53,7 +48,6 @@ const ResetPasswordContent = () => {
         errorMessage={error}
         successMessage={success}
         token={token as string}
-        backFunction={goToLoginPage}
         resetFunction={resetPassword}
         title={title}
         description={description}

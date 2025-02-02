@@ -10,9 +10,7 @@ export const Services = ({services}:{services:ServiceProps[]}) => {
       <div className="grid lg:grid-cols-[1fr,1fr] gap-8 place-items-center">
         <div>
           <h2 className="text-3xl md:text-4xl font-bold">
-            <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-              Client-Centric </span>
-            Services
+            <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text"> Client-Centric </span>Services
           </h2>
 
           <p className="text-muted-foreground text-xl mt-4 mb-8 ">

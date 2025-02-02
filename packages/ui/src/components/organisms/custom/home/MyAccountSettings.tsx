@@ -151,10 +151,10 @@ import { useToast } from "../../../../hooks/use-toast";
                     <AvatarImage src={user?.image?? ''} alt={user?.name?? ''} />
                     <AvatarFallback className="text-3xl">{user?.name?user?.name[0]?.toUpperCase() :'U'}</AvatarFallback>
                   </Avatar>
-                  <div onClick={handleAvatarClick} className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button onClick={handleAvatarClick} className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
                     <div><CameraIcon/></div>
                     <div className="text-xs">Upload Photo</div>
-                  </div>
+                  </button>
                 </div>
                     {/* Hidden file input */}
                 <input

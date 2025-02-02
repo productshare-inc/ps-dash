@@ -11,9 +11,7 @@ const Pricing = ({pricingList,supportEmailAddress}: {pricingList: PricingProps[]
       className="container py-24 sm:py-32 relative"
     >
       <h2 className="text-3xl md:text-4xl font-bold text-center">
-        Get <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-          Premium </span>
-        Access
+        Get <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text"> Premium </span>Access
       </h2>
       <h3 className="text-xl text-center text-muted-foreground pt-4 pb-8 ">
         It's all available for free. You can contact us for any customized solution based on this boilerplate code, you want to implement.

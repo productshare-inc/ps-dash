@@ -5,7 +5,7 @@ import Quote from '../../../organisms/custom/auth/v1/Quote'
 import { LoginPageProps } from '@repo/ts-types/auth/v1';
 
 const LoginPage = ({showEmail,showGoogleProvider,showGithubProvider,showLinkedinProvider,onEmailSubmit,onGoogleProviderSubmit,
-    onGithubProviderSubmit,onLinkedinProviderSubmit,forgotPasswordFunction,backFunction,errorMessage,title,description,
+    onGithubProviderSubmit,onLinkedinProviderSubmit,errorMessage,title,description,
     quote,author,credential}:LoginPageProps) => {
   return (
     <div className='min-h-screen grid grid-cols-1 lg:grid-cols-2 '>
@@ -14,7 +14,7 @@ const LoginPage = ({showEmail,showGoogleProvider,showGithubProvider,showLinkedin
                 <LoginCard showEmail={showEmail} showGoogleProvider={showGoogleProvider} showGithubProvider={showGithubProvider}
                  showLinkedinProvider={showLinkedinProvider} onEmailSubmit={onEmailSubmit} onGoogleProviderSubmit={onGoogleProviderSubmit} 
                  onGithubProviderSubmit={onGithubProviderSubmit} onLinkedinProviderSubmit={onLinkedinProviderSubmit} 
-                 forgotPasswordFunction={forgotPasswordFunction} backFunction={backFunction} errorMessage={errorMessage}/>
+                 errorMessage={errorMessage}/>
             </Suspense>
         </div>
         <div className='hidden lg:block bg-white'>

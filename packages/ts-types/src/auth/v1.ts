@@ -33,8 +33,6 @@ export interface LoginCardProps {
     onGoogleProviderSubmit?: any;
     onGithubProviderSubmit?: any;
     onLinkedinProviderSubmit?: any;
-    forgotPasswordFunction?: any;
-    backFunction?:()=>void;
     errorMessage?:string;
   }
   
@@ -48,7 +46,6 @@ export interface RegisterCardProps {
     onGoogleProviderSubmit?: any;
     onGithubProviderSubmit?: any;
     onLinkedinProviderSubmit?: any;
-    backFunction?:() => void;
     errorMessage?:string;
   }
 
@@ -56,7 +53,6 @@ export interface VerificationCardProps {
     errorMessage?:string;  
     successMessage?:string;
     token?: string;
-    backFunction?:() => void;
     resetFunction?:any;
 }
 
@@ -64,7 +60,6 @@ export interface ResetPasswordCardProps {
     errorMessage?:string;  
     successMessage?:string;
     token?: string;
-    backFunction?:() => void;
     resetFunction?:any;
 }
 
@@ -74,12 +69,10 @@ export interface ForgotPasswordCardProps {
     errorMessage?:string;  
     successMessage?:string;
     resetFunction?:any; 
-    backFunction?:() => void;
   }
 
  export interface ErrorCardProps {
     errorMessage?:string;
-    backFunction?:any
   }
 
 //Complex Interfaces for Auth Pages

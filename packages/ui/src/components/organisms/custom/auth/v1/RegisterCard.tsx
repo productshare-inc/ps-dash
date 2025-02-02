@@ -21,8 +21,7 @@ import { FormResult } from './FormResult';
 import { RegisterCardProps } from '@repo/ts-types/auth/v1';
 import { useRouter } from 'next/navigation';
 const RegisterCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinkedinProvider,
-  onEmailSubmit,onGoogleProviderSubmit,onGithubProviderSubmit,onLinkedinProviderSubmit,backFunction,
-  errorMessage}:RegisterCardProps
+  onEmailSubmit,onGoogleProviderSubmit,onGithubProviderSubmit,onLinkedinProviderSubmit, errorMessage}:RegisterCardProps
 ) => {
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
@@ -99,7 +98,7 @@ const RegisterCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinke
         {showLinkedinProvider && <Button onClick={onLinkedinProviderSubmit} variant='secondary' className="w-full"><FaLinkedin/></Button>}
       </CardFooter>
       <CardFooter className='flex justify-center'>
-        <button onClick={backFunction} className='text-sm text-center text-black/60 hover:text-black cursor-pointer hover:underline'>
+        <button onClick={()=>router.push('/auth/login')} className='text-sm text-center text-black/60 hover:text-black cursor-pointer hover:underline'>
           Already have an Account!
         </button>
       </CardFooter>
@@ -107,9 +106,8 @@ const RegisterCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinke
         <span>
           By signing up, you agree to our <button
             onClick={() => router.push('/landing/terms-of-service')} 
-            className='cursor-pointer text-blue-400 hover:text-blue-800'> Terms of Service 
-          </button> 
-          , <button
+            className='cursor-pointer text-blue-400 hover:text-blue-800'> Terms of Service, </button> 
+          <button
             onClick={() => router.push('/landing/privacy-policy')} 
             className='cursor-pointer text-blue-400 hover:text-blue-800'> Privacy Policy.
           </button>

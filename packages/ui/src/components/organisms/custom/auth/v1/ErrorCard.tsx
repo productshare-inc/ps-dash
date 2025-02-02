@@ -2,8 +2,11 @@ import { Card,  CardFooter, CardHeader } from '../../../../molecules/shadcn/card
 import { BsExclamationTriangle } from 'react-icons/bs';
 import { ErrorCardProps } from '@repo/ts-types/auth/v1';
 import { Button } from '../../../../atoms/shadcn/button';
+import { useRouter } from 'next/navigation';
 
-const ErrorCard = ({errorMessage,backFunction}:ErrorCardProps) => {
+const ErrorCard = ({errorMessage}:ErrorCardProps) => {
+
+  const router = useRouter();
 
   return (
     <Card className='w-[400px] bg-white text-black shadow-xl shadow-white/20'>
@@ -14,7 +17,7 @@ const ErrorCard = ({errorMessage,backFunction}:ErrorCardProps) => {
         <div className='text-md font-extralight text-center'>{errorMessage || "Oops! Something went wrong!"}</div>
       </CardHeader>
       <CardFooter className='flex justify-center'>
-        <Button onClick={backFunction} variant={'blank'}
+        <Button onClick={()=>router.push('/auth/login')} variant={'blank'}
         className='text-sm text-center text-black/60 hover:text-black cursor-pointer hover:underline'>
           Back to login
         </Button>

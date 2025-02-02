@@ -7,7 +7,7 @@ import RegisterCard from '../../../organisms/custom/auth/v1/RegisterCard'
 
 const RegisterPage = ({title,description,quote,author,credential,showEmail,showGoogleProvider,showGithubProvider,
     showLinkedinProvider,onEmailSubmit,onGoogleProviderSubmit,onGithubProviderSubmit,
-    onLinkedinProviderSubmit,backFunction,errorMessage}:RegisterPageProps) => {
+    onLinkedinProviderSubmit,errorMessage}:RegisterPageProps) => {
   return (
     <div className='grid grid-cols-1 lg:grid-cols-2 '>
         <div className='flex items-center justify-center bg-gradient-to-br from-primary to-black dark:bg-gradient-to-br'>
@@ -16,7 +16,7 @@ const RegisterPage = ({title,description,quote,author,credential,showEmail,showG
                 showGoogleProvider={showGoogleProvider} showGithubProvider={showGithubProvider} 
                 showLinkedinProvider={showLinkedinProvider} onEmailSubmit={onEmailSubmit} 
                 onGoogleProviderSubmit={onGoogleProviderSubmit} onGithubProviderSubmit={onGithubProviderSubmit} 
-                onLinkedinProviderSubmit={onLinkedinProviderSubmit} backFunction={backFunction} errorMessage={errorMessage}/>
+                onLinkedinProviderSubmit={onLinkedinProviderSubmit} errorMessage={errorMessage}/>
             </Suspense>
         </div>
         <div className='invisible lg:visible bg-white'>

@@ -22,7 +22,7 @@ import { LoginCardProps } from '@repo/ts-types/auth/v1';
 import { useRouter } from 'next/navigation';
 
 const LoginCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinkedinProvider,onEmailSubmit,
-  onGoogleProviderSubmit,onGithubProviderSubmit,onLinkedinProviderSubmit,forgotPasswordFunction,backFunction,errorMessage}
+  onGoogleProviderSubmit,onGithubProviderSubmit,onLinkedinProviderSubmit,errorMessage}
   :LoginCardProps
 ) => {
   const form = useForm<z.infer<typeof LoginSchema>>({
@@ -106,7 +106,7 @@ const LoginCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinkedin
                   </FormItem>
                 )}/>
               </div>
-              <button onClick={forgotPasswordFunction} className='text-sm text-left text-black/60 hover:text-black cursor-pointer hover:underline'>Forgot Password</button>
+              <button type="button" onClick={()=>router.push('/auth/forgot-password')} className='text-sm text-left text-black/60 hover:text-black cursor-pointer hover:underline'>Forgot Password</button>
               <FormResult type="error" message={error }/>
               <FormResult type="success" message={success}/>
               <Button className='w-full' disabled={isPending} variant="default" type="submit">Login</Button>
@@ -123,7 +123,7 @@ const LoginCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinkedin
         <Button className='w-full' disabled={isPending} variant="default" onClick={loginAsAdmin}>Login as Admin</Button>
       </CardFooter>
       <CardFooter className='flex justify-center'>
-        <button onClick={backFunction} 
+        <button onClick={()=>router.push('/auth/register')} 
         className='text-sm text-center text-black/60 hover:text-black cursor-pointer hover:underline'>
           Don't have an Account?
         </button>
@@ -132,9 +132,8 @@ const LoginCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinkedin
         <span>
           By signing up, you agree to our <button
             onClick={() => router.push('/landing/terms-of-service')} 
-            className='cursor-pointer text-blue-400 hover:text-blue-800'> Terms of Service 
-          </button> 
-          , <button
+            className='cursor-pointer text-blue-400 hover:text-blue-800'> Terms of Service, </button>
+            <button
             onClick={() => router.push('/landing/privacy-policy')} 
             className='cursor-pointer text-blue-400 hover:text-blue-800'> Privacy Policy.
           </button>

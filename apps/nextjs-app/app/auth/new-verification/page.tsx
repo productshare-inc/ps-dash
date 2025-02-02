@@ -1,13 +1,12 @@
 'use client'
 
 import NewVerificationPage from '@repo/ui/templates/auth/v1/NewVerificationPage'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import React, { Suspense, useEffect, useState,useCallback } from 'react'
 import { newVerification } from '../_actions/new-verification'
 
 const NewVerificationContent = () => {
 
-    const router = useRouter();
     const [error, setError] = useState<string | undefined>()
     const [success, setSuccess] = useState<string | undefined>()
     const searchParams = useSearchParams();
@@ -38,15 +37,11 @@ const NewVerificationContent = () => {
   const author = 'Late Steve Jobs'
   const credential = 'Ex CEO of Apple Inc.'
 
-  const goToLoginPage = () => {
-    router.push('/auth/login')
-  }
 
   return (
     <NewVerificationPage 
     errorMessage={error} 
     successMessage={success} 
-    backFunction={goToLoginPage} 
     title={title} 
     description={description}
     quote={quote} 

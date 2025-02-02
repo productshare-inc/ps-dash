@@ -1,14 +1,13 @@
 'use client'
 
 import RegisterPage from '@repo/ui/templates/auth/v1/RegisterPage'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import React, { Suspense, useEffect, useState } from 'react'
 import { DEFAULT_LOGIN_REDIRECT } from '../../../routes'
 import { signIn } from 'next-auth/react'
 import { register } from '../_actions/register'
 
 const RegisterContent = () => {
-  const router = useRouter()
   const searchParams = useSearchParams()
 
   const [urlError, setUrlError] = useState('')
@@ -34,10 +33,6 @@ const RegisterContent = () => {
     await signIn(type, { callbackUrl: DEFAULT_LOGIN_REDIRECT })
   }
 
-  const goToLoginPage = () => {
-    router.push('/auth/login')
-  }
-
   return (
     <RegisterPage
       title={title}
@@ -53,7 +48,6 @@ const RegisterContent = () => {
       onGoogleProviderSubmit={login}
       onGithubProviderSubmit={login}
       onLinkedinProviderSubmit={login}
-      backFunction={goToLoginPage}
       errorMessage={urlError}
     />
   )

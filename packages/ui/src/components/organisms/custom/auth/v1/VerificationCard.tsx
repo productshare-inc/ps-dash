@@ -3,9 +3,10 @@ import { Card, CardContent, CardFooter, CardHeader } from '../../../../molecules
 
 import { BeatLoader } from 'react-spinners';
 import { VerificationCardProps } from '@repo/ts-types/auth/v1';
+import { useRouter } from 'next/navigation';
 
-const VerificationCard = ({errorMessage,successMessage,backFunction}:VerificationCardProps) => {
-
+const VerificationCard = ({errorMessage,successMessage}:VerificationCardProps) => {
+  const router = useRouter();
   return (
     <Card className='w-[400px] bg-white text-black shadow-xl shadow-white/20'>
       <CardHeader>
@@ -22,9 +23,9 @@ const VerificationCard = ({errorMessage,successMessage,backFunction}:Verificatio
         </div>
       </CardContent>
       <CardFooter className='flex justify-center'>
-      <div onClick={backFunction} className='text-sm text-center text-black/60 hover:text-black cursor-pointer hover:underline'>
+      <button onClick={()=>router.push('/auth/login')} className='text-sm text-center text-black/60 hover:text-black cursor-pointer hover:underline'>
           Back to Login
-      </div>
+      </button>
       </CardFooter>
     </Card>
   )

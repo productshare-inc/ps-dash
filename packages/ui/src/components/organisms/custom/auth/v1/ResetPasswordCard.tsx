@@ -15,8 +15,9 @@ import {z} from "zod"
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState, useTransition } from 'react';
 import { Input } from '../../../../atoms/shadcn/input';
+import { useRouter } from 'next/navigation';
 
-const ResetPasswordCard = ({errorMessage,successMessage,token,resetFunction,backFunction}:ResetPasswordCardProps) => {
+const ResetPasswordCard = ({errorMessage,successMessage,token,resetFunction}:ResetPasswordCardProps) => {
   const form = useForm<z.infer<typeof ResetPasswordSchema>>({
     resolver: zodResolver(ResetPasswordSchema),
     defaultValues:{
@@ -39,6 +40,7 @@ const ResetPasswordCard = ({errorMessage,successMessage,token,resetFunction,back
       })
     })
   }
+  const router = useRouter();
   return (
     <Card className='w-[40%] bg-white text-black shadow-xl shadow-white/20'>
       <CardHeader>
@@ -66,7 +68,7 @@ const ResetPasswordCard = ({errorMessage,successMessage,token,resetFunction,back
         </Form>
       </CardContent>
       <CardFooter className='flex justify-center'>
-        <div onClick={backFunction} className='text-sm text-center text-black/60 hover:text-black cursor-pointer hover:underline'>Go to Login Page</div>
+        <button onClick={()=>router.push('/auth/login')} className='text-sm text-center text-black/60 hover:text-black cursor-pointer hover:underline'>Go to Login Page</button>
       </CardFooter>
     </Card>
   )

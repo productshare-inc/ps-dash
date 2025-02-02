@@ -57,9 +57,7 @@ const ResetPassword = ({ resetPasswordLink }: { resetPasswordLink: string }) => 
                   href="mailto:support@bsamaritan.com"
                   className="text-green-500 underline"
                 >
-                  contact us
-                </a>
-                .
+                  contact us</a>.
               </Text>
             </Section>
           </Container>

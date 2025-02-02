@@ -1,14 +1,13 @@
 'use client'
 
 import LoginPage from '@repo/ui/templates/auth/v1/LoginPage'
-import { useRouter, useSearchParams } from 'next/navigation'
+import {  useSearchParams } from 'next/navigation'
 import React, { Suspense, useEffect, useState } from 'react'
 import { DEFAULT_LOGIN_REDIRECT } from '../../../routes'
 import { signIn } from 'next-auth/react'
 import { login } from '../_actions/login'
 
 const LoginContent = () => {
-  const router = useRouter()
   const searchParams = useSearchParams()
 
   const [urlError, setUrlError] = useState('')
@@ -19,19 +18,10 @@ const LoginContent = () => {
       setUrlError('This email is already in use with another provider.')
     }
   }, [searchParams])
-
   
 
   const loginWithSocials = async (type: string) => {
     await signIn(type, { callbackUrl: DEFAULT_LOGIN_REDIRECT })
-  }
-
-  const goToForgotPasswordPage = () => {
-    router.push('/auth/forgot-password')
-  }
-
-  const goToRegisterPage = () => {
-    router.push('/auth/register')
   }
 
   const title = 'Loading...'
@@ -59,8 +49,6 @@ const LoginContent = () => {
       onGoogleProviderSubmit={()=>loginWithSocials('google')}
       onGithubProviderSubmit={()=>loginWithSocials('github')}
       onLinkedinProviderSubmit={()=>loginWithSocials('linkedin')}
-      forgotPasswordFunction={goToForgotPasswordPage}
-      backFunction={goToRegisterPage}
       errorMessage={urlError}
     />
   )

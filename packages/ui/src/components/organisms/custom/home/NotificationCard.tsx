@@ -42,14 +42,14 @@ const NotificationCard = ({notification}:any) => {
 
 
   return (
-    <div onClick={handleClick} className={cn('flex items-center gap-2 mb-4 p-2 rounded-lg cursor-pointer border-[1px]',
+    <button onClick={handleClick} className={cn('flex items-center gap-2 mb-4 p-2 rounded-lg cursor-pointer border-[1px]',
       notification.read ? 'bg-background' : 'bg-sidebar'    )}>
       <div className='rounded-full bg-sidebar-accent px-4 py-2'>T</div>
       <div className='flex flex-col '>
         <div className=''>{notification?.message}</div>
         <div className='text-description'>{getRelativeTime(notification?.createdAt)}</div>
       </div>
-    </div>
+    </button>
   )
 }
 
