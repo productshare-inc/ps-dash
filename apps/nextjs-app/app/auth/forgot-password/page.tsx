@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useState,useEffect } from 'react'
+import React, {useState } from 'react'
 import ForgotPasswordPage from '@repo/ui/templates/auth/v1/ForgotPasswordPage'
 import { ForgotPassword } from '../_actions/forgot-password'
 
