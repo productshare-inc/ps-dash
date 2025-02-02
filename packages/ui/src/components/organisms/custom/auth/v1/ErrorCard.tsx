@@ -1,6 +1,7 @@
 import { Card,  CardFooter, CardHeader } from '../../../../molecules/shadcn/card';
 import { BsExclamationTriangle } from 'react-icons/bs';
 import { ErrorCardProps } from '@repo/ts-types/auth/v1';
+import { Button } from '../../../../atoms/shadcn/button';
 
 const ErrorCard = ({errorMessage,backFunction}:ErrorCardProps) => {
 
@@ -13,7 +14,10 @@ const ErrorCard = ({errorMessage,backFunction}:ErrorCardProps) => {
         <div className='text-md font-extralight text-center'>{errorMessage || "Oops! Something went wrong!"}</div>
       </CardHeader>
       <CardFooter className='flex justify-center'>
-        <div onClick={backFunction} className='text-sm text-center text-black/60 hover:text-black cursor-pointer hover:underline'>Back to login</div>
+        <Button onClick={backFunction} variant={'blank'}
+        className='text-sm text-center text-black/60 hover:text-black cursor-pointer hover:underline'>
+          Back to login
+        </Button>
       </CardFooter>
     </Card>
   )

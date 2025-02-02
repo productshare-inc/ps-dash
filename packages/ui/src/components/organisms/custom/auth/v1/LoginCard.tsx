@@ -106,7 +106,7 @@ const LoginCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinkedin
                   </FormItem>
                 )}/>
               </div>
-              <div onClick={forgotPasswordFunction} className='text-sm text-left text-black/60 hover:text-black cursor-pointer hover:underline'>Forgot Password</div>
+              <button onClick={forgotPasswordFunction} className='text-sm text-left text-black/60 hover:text-black cursor-pointer hover:underline'>Forgot Password</button>
               <FormResult type="error" message={error }/>
               <FormResult type="success" message={success}/>
               <Button className='w-full' disabled={isPending} variant="default" type="submit">Login</Button>
@@ -123,20 +123,21 @@ const LoginCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinkedin
         <Button className='w-full' disabled={isPending} variant="default" onClick={loginAsAdmin}>Login as Admin</Button>
       </CardFooter>
       <CardFooter className='flex justify-center'>
-        <div onClick={backFunction} className='text-sm text-center text-black/60 hover:text-black cursor-pointer hover:underline'>Don't have an Account?</div>
+        <button onClick={backFunction} 
+        className='text-sm text-center text-black/60 hover:text-black cursor-pointer hover:underline'>
+          Don't have an Account?
+        </button>
       </CardFooter>
       <CardFooter className='text-description text-wrap mx-2 text-center'>
         <span>
-          By signing up, you agree to our 
-          <span
+          By signing up, you agree to our <button
             onClick={() => router.push('/landing/terms-of-service')} 
             className='cursor-pointer text-blue-400 hover:text-blue-800'> Terms of Service 
-          </span> 
-          ,
-          <span
+          </button> 
+          , <button
             onClick={() => router.push('/landing/privacy-policy')} 
             className='cursor-pointer text-blue-400 hover:text-blue-800'> Privacy Policy.
-          </span>
+          </button>
         </span>
       </CardFooter>
     </Card>

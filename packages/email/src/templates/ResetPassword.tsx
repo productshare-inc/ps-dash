@@ -53,8 +53,7 @@ const ResetPassword = ({ resetPasswordLink }: { resetPasswordLink: string }) => 
                 &copy; 2024 Bayesian Labs. All rights reserved.
               </Text>
               <Text className="text-gray-500 mt-2">
-                If you have any questions, feel free to{' '}
-                <a
+                If you have any questions, feel free to <a
                   href="mailto:support@bsamaritan.com"
                   className="text-green-500 underline"
                 >

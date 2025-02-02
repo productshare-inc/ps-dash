@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from '../../../atoms/shadcn/button';
 import { Textarea } from '../../../atoms/shadcn/textarea';
 import { chatWithAssistant} from "../../../../../../ai/src/openai/assistant";
@@ -93,7 +93,7 @@ export const SupportChat = () => {
                 }
               </div>
             </div>
-            <div className='flex items-center ' onKeyPress={(e) => e.key === 'Enter' && sendMessage()}>
+            <div role="button" tabIndex={0} className='flex items-center ' onKeyPress={(e) => e.key === 'Enter' && sendMessage()}>
               <Textarea
                 className='flex-1 bg-sidebar text-sidebar-foreground border-none rounded-none rounded-bl-lg min-h-[60px] max-h-[60px] focus-visible:ring-offset-0 focus-visible:ring-0 '
                   value={userInput}

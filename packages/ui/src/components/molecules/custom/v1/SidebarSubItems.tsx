@@ -16,6 +16,7 @@ import {
 } from "../../../organisms/shadcn/sidebar";
 import { usePathname, useRouter } from 'next/navigation'
 import { cn } from "../../../../lib/utils";
+import { Button } from "../../../atoms/shadcn/button";
 
 
 const SidebarSubItems = ({item}:{item:sidebarHeaderItemsProps}) => {
@@ -25,8 +26,9 @@ const SidebarSubItems = ({item}:{item:sidebarHeaderItemsProps}) => {
         <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
             <SidebarMenuItem >
                 <SidebarMenuButton asChild tooltip={item.title} 
-                className={cn("cursor-pointer",pathname===item.url && "bg-sidebar-accent")}>
-                    <div onClick={() => router.push(item.url as string)}>
+                className={cn("cursor-pointer",pathname===item.url && "bg-sidebar-accent")}
+                onClick={() => router.push(item.url as string)}>
+                    <div className="flex items-center ">
                         <item.icon />
                         <span>{item.title}</span>
                     </div>
@@ -44,10 +46,10 @@ const SidebarSubItems = ({item}:{item:sidebarHeaderItemsProps}) => {
                                 {item.items.map((subItem: sidebarHeaderItemsProps) => (
                                     <SidebarMenuSubItem key={subItem.title}>
                                         <SidebarMenuSubButton asChild className={cn("cursor-pointer",
-                                            pathname===subItem.url && "bg-sidebar-accent")}>
-                                            <div onClick={(e) => { e.stopPropagation(); router.push(subItem.url as string); }}>
+                                            pathname===subItem.url && "bg-sidebar-accent") }
+                                            onClick={(e) => { e.stopPropagation(); router.push(subItem.url as string); }}>
+                                                
                                                 <span>{subItem.title}</span>
-                                            </div>
                                         </SidebarMenuSubButton>
                                     </SidebarMenuSubItem>
                                 ))}

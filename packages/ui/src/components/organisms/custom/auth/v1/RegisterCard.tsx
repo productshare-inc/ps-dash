@@ -19,7 +19,6 @@ import {
 import { Input } from '../../../../atoms/shadcn/input';
 import { FormResult } from './FormResult';
 import { RegisterCardProps } from '@repo/ts-types/auth/v1';
-import { Link } from 'react-router-dom';
 import { useRouter } from 'next/navigation';
 const RegisterCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinkedinProvider,
   onEmailSubmit,onGoogleProviderSubmit,onGithubProviderSubmit,onLinkedinProviderSubmit,backFunction,
@@ -100,22 +99,20 @@ const RegisterCard = ({showEmail,showGoogleProvider,showGithubProvider,showLinke
         {showLinkedinProvider && <Button onClick={onLinkedinProviderSubmit} variant='secondary' className="w-full"><FaLinkedin/></Button>}
       </CardFooter>
       <CardFooter className='flex justify-center'>
-        <div onClick={backFunction} className='text-sm text-center text-black/60 hover:text-black cursor-pointer hover:underline'>
+        <button onClick={backFunction} className='text-sm text-center text-black/60 hover:text-black cursor-pointer hover:underline'>
           Already have an Account!
-        </div>
+        </button>
       </CardFooter>
       <CardFooter className='text-description text-wrap mx-2 text-center'>
         <span>
-          By signing up, you agree to our 
-          <span
+          By signing up, you agree to our <button
             onClick={() => router.push('/landing/terms-of-service')} 
             className='cursor-pointer text-blue-400 hover:text-blue-800'> Terms of Service 
-          </span> 
-          ,
-          <span
+          </button> 
+          , <button
             onClick={() => router.push('/landing/privacy-policy')} 
             className='cursor-pointer text-blue-400 hover:text-blue-800'> Privacy Policy.
-          </span>
+          </button>
         </span>
       </CardFooter>
     </Card>

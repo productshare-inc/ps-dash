@@ -2,6 +2,7 @@
 import { usePathname, useRouter } from 'next/navigation'
 import React from 'react'
 import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbList, BreadcrumbSeparator } from '../../shadcn/breadcrumb'
+import { Button } from '../../../atoms/shadcn/button'
 
 export const BreadcrumbsHeader = () => {
     const pathname = usePathname()
@@ -11,20 +12,24 @@ export const BreadcrumbsHeader = () => {
         return paths.slice(0, index + 1).join("/");
       };
     return (
-        <div className="flex items-center flex-start">
+        <div className="flex items-center flex-start ">
             <Breadcrumb>
                 <BreadcrumbList>
                     <BreadcrumbItem>
-                        <div tabIndex={0} role="button" className='capitalize cursor-pointer hover:dark:text-white hover:text-black' onClick={() => router.push("/")}>
+                        <Button variant={'blank'} size={'xs'} 
+                        className='capitalize cursor-pointer hover:dark:text-white hover:text-black mx-0 px-0' 
+                        onClick={() => router.push("/")}>
                             Home
-                        </div>
+                        </Button>
                     </BreadcrumbItem>
                     {paths.map((path, index) => (
                         <React.Fragment key={index}>
                             <BreadcrumbItem>
-                                <div role="button" tabIndex={0} className='capitalize cursor-pointer hover:dark:text-white hover:text-black' onClick={() => router.push(getFullPath(index))}>
+                                <Button variant={'blank'} size={'xs'} 
+                                className='capitalize cursor-pointer hover:dark:text-white hover:text-black mx-0 px-0'
+                                 onClick={() => router.push(getFullPath(index))}>
                                     {path}
-                                </div>
+                                </Button>
                             </BreadcrumbItem>
                             {index < paths.length - 1 && <BreadcrumbSeparator />}
                         </React.Fragment>
