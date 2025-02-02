@@ -4,7 +4,6 @@ import ResetPassword from '../templates/ResetPassword';
 
 
 export const sendVerificationEmail = async (email: string, token:string) => {
-
     const resend = new Resend(process.env.RESEND_API_KEY)
     const verificationLink = `${process.env.NEXT_PUBLIC_URL}/auth/new-verification?token=${token}`
     let from = process.env.NEXT_PUBLIC_SUPPORT_MAIL || "support";
