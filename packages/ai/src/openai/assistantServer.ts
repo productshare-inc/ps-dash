@@ -1,17 +1,26 @@
 "use server"; // Ensure this stays a server action
 
 import OpenAI from "openai";
+import {auth} from "@repo/auth/next-auth/auth"
 
+const threadMap = new Map<string, string>();
 
-
-let threadId: string | null = null;
 
 export async function handleAssistantMessage(chatMessage: string) {
+    const session = await auth();
+    if(!session){
+        throw new Error("User not authenticated")
+    }
+    const userId = session.user.id;
     const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY as string });
     const assistant_id = process.env.OPENAI_ASSISTANT_ID as string;
+
+    let threadId = threadMap.get(userId)
+
     if (!threadId) {
         const thread = await openai.beta.threads.create();
         threadId = thread.id;
+        threadMap.set(userId, threadId); // Store client-specific thread
     }
 
     await openai.beta.threads.messages.create(threadId, {

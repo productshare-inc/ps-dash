@@ -6,7 +6,7 @@ import { headers } from "next/headers"
 const webhook = new Webhook(process.env.DODO_WEBHOOK_SECRET as string);
 
 export async function POST(request: Request) {
-    const headersList = await headers();
+    const headersList = headers();
 
     try {
         const rawBody = await request.text();

@@ -5,25 +5,11 @@ import { RouteProps, FeatureWithDescriptionProps,
     FooterListProps,
     TeamProps} from "@repo/ts-types/landing-page/v1";
 
-
-
 export const routeList: RouteProps[] = [
-    {
-        href: "#features",
-        label: "Features",
-    },
-    {
-        href: "#testimonials",
-        label: "Testimonials",
-    },
-    {
-        href: "#pricing",
-        label: "Pricing",
-    },
-    {
-        href: "#faq",
-        label: "FAQ",
-    }
+    {href: "#features", label: "Features",},
+    {href: "#testimonials", label: "Testimonials",},
+    {href: "#pricing", label: "Pricing",},
+    {href: "#faq", label: "FAQ",}
 ]
 
 export const featuresWithDescription: FeatureWithDescriptionProps[] = [
