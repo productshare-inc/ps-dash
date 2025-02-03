@@ -22,6 +22,8 @@ jobs:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID }}
           OPENAI_ASSISTANT_ID: ${{ secrets.OPENAI_ASSISTANT_ID }}
+          NEXT_PUBLIC_SUPPORT_MAIL: ${{ secrets.NEXT_PUBLIC_SUPPORT_MAIL }}
+          NEXT_PUBLIC_URL: ${{ secrets.NEXT_PUBLIC_URL }}
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v4
         env:
