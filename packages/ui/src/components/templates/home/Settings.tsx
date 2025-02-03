@@ -95,12 +95,12 @@ export function SettingsDialog({children, open: controlledOpen, onOpenChange: se
         <DialogDescription className="sr-only">
           Customize your settings here.
         </DialogDescription>
-        <SidebarProvider className="items-start">
+        <SidebarProvider>
           <Sidebar collapsible="none" className="hidden md:flex bg-secondary">
             <SidebarContent>
               <SidebarGroup>
                 <SidebarGroupContent>
-                  <SidebarMenu>
+                  <SidebarMenu >
                     <div className="text-description mt-[1px] ml-[1px]">Settings</div>
                     <div className="flex items-center space-x-2 ">
                       <Avatar className="h-8 w-8 rounded-lg">
@@ -112,19 +112,21 @@ export function SettingsDialog({children, open: controlledOpen, onOpenChange: se
                         <span className="truncate text-description">{user?.email}</span>
                       </div>
                     </div>
-                    {data.nav.map((item) => (
-                      <SidebarMenuItem key={item.name}>
-                        <SidebarMenuButton
-                          asChild
-                          className={cn("cursor-pointer hover:bg-accent2", item.name === currentOpenedTab && "bg-accent2")}
-                        >
-                          <Button variant={'secondary'} className="cursor-pointer shadow-none" onClick={()=>setCurrentOpenedTab(item.name)}>
-                            <item.icon />
-                            <span>{item.name}</span>
-                          </Button>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    ))}
+                    <div className="flex flex-col items-start my-2 gap-1 w-full">
+                      {data.nav.map((item) => (
+                        <SidebarMenuItem key={item.name}>
+                          <SidebarMenuButton
+                            asChild
+                            className={cn("cursor-pointer hover:bg-accent2", item.name === currentOpenedTab && "bg-accent2")}
+                          >
+                            <Button variant={'secondary'} className="cursor-pointer shadow-none" onClick={()=>setCurrentOpenedTab(item.name)}>
+                              <item.icon />
+                              <span>{item.name}</span>
+                            </Button>
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      ))}
+                    </div>
                   </SidebarMenu>
                 </SidebarGroupContent>
               </SidebarGroup>

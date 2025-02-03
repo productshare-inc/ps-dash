@@ -1,6 +1,4 @@
-import { describe, test, expect } from 'vitest';
-import { vi } from 'vitest';
-
+import { describe, test, expect,vi } from 'vitest';
 import { getUserByEmail, createResetToken } from '@repo/prisma-db/repo/user';
 import { sendResetEmail } from '@repo/email/resend/index';
 import { ForgotPassword } from '../../../../app/auth/_actions/forgot-password';
@@ -18,7 +16,7 @@ vi.mock('@repo/email/resend/index', () => ({
   sendResetEmail: vi.fn(),
 }));
 
-describe('ForgotPassword', () => {
+describe.concurrent('ForgotPassword', () => {
   test('returns error when email does not exist', async () => {
     
     (getUserByEmail as any).mockResolvedValue(null);

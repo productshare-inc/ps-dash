@@ -36,7 +36,7 @@ export function AppSidebar({name,quote,logo,darkLogo,items,footerItems,pricingLi
             </SidebarFooter>
 
             <SidebarFooter>
-                {userDetails?.access === "TRIAL" ? <UpgradeToProButton />:null}
+                {/* {userDetails?.access === "TRIAL" ? <UpgradeToProButton />:null} */}
                 {showCredits && 
                 <ProgressWithCredits creditsUsed={userDetails?.creditsUsed } creditsTotal={userDetails?.creditsTotal}/>}
                 <SidebarUser  pricingList={pricingList}

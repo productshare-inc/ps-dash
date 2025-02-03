@@ -7,11 +7,11 @@ import { Loader2Icon } from "lucide-react";
 
 const ProgressWithCredits = ({ creditsUsed, creditsTotal }: CreditsProps) => {
 
-    useEffect(() => {
-    },[creditsUsed,creditsTotal])
+  useEffect(() => {
+  }, [creditsUsed, creditsTotal]);
 
-  if (!creditsUsed || !creditsTotal) {
-    return ( // Ensure this block returns JSX
+  if (creditsUsed === undefined || creditsTotal === undefined || creditsTotal === 0) {
+    return (
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between">
           <div className="text-description">Credits Used</div>
