@@ -1,9 +1,8 @@
 import { Hono } from 'hono'
+import aiRoutes from './routes/ai';
 
 const app = new Hono<{ Bindings: CloudflareBindings }>()
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
+app.route("/", aiRoutes);
 
 export default app
