@@ -10,6 +10,8 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@builder.io/dev-tools": "^1.5.3",
+    "@builder.io/sdk-react": "^3.0.6",
     "@next/third-parties": "^15.1.5",
     "@notionhq/client": "^2.2.15",
     "@repo/ai": "*",
@@ -23,6 +25,7 @@
     "@repo/ui": "*",
     "@repo/zod": "*",
     "@sparticuz/chromium": "^127.0.0",
+    "@tailwindcss/postcss": "^4.0.3",
     "@tanstack/react-query": "^5.64.1",
     "@testing-library/react": "^16.2.0",
     "@vercel/analytics": "^1.4.1",
@@ -61,10 +64,10 @@
     "css-loader": "^7.1.2",
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
-    "postcss": "^8",
+    "postcss": "^8.4.31",
     "postcss-loader": "^8.1.1",
     "style-loader": "^4.0.0",
-    "tailwindcss": "^3.4.1",
+    "tailwindcss": "^3.4.17",
     "typescript": "^5",
     "vitest": "^3.0.4"
   }

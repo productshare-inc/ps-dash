@@ -1,7 +1,7 @@
 
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "../../../packages/ui/src/styles/shadcn/shadcn-green.css"
+import "../../../packages/ui/src/styles/shadcn/shadcn-red.css"
 import "../../../packages/ui/src/styles/custom/scroll.css"
 import "../../../packages/ui/src/styles/custom/heroBackgroundAnimation.css"
 import RootClientLayout from "./_components/RootClientLayout";

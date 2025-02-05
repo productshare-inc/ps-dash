@@ -79,7 +79,7 @@ export default auth(async(req:any)=>{
     }
 
     if (!isLoggedIn && !isPublicRoute){
-        return Response.redirect(new URL('/landing',nextUrl));
+        //return Response.redirect(new URL('/landing',nextUrl));
     }
 
 

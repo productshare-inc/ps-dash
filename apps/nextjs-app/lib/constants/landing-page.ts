@@ -1,16 +1,38 @@
+// path of file: `src/app/[...slug]/page.tsx`
+import { fetchEntries } from '@builder.io/sdk-react/edge';
+
+
+// Builder Public API Key set in .env file
+const PUBLIC_API_KEY = process.env.NEXT_PUBLIC_BUILDER_API_KEY!;
+
+
+//const router = useRouter();
+const urlPath = '/';
+const links = await fetchEntries({
+  apiKey: PUBLIC_API_KEY,
+  model: 'menu-links',
+  userAttributes: { urlPath },
+});
+
+
 import { RouteProps, FeatureWithDescriptionProps,
     TestimonialProps, 
     PricingProps,
     FAQProps,
     FooterListProps,
     TeamProps} from "@repo/ts-types/landing-page/v1";
+let menu:  RouteProps[] | undefined;
+if (links && links[0] && links[0].data && links[0].data.link) {
+ menu =  links[0].data.link.map((link: any) => { return {href: link.url, label: link.linkText.Default} });
+  
+}
 
-export const routeList: RouteProps[] = [
+export const routeList = menu ? menu : [
     {href: "#features", label: "Features",},
     {href: "#testimonials", label: "Testimonials",},
     {href: "#pricing", label: "Pricing",},
     {href: "#faq", label: "FAQ",}
-]
+];
 
 export const featuresWithDescription: FeatureWithDescriptionProps[] = [
     {

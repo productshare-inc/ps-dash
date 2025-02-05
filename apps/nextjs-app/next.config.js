@@ -1,14 +1,19 @@
+const withBuilderDevTools = require('@builder.io/dev-tools/next')();
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  experimental:{
-      serverComponentsExternalPackages:["puppeteer-core","@sparticuz/chromium"],
+const nextConfig = withBuilderDevTools({
+  experimental: {
+    serverComponentsExternalPackages: ['puppeteer-core', '@sparticuz/chromium'],
   },
   reactStrictMode: false,
-  images:{
+  images: {
     remotePatterns: [
-        {hostname: '0mckiahhlguhefmi.public.blob.vercel-storage.com', protocol:'https'},
-    ]
-} // Disable Strict Mode
-};
+      {
+        hostname: '0mckiahhlguhefmi.public.blob.vercel-storage.com',
+        protocol: 'https',
+      },
+    ],
+  }, // Disable Strict Mode
+});
 
 module.exports = nextConfig;
