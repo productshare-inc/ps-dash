@@ -3,6 +3,7 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+const customBasePath = process.env.NEXT_PUBLIC_BASE_PATH || process.env.BASE_PATH || '';
 
 const config: Config = {
   title: 'Turborepo SaaS Boilerplate Code Documentation',
@@ -13,7 +14,9 @@ const config: Config = {
   url: 'https://dev.boilerplate.bsamaritan.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: customBasePath || '/',
+  
+  
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
