@@ -1,7 +1,7 @@
 {
   "label": "Deployment",
-  "position": 3,
-  "collapsible": false,
+  "position": 5,
+  "collapsible": true,
   "link": {
     "type": "generated-index",
     "description": "In this section, we'll guide you through the deployment in dev and production environment."
