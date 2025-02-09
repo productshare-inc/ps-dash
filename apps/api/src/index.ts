@@ -3,6 +3,6 @@ import aiRoutes from './routes/ai';
 
 const app = new Hono<{ Bindings: CloudflareBindings }>()
 
-app.route("/", aiRoutes);
+app.route("/ai", aiRoutes);
 
 export default app
