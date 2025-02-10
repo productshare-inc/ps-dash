@@ -1,0 +1,94 @@
+---
+title: Easy Template 1
+description: A modern and sleek template designed for documentation websites.
+sort: 3
+---
+
+import { InteractiveButtons } from "@/components/InteractiveButtons";
+
+<span class="text-lg leading-2">
+  Kickstart your project with a modern template tailored for quick development
+  and easy customization.
+</span>
+
+<div className="sm:w-1/2 p-0">
+  <script dangerouslySetInnerHTML={{__html: `
+    document.addEventListener('DOMContentLoaded', function() {
+      var video = document.getElementById('ezTemplateVideo');
+      if (window.innerWidth >= 1024) {
+        video.autoplay = true;
+        video.loop = true;
+      }
+    });
+  `}}></script>
+  <video controls muted className="rounded-lg" id="ezTemplateVideo">
+    <source src="https://pub-0cd6f9d4131f4f79ac40219248ae64db.r2.dev/eztmp1.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <InteractiveButtons 
+    downloadLink="https://pub-0cd6f9d4131f4f79ac40219248ae64db.r2.dev/ez-template1-main.zip"
+    previewLink="https://ez-template1.vercel.app/"
+  />
+</div>
+
+## Why Choose Easy Template 1?
+
+Looking for a simple yet powerful website template to jumpstart your project? Our template is crafted with the latest tech stack, offering a sleek, modern design that’s easy to use and configure. Here’s why Easy Template 1 is the perfect choice for you:
+
+- **Save Time:** Save over 100 hours of work with a ready-made template.
+- **No Learning Curve:** No need to learn complex animations or advanced setup.
+- **Easy Customization:** Easily configure and make changes to match your brand.
+- **Quick Start:** 1-click download and straightforward setup process.
+- **Fast Updates:** Update text and images in under 5 minutes.
+- **Seamless Deployment:** Deploy live to Vercel in just a few steps.
+
+## Key Features
+
+- **Header Section:** A well-structured and customizable header.
+- **Hero Section:** A captivating hero section to grab user attention.
+- **Social Proof Section:** Showcase testimonials or user feedback.
+- **Pricing Section:** Clearly display your pricing plans.
+- **Call To Action Section:** Encourage user engagement with strong CTAs.
+- **Footer Section:** A comprehensive footer with all necessary links.
+- **Mobile Responsive Navbar:** Ensure a great user experience on all devices.
+
+## Built with the Latest Technologies
+
+<div className="flex space-x-4 items-center my-6">
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+    alt="React"
+    className="h-10"
+  />
+  <img
+    src="data:image/png;base64,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"
+    alt="Next.js"
+    className="h-10"
+  />
+  <img src="https://magicui.design/icon.png" alt="Magic UI" className="h-10" />
+  <img
+    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMwAAADACAMAAAB/Pny7AAAAb1BMVEX///8XFxkAAAAUFBbr6+sQEBLu7u7KysrNzc3x8fHGxsYAAAbn5+fBwcF0dHR3d3d9fX1ISEhCQkJra2tmZmY8PDyFhYYHBwu5ubn4+PguLi82NjYnJyjY2NgiIiPh4eGQkJCcnJ1SUlJaWluurq9uPmEbAAAEpklEQVR4nO2djXbaMAxGiT0vISFA+XMGJS3Q93/GQVvaROIcNuTIlY/uAyT65tjXckI3GimKoiiKoiiKoiiKosRiXC/bdlX+iV1HCPZLY7w35jSJXQmd4slk75iF+DRfWTJbbWIXQ6RYXLNkmT/uY5dD4ntczrhtE7seCr0smWvfYhdEoHjyWZbIyBRPVTdLVh1fYpf0MN25/7GavcYu6WH68+XimeU4dk2PgrOsxDqzOCaUJaFx2S/QfBG7kN2Y+4KzVAll8SDLSnAW4ErBc/9Gll+xa3qUpPyCsixTGhe5WbBf5D5jyPtTuVnQuEwF+wW6UvAzhr0vN8saulLwmgy9X6WTRbQrE8qS4yy/Y9f0KEm5MqUs2PuCsyTk/QU6u5C7jsGzccHrGFyTrRc8Lmm7Um4WfJ4sNgvc84v2S0LezxfQlXKzFCiLXO/nCfXIyPtVQt6XPC4puTKlLNgvYrNg78/krskJeR+7Um6WfI28L3a+YO9P5boSe1/uuODzMc3yA7iRRe58wT2y2HFJy/vwDFZulrS83x+XtFwpd+6jHrkSPC4DuHI8mUT5LV2Jssyo4/LSbJbTQ8n/s4AS92LULOXJXHh+5Z542PszagnNztjLlbzb8E69G1mofqm310s6Xwcp8h/BfSU5S5l9K8vMGadNgbKQ17HCdC7p13yfCZY72CPPqP+ShXGdC7qWLQxcx6wnj0v+MfWvVGwjA/0SwPsgS2Y2THNmAFfWvWfs8pTlQUq9ywBZmra/nDj3yjMw2Pv0LNt+G+H8nMeZxQ5mmZO9D7LYiikL9j45S/0M2+4pz7b5hvfJa7JDR9RBSr1/Y5DF0udLbtCn6EFKvUuJzsYDZLHgkqcgpd4Fez94FmemQUq9C/I+fVxK6Eo345n7Q3jfwSxMm5gbrqTeuHmG3mfqL+HcP/slvPe5sjB4n6u5zHdQ0nTvtwl5P5ord8EfiBysyZZrD1ND74d3peUalzq89wvk/VmQUu/C0SO7Oc/ch+MSwi8ZciXPmoyzCPb+8K48e59pPxY+C+yRz8s80z55B8VGz5KhI+pYWeR6vw6/EYS9WEzvU8eljNUjI+9XAXpkkMXPg5R6lxuuJM995P0Nk/cH6Cvh2bjl8j5+90rOAvzCt4fZDu99vizBe+SmjeT9egDvI1dyrclbeDZOnvvQlYxZgr/4qVGPzJUFet+RvQ+z8LlygPdiMAubKwfokX2ks/GkvI/7Srr3Y51doJe+dFfCHpmr34d+GaBHZvN+Eb5Hjub90Qq+ryT3yLB/sVxnsKNy3buzpX+8gvzClmV0yLq3ti58Fi7vnzn47r3pa3K0HvnCW+tCZmlivRN/Z9/5A1H0uf8GXWmZvoX7ZG6+s1DHBWXhcuWV35/7MhuiRwaurBjnywfj4/tPCgz5gWg80m+QAv+Pl81pdSD/XAyuY3zeD0+0HnkAIno/OHuURfB/KnXqb1dZvR+aSW+Hx/fd+CDU1iaT5bwl64Rh935g9p3HjK1HHozOx+OC/fLJl2Yku/KLma+cta7yCWQ5t6zHrbXb4yF2HWEYN4dDI3oZUxRFURRFURRFURRFURTlZ/AXqc1G1qIOqS8AAAAASUVORK5CYII="
+    alt="Shadcn UI"
+    className="h-10"
+  />
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg"
+    alt="Tailwind CSS"
+    className="h-10"
+  />
+</div>
+
+## Quick Setup Guide
+
+Get your website up and running in no time:
+
+1. **1-Click Download and Setup:** Download the template and set it up instantly.
+2. **5-Minute Customization:** Update text and images to fit your brand quickly.
+3. **Deploy to Vercel:** Take your site live with seamless Vercel integration.
+
+> **Get started today** and bring your website to life with minimal effort and maximum impact!
+
+## Credits
+
+This template design is inspired by the <a href="https://magicui.design"><b>Magic UI's official website</b></a>.

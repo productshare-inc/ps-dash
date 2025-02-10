@@ -1,0 +1,182 @@
+---
+title: Text Parallax
+description: Parallax scroll for text.
+sort: 6
+---
+
+
+import { InteractiveButtons } from '@/components/InteractiveButtons'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import Features from '@/components/ui/preview/bento-grid'
+import TextParallax from '@/components/ui/preview/text-parallax';
+import { cn } from "@/lib/utils";
+import CheckPaidStatus from '@/components/check-paid-status'
+import AnimatedGradientText from '@/components/magicui/animated-gradient-text'
+import { ChevronRight } from "lucide-react";
+import ShimmerButton from '@/components/magicui/shimmer-button'
+import { LockClosedIcon } from '@radix-ui/react-icons';
+
+<span class="text-lg leading-2">Parallax scroll for text </span>
+<p class="text-lg leading-2">Note: This component make use of <a href="https://www.framer.com/motion/?utm_source=google&utm_medium=adwords&utm_campaign=PerfMax-Framer-ControlTargets-M-July2024-PUBLISH_&gad_source=1&gclid=CjwKCAjwufq2BhAmEiwAnZqw8iQHYFimAknshtnhwXAVafAjrBrvaTfMZ1Fw_OYk4Ht1JHbH_hXYehoCi1IQAvD_BwE" class="font-semibold">Framer Motion</a>.</p>
+
+
+ <div className={cn("relative my-4 flex flex-col space-y-2 ")} {...props}>
+
+<Tabs defaultValue="preview" >
+<div className="flex items-center justify-between pb-3 ">
+  <TabsList aria-label="Pricing section" className="w-full justify-start rounded-none border-b bg-transparent p-0">
+    <TabsTrigger value="preview" className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none">Preview</TabsTrigger>
+    <TabsTrigger value="code" className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none">Code</TabsTrigger>
+  </TabsList>
+  </div>
+  <TabsContent value="preview" className="relative rounded-md px-4 border rounded-lg "> 
+    <div className="w-full h-auto md:h-[500px] lg:h-[600px]">
+      <TextParallax />
+    </div>
+  </TabsContent>
+
+  <TabsContent value="code">
+  <div className="z-10 flex min-h-[5rem] items-center justify-center cursor-pointer border-4 border-black">
+      <a href="/pricing-section" style={{textDecoration: 'none'}}>
+        <AnimatedGradientText className="border-[4px]">
+           <hr className="mx-2 h-1 w-[2px] shrink-0 bg-gray-300" />{" "}
+          <span
+            className={cn(
+              `inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent text-lg font-semibold tracking-tighter`,
+            )}
+          >
+            Code is Exclusively Available for Premium Users  🎉 
+          </span>
+          <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+        </AnimatedGradientText>
+      </a>
+    </div>
+
+
+  
+
+<CheckPaidStatus>
+ <p className="font-semibold ">Add this code to your `Components/text-parallax.tsx`: </p>
+
+```tsx
+"use client"
+
+import { useScroll, useTransform, motion } from 'framer-motion'
+import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
+
+interface TextParallaxProps {
+  text: string[]
+  image: string[]
+}
+
+export default function TextParallax({ text, image }: TextParallaxProps) {
+  const container = useRef<HTMLDivElement>(null)
+  const [scrollProgress, setScrollProgress] = useState(0)
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ['start end', 'end start']
+  })
+
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.onChange(setScrollProgress)
+    return () => unsubscribe()
+  }, [scrollYProgress])
+
+  return (
+    <div className="min-h-screen bg-gray-100 overflow-hidden">
+      <div className="fixed top-0 left-0 p-4 bg-white z-50 text-black text-lg">
+        Scroll Progress: {scrollProgress.toFixed(2)}
+      </div>
+      <div className="h-screen flex items-center justify-center text-black">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-center px-4">Scroll down to see the effect</h1>
+      </div>
+      <div ref={container} className="min-h-screen">
+        <Slide text={text[0]} src={image[0]} direction="left" left="-40%" progress={scrollYProgress} />
+        <Slide text={text[1]} src={image[1]} direction="right" left="-25%" progress={scrollYProgress} />
+        <Slide text={text[2]} src={image[2]} direction="left" left="-75%" progress={scrollYProgress} />
+      </div>
+      <div className="h-screen flex items-center justify-center text-black">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-center px-4">End of parallax effect</h2>
+      </div>
+    </div>
+  )
+}
+
+interface SlideProps {
+  src: string
+  text: string
+  direction: 'left' | 'right'
+  left: string
+  progress: any
+}
+
+const Slide = ({ src, text, direction, left, progress }: SlideProps) => {
+  const translateX = useTransform(progress, [0, 1], [150 * (direction === 'left' ? -1 : 1), -150 * (direction === 'left' ? -1 : 1)])
+  
+  return (
+    <motion.div
+      style={{ x: translateX, left }}
+      className="relative flex whitespace-nowrap my-40 md:my-48 lg:my-56"
+    >
+      <Phrase text={text} src={src} />
+      <Phrase text={text} src={src} />
+      <Phrase text={text} src={src} />
+    </motion.div>
+  )
+}
+
+interface PhraseProps {
+  src: string
+  text: string
+}
+
+const Phrase = ({ src, text }: PhraseProps) => {
+  return (
+    <div className="px-6 md:px-8 lg:px-10 flex gap-6 md:gap-8 lg:gap-10 items-center">
+      <p className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-black">{text}</p>
+      <span className="relative h-[15vw] sm:h-[12vw] md:h-[10vw] lg:h-[8vw] aspect-[4/2] rounded-full overflow-hidden">
+        <Image style={{ objectFit: "cover" }} src={src} alt="UI Design" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+      </span>
+    </div>
+  )
+}
+```
+
+<p className="font-semibold ">Here's how you can use the `TextParallax` component in your page:</p>
+
+```tsx
+import TextParallax from '@/components/text-parallax';
+import React from 'react'
+
+function Home() {
+  const texts = ["Front End Developer", "Back End Developer", "Full Stack Developer"];
+    const images = [
+      "https://images.unsplash.com/photo-1727775805114-a87c6bcaf9db?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0fHx8ZW58MHx8fHx8",
+      "https://images.unsplash.com/photo-1727459740748-a0004bd98ed6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzNHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1727659346580-05ba1e71aeb2?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDE4fDZzTVZqVExTa2VRfHxlbnwwfHx8fHw%3D"
+    ];
+    
+  return (
+    
+    <TextParallax text={texts} image={images} />
+  )
+}
+
+export default Home
+```
+
+</CheckPaidStatus>
+  </TabsContent>
+</Tabs>
+
+
+
+
+
+</div>
+
+
+
+
+

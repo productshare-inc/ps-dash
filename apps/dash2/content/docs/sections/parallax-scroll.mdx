@@ -1,0 +1,220 @@
+---
+title: Parallax Scroll
+description: Parallax scroll for images.
+sort: 5
+---
+
+
+import { InteractiveButtons } from '@/components/InteractiveButtons'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import Features from '@/components/ui/preview/bento-grid'
+import ParallaxSection from '@/components/ui/preview/parallax-section'
+import { cn } from "@/lib/utils";
+import CheckPaidStatus from '@/components/check-paid-status'
+import AnimatedGradientText from '@/components/magicui/animated-gradient-text'
+import { ChevronRight } from "lucide-react";
+import ShimmerButton from '@/components/magicui/shimmer-button'
+import { LockClosedIcon } from '@radix-ui/react-icons';
+
+<span class="text-lg leading-2">Parallax scroll for images </span>
+<p class="text-lg leading-2">Note: This component make use of <a href="https://www.framer.com/motion/?utm_source=google&utm_medium=adwords&utm_campaign=PerfMax-Framer-ControlTargets-M-July2024-PUBLISH_&gad_source=1&gclid=CjwKCAjwufq2BhAmEiwAnZqw8iQHYFimAknshtnhwXAVafAjrBrvaTfMZ1Fw_OYk4Ht1JHbH_hXYehoCi1IQAvD_BwE" class="font-semibold">Framer Motion</a> and <a href="https://www.npmjs.com/package/@studio-freight/lenis" className="font-semibold">Lenis</a>.</p>
+
+
+ <div className={cn("relative my-4 flex flex-col space-y-2 ")} {...props}>
+
+<Tabs defaultValue="preview" >
+<div className="flex items-center justify-between pb-3 ">
+  <TabsList aria-label="Pricing section" className="w-full justify-start rounded-none border-b bg-transparent p-0">
+    <TabsTrigger value="preview" className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none">Preview</TabsTrigger>
+    <TabsTrigger value="code" className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none">Code</TabsTrigger>
+  </TabsList>
+  </div>
+  <TabsContent value="preview" className="relative rounded-md px-4 border rounded-lg "> 
+    <div className="w-full h-auto md:h-[500px] lg:h-[600px]">
+      <ParallaxSection />
+    </div>
+  </TabsContent>
+
+  <TabsContent value="code">
+  <div className="z-10 flex min-h-[5rem] items-center justify-center cursor-pointer border-4 border-black">
+      <a href="/pricing-section" style={{textDecoration: 'none'}}>
+        <AnimatedGradientText className="border-[4px]">
+           <hr className="mx-2 h-1 w-[2px] shrink-0 bg-gray-300" />{" "}
+          <span
+            className={cn(
+              `inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent text-lg font-semibold tracking-tighter`,
+            )}
+          >
+            Code is Exclusively Available for Premium Users  🎉 
+          </span>
+          <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+        </AnimatedGradientText>
+      </a>
+    </div>
+
+
+  
+
+<CheckPaidStatus>
+ <p className="font-semibold ">Add this code to your `Components/parallax-section.tsx`: </p>
+
+```tsx
+"use client";
+
+import React, { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import { useTransform, useScroll, motion } from 'framer-motion';
+import Lenis from '@studio-freight/lenis';
+
+interface ColumnProps {
+  images: string[];
+  y: any;
+}
+
+const Column: React.FC<ColumnProps> = ({ images, y }) => {
+  return (
+    <motion.div 
+      className="flex flex-col gap-[3vw] w-1/4 min-w-[300px]"
+      style={{ y }}
+    >
+      {images.map((src, i) => (
+        <div key={i} className="relative w-full h-[450px]">
+          <Image 
+            src={src}
+            alt={`Gallery image ${i + 1}`}
+            fill
+            className="object-cover rounded-lg"
+          />
+        </div>
+      ))}
+    </motion.div>
+  );
+};
+
+interface ScrollImageProps {
+  images: {
+    images1: string[];
+    images2: string[];
+    images3: string[];
+    images4: string[];
+  };
+}
+
+const ParallaxSection: React.FC<ScrollImageProps> = ({ images }) => {
+  const gallery = useRef<HTMLDivElement>(null);
+  const [dimension, setDimension] = useState({ width: 0, height: 0 });
+  
+  const { scrollYProgress } = useScroll({
+    target: gallery,
+    offset: ['start end', 'end start']
+  });
+
+  const { height } = dimension;
+  const y = useTransform(scrollYProgress, [0, 1], [0, height * 0.5]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, height * 3.3]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, height * 1.25]);
+  const y4 = useTransform(scrollYProgress, [0, 1], [0, height * 3]);
+
+  useEffect(() => {
+    const lenis = new Lenis();
+    
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    
+    requestAnimationFrame(raf);
+
+    const resize = () => {
+      setDimension({ width: window.innerWidth, height: window.innerHeight });
+    };
+
+    window.addEventListener("resize", resize);
+    resize();
+
+    return () => {
+      lenis.destroy();
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  return (
+    <main className="w-full">
+      <div className="h-screen">
+      <h1 className='text-black text-2xl font-bold tracking-tight leading-7 mx-auto flex justify-center items-center align-center pt-[20%]'>Please scroll to see Parallax</h1>
+      </div>
+      <div ref={gallery} className="h-[200vh] bg-black relative overflow-hidden">
+      
+        <div className="relative h-full w-full bg-black">
+       
+          <div className="absolute h-full w-full bg-[radial-gradient(#1a202c_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+        </div>
+        <div className="absolute top-[-40%] flex gap-[3vw] p-[3vw] left-1/2 transform -translate-x-1/2">
+          <Column images={images.images1} y={y} />
+          <Column images={images.images2} y={y2} />
+          <Column images={images.images3} y={y3} />
+          <Column images={images.images4} y={y4} />
+        </div>
+      </div>
+      <div className="h-screen"></div>
+    </main>
+  );
+};
+
+export default ParallaxSection;
+```
+
+<p className="font-semibold ">Here's how you can use the `ParallaxSection` component in your page:</p>
+
+```tsx
+import ParallaxSection from '@/components/scroll-image';
+import React from 'react'
+
+function Home() {
+  const images1: string[] = [
+    "https://images.pexels.com/photos/2156/sky-space-dark-galaxy.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "https://images.pexels.com/photos/132037/pexels-photo-132037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+  ];
+  
+  const images2: string[] = [
+    "https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "https://images.pexels.com/photos/371633/pexels-photo-371633.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "https://images.pexels.com/photos/132037/pexels-photo-132037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+  ];
+  
+  const images3: string[] = [
+    "https://images.pexels.com/photos/327482/pexels-photo-327482.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "https://images.pexels.com/photos/273222/pexels-photo-273222.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "https://images.pexels.com/photos/1237110/pexels-photo-1237110.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+  ];
+  
+  const images4: string[] = [
+    "https://images.pexels.com/photos/358482/pexels-photo-358482.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "https://images.pexels.com/photos/132037/pexels-photo-132037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+  ];
+  
+  return (
+    <ParallaxSection images={{ images1, images2, images3, images4 }} />
+  )
+}
+
+export default Home
+```
+
+</CheckPaidStatus>
+  </TabsContent>
+</Tabs>
+
+
+
+
+
+</div>
+
+
+
+
+

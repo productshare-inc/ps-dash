@@ -1,0 +1,5 @@
+{
+    "title": "Templates",
+    "pages": ["index","installation","---Templates---","ez-tmp1", "ez-portfolio", "ez-landing-docs", "ez-blog", "ez-tmp3", "ez-grids", "ez-story", "ez-newsletter", "ez-notes", "ez-tmp4", "ez-boiler", "ez-ai", "ez-beautiful", "ez-indigo", "---Page Sections---", "sections/features-section", "sections/pricing", "sections/image-section", "sections/hero-section", "sections/parallax-scroll", "sections/text-parallax-section"]
+    
+}
