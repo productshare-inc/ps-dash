@@ -1,0 +1,18 @@
+{
+  "name": "@repo/proxy",
+  "version": "1.0.0",
+  "description": "Express-based reverse proxy for multiple Next.js apps in the ps-dash monorepo",
+  "private": true,
+  "main": "proxy.js",
+  "scripts": {
+    "dev": "node proxy.js",
+    "build": "echo \"No build step required for proxy.\"",
+    "start": "node proxy.js"
+  },
+  "author": "ProductShare, Inc.",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "http-proxy-middleware": "^2.0.6"
+  }
+}
